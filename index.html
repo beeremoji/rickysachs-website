@@ -1068,29 +1068,35 @@
         d.msg   = document.getElementById('f-msg').value.trim();
         if (!d.name || !d.email) { alert('Bitte Name und E-Mail angeben.'); return; }
 
-        var subject = 'Booking-Anfrage: ' + d.eventType + (d.datum ? ' - ' + d.datum : '');
-        var body = [
-          'Booking-Anfrage via rickysachs.com',
-          '',
-          'VERANSTALTUNG',
-          'Art: '            + d.eventType,
-          'Datum: '          + (d.datum || 'offen'),
-          'Ort / Venue: '    + (d.ort   || 'offen'),
-          'Gäste: '          + (d.guests || 'nicht angegeben'),
-          'PA / Beschallung: '+ (d.pa   || 'nicht angegeben'),
-          'Budget: '         + (d.budget || 'nicht angegeben'),
-          '',
-          'KONTAKT',
-          'Name: '           + d.name,
-          'E-Mail: '         + d.email,
-          'Telefon: '        + (d.tel || 'nicht angegeben'),
-          d.msg ? '\nNACHRICHT\n' + d.msg : ''
-        ].join('\n');
+        var btn = document.getElementById('cfg-submit');
+        btn.textContent = 'Wird gesendet...';
+        btn.disabled = true;
 
-        var a = document.createElement('a');
-        a.href = 'mailto:booking@rickysachs.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        a.click();
-        goTo(5);
+        fetch('https://formspree.io/f/xzdybenz', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name:                    d.name,
+            email:                   d.email,
+            'Art der Veranstaltung': d.eventType,
+            'Datum':                 d.datum  || 'offen',
+            'Ort / Venue':           d.ort    || 'offen',
+            'Gäste':                 d.guests || 'nicht angegeben',
+            'PA / Beschallung':      d.pa     || 'nicht angegeben',
+            'Budget':                d.budget || 'nicht angegeben',
+            'Telefon':               d.tel    || 'nicht angegeben',
+            'Nachricht':             d.msg    || ''
+          })
+        })
+        .then(function(res) {
+          if (res.ok) { goTo(5); }
+          else { throw new Error('Fehler'); }
+        })
+        .catch(function() {
+          btn.textContent = 'Anfrage senden';
+          btn.disabled = false;
+          alert('Fehler beim Senden. Bitte direkt an booking@rickysachs.com schreiben.');
+        });
       });
 
       updateProgress();
