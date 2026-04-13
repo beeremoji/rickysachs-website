@@ -843,9 +843,131 @@
 
     .cfg-fallback a { color: var(--brown-mid); text-decoration: underline; text-underline-offset: 3px; }
 
+    /* Sentence-style inputs */
+    .cfg-sentence-wrap { margin-bottom: 3rem; }
+
+    .cfg-sentence-line {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .cfg-sentence-line--ta { align-items: flex-start; }
+
+    .cfg-st {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+      color: rgba(242,237,230,0.28);
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
+    .cfg-si {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(242,237,230,0.18);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+      font-style: italic;
+      color: var(--cream);
+      outline: none;
+      padding: 0.05em 0;
+      flex: 1;
+      min-width: 160px;
+      transition: border-color 0.25s;
+      line-height: 1.4;
+    }
+
+    .cfg-si::placeholder { color: rgba(242,237,230,0.16); font-style: italic; }
+    .cfg-si:focus { border-bottom-color: rgba(242,237,230,0.5); }
+
+    .cfg-si-ta {
+      resize: none;
+      overflow: hidden;
+      min-height: 1.8em;
+    }
+
+    /* Dark section overrides */
+    .section-dark .cfg-q { color: var(--cream); }
+    .section-dark .cfg-q-sub { color: var(--cream-dark); opacity: 0.85; }
+
+    .section-dark .cfg-dot { border-color: rgba(242,237,230,0.18); }
+    .section-dark .cfg-dot-num { color: rgba(242,237,230,0.35); }
+    .section-dark .cfg-dot-label { color: rgba(242,237,230,0.35); }
+    .section-dark .cfg-dot.active { border-color: var(--cream); background: var(--cream); }
+    .section-dark .cfg-dot.active .cfg-dot-num { color: var(--brown-dark); }
+    .section-dark .cfg-dot.active .cfg-dot-label { opacity: 0.9; color: var(--cream-dark); }
+    .section-dark .cfg-dot.done { border-color: rgba(242,237,230,0.4); background: rgba(242,237,230,0.4); }
+    .section-dark .cfg-dot.done .cfg-dot-num { color: var(--brown-dark); }
+    .section-dark .cfg-dot-line { background: rgba(242,237,230,0.12); }
+    .section-dark .cfg-dot-line.done { background: rgba(242,237,230,0.35); }
+
+    .section-dark .cfg-chip { background: rgba(242,237,230,0.08); color: rgba(242,237,230,0.45); }
+    .section-dark .cfg-back { color: rgba(242,237,230,0.35); }
+    .section-dark .cfg-back:hover { opacity: 1; color: var(--cream-dark); }
+
+    .section-dark .cfg-card {
+      border-color: rgba(242,237,230,0.16);
+      color: rgba(242,237,230,0.65);
+    }
+
+    .section-dark .cfg-card:hover {
+      border-color: rgba(242,237,230,0.55);
+      color: var(--cream);
+      background: rgba(242,237,230,0.05);
+      box-shadow: none;
+    }
+
+    .section-dark .cfg-card.selected {
+      border-color: var(--cream);
+      background: var(--cream);
+      color: var(--brown-dark);
+    }
+
+    .section-dark .cfg-card.selected::after { color: var(--brown-mid); }
+
+    .section-dark .cfg-next-btn {
+      border-color: rgba(242,237,230,0.45);
+      background: transparent;
+      color: var(--cream);
+    }
+
+    .section-dark .cfg-next-btn:hover {
+      background: var(--cream);
+      color: var(--brown-dark);
+      border-color: var(--cream);
+    }
+
+    .section-dark .cfg-submit-btn {
+      border-color: var(--cream);
+      background: var(--cream);
+      color: var(--brown-dark);
+    }
+
+    .section-dark .cfg-submit-btn:hover {
+      background: var(--cream-dark);
+      border-color: var(--cream-dark);
+    }
+
+    .section-dark .cfg-done-icon { border-color: rgba(242,237,230,0.3); color: rgba(242,237,230,0.5); }
+    .section-dark .cfg-done-title { color: var(--cream); }
+    .section-dark .cfg-done-sub { color: rgba(242,237,230,0.65); }
+    .section-dark .cfg-done-sub a { color: var(--cream-dark); }
+
+    .section-dark .cfg-fallback {
+      border-top-color: rgba(242,237,230,0.08);
+      color: rgba(242,237,230,0.28);
+    }
+
+    .section-dark .cfg-fallback a { color: rgba(242,237,230,0.45); }
+
     @media (max-width: 600px) {
       .cfg-dot-label { display: none; }
       .cfg-nav { margin-bottom: 2rem; padding-bottom: 0; }
+      .cfg-si { min-width: 120px; }
     }
 
     /* RESPONSIVE */
@@ -1015,10 +1137,10 @@
   </div>
 
   <!-- BOOKING -->
-  <div id="booking">
+  <div id="booking" class="section-dark">
     <div class="section-inner">
-      <span class="section-label">Kontakt</span>
-      <h2>Booking</h2>
+      <span class="section-label section-label-light">Kontakt</span>
+      <h2 class="light">Booking</h2>
 
       <div class="cfg" id="cfg">
 
@@ -1063,15 +1185,15 @@
         <!-- SCHRITT 2 -->
         <div class="cfg-step" id="cfg-step-2">
           <button class="cfg-back" id="cfg-back-2">&#8592; Zurück</button>
-          <p class="cfg-q">Wann und wo findet es statt?</p>
-          <div class="cfg-fields">
-            <div class="cfg-field">
-              <label class="cfg-label" for="f-datum">Datum oder Zeitraum</label>
-              <input class="cfg-input" type="text" id="f-datum" placeholder="z.B. 20. September 2026 oder Herbst 2026">
+          <p class="cfg-q">Wann und wo?</p>
+          <div class="cfg-sentence-wrap">
+            <div class="cfg-sentence-line">
+              <span class="cfg-st">Am</span>
+              <input class="cfg-si" type="text" id="f-datum" placeholder="Datum oder Zeitraum" autocomplete="off">
             </div>
-            <div class="cfg-field">
-              <label class="cfg-label" for="f-ort">Ort / Venue</label>
-              <input class="cfg-input" type="text" id="f-ort" placeholder="z.B. Biergarten Zur Krone, Aalen">
+            <div class="cfg-sentence-line">
+              <span class="cfg-st">in</span>
+              <input class="cfg-si" type="text" id="f-ort" placeholder="Ort oder Venue" autocomplete="off">
             </div>
           </div>
           <button class="cfg-next-btn" id="cfg-next-2">Weiter</button>
@@ -1104,10 +1226,9 @@
           <div class="cfg-group hidden" id="group-budget">
             <p class="cfg-q-sub">Budget / Honorar</p>
             <div class="cfg-cards">
-              <button class="cfg-card" data-field="budget" data-value="bis 300 EUR">bis 300</button>
-              <button class="cfg-card" data-field="budget" data-value="300-600 EUR">300 - 600</button>
-              <button class="cfg-card" data-field="budget" data-value="600-1.000 EUR">600 - 1.000</button>
-              <button class="cfg-card" data-field="budget" data-value="über 1.000 EUR">1.000+</button>
+              <button class="cfg-card" data-field="budget" data-value="500-1.000 EUR">500 - 1.000</button>
+              <button class="cfg-card" data-field="budget" data-value="1.000-2.000 EUR">1.000 - 2.000</button>
+              <button class="cfg-card" data-field="budget" data-value="2.000+ EUR">2.000+</button>
               <button class="cfg-card" data-field="budget" data-value="Budget offen / nach Absprache">Offen</button>
             </div>
           </div>
@@ -1118,23 +1239,23 @@
         <!-- SCHRITT 4 -->
         <div class="cfg-step" id="cfg-step-4">
           <button class="cfg-back" id="cfg-back-4">&#8592; Zurück</button>
-          <p class="cfg-q">Wie können wir dich erreichen?</p>
-          <div class="cfg-fields">
-            <div class="cfg-field">
-              <label class="cfg-label" for="f-name">Name *</label>
-              <input class="cfg-input" type="text" id="f-name" placeholder="Dein Name oder Organisation">
+          <p class="cfg-q">Wie erreichen wir dich?</p>
+          <div class="cfg-sentence-wrap">
+            <div class="cfg-sentence-line">
+              <span class="cfg-st">Ich bin</span>
+              <input class="cfg-si" type="text" id="f-name" placeholder="Name oder Organisation" autocomplete="name">
             </div>
-            <div class="cfg-field">
-              <label class="cfg-label" for="f-email">E-Mail *</label>
-              <input class="cfg-input" type="email" id="f-email" placeholder="email@beispiel.de">
+            <div class="cfg-sentence-line">
+              <span class="cfg-st">E-Mail</span>
+              <input class="cfg-si" type="email" id="f-email" placeholder="deine@email.de" autocomplete="email">
             </div>
-            <div class="cfg-field">
-              <label class="cfg-label" for="f-tel">Telefon (optional)</label>
-              <input class="cfg-input" type="tel" id="f-tel" placeholder="+49 ...">
+            <div class="cfg-sentence-line">
+              <span class="cfg-st">Telefon</span>
+              <input class="cfg-si" type="tel" id="f-tel" placeholder="optional" autocomplete="tel">
             </div>
-            <div class="cfg-field">
-              <label class="cfg-label" for="f-msg">Noch etwas? (optional)</label>
-              <textarea class="cfg-input cfg-textarea" id="f-msg" rows="3" placeholder="Besonderheiten, Fragen, Wünsche..."></textarea>
+            <div class="cfg-sentence-line cfg-sentence-line--ta">
+              <span class="cfg-st">Sonst noch</span>
+              <textarea class="cfg-si cfg-si-ta" id="f-msg" rows="2" placeholder="Besonderheiten, Wünsche..."></textarea>
             </div>
           </div>
           <button class="cfg-submit-btn" id="cfg-submit">Anfrage senden</button>
@@ -1248,6 +1369,8 @@
         updateDots();
         updateTrail();
         document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (n === 2) setTimeout(function() { document.getElementById('f-datum').focus(); }, 350);
+        if (n === 4) setTimeout(function() { document.getElementById('f-name').focus(); }, 350);
       }
 
       document.querySelectorAll('.cfg-card').forEach(function(card) {
@@ -1335,6 +1458,19 @@
           btn.disabled = false;
           alert('Fehler beim Senden. Bitte direkt an booking@rickysachs.com schreiben.');
         });
+      });
+
+      // Enter key in step 2
+      ['f-datum', 'f-ort'].forEach(function(id) {
+        document.getElementById(id).addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') { e.preventDefault(); document.getElementById('cfg-next-2').click(); }
+        });
+      });
+
+      // Auto-grow textarea
+      document.getElementById('f-msg').addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
       });
 
       updateDots();
