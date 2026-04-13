@@ -387,7 +387,7 @@
 
     /* HORIZONTAL SLIDE SCENE (musik -> about) */
     .slide-scene {
-      height: 200vh;
+      height: 300vh;
       position: relative;
     }
     .slide-stage {
@@ -2057,8 +2057,8 @@
         if (window.innerWidth <= 768) { track.style.transform = ''; return; }
         var vh = window.innerHeight;
         var scrolled = -scene.getBoundingClientRect().top;
-        // Linear: transition over the full scene height (200vh)
-        var progress = Math.max(0, Math.min(1, scrolled / (scene.offsetHeight - vh)));
+        // Transition over first 100vh; remaining 100vh = dwell on about
+        var progress = Math.max(0, Math.min(1, scrolled / vh));
         track.style.transform = 'translateX(' + (-progress * 50) + '%)';
         ticking = false;
       }
