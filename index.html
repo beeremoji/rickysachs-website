@@ -541,6 +541,30 @@
     footer a { color: inherit; }
 
     /* RESPONSIVE */
+    .about-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .about-link {
+      display: inline-block;
+      padding: 0.55rem 1.4rem;
+      border: 1px solid var(--brown-mid);
+      color: var(--brown-dark);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .about-link:hover {
+      background: var(--brown-dark);
+      color: var(--cream);
+    }
+
     .sr-only {
       position: absolute;
       width: 1px; height: 1px;
@@ -643,7 +667,10 @@
           <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Deutschland. Er schreibt und spielt seine eigenen Songs - roh, akustisch, auf Englisch.</p>
           <p>Musikalisch zwischen Larry Fleet, Chris Stapleton und Colter Wall. Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Echte Gitarre, echter Raum, kein Radio-Glanz.</p>
           <p>Drei Veranstalter haben ihn unabhängig voneinander gebucht, ohne dass er aktiv gepitcht hat. Im Sommer 2026 erscheint die erste Single.</p>
-          <p><a href="#shows">Aktuelle Shows</a> / <a href="#booking">Booking anfragen</a></p>
+          <div class="about-links">
+            <a href="#shows" class="about-link">Aktuelle Shows</a>
+            <a href="#booking" class="about-link">Booking anfragen</a>
+          </div>
         </div>
         <div class="about-photo">
           <!-- Pressefoto hier einfügen: img/press.jpg -->
@@ -712,7 +739,7 @@
       <div class="press-grid">
         <div class="press-bio">
           <h3>Kurz-Bio (DE)</h3>
-          <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus dem Raum Aalen, Deutschland. Er schreibt und spielt Country auf Englisch - roh, akustisch, ohne Radio-Glanz. Musikalisch zwischen Larry Fleet und Chris Stapleton. Seinen ersten Auftritt hatte er als Opener bei einem Scout-Event im Februar 2026. Im Sommer 2026 erscheint seine erste Single. Weitere <a href="#shows">Live-Dates hier</a>.</p>
+          <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus dem Raum Aalen, Deutschland. Er schreibt und spielt Country auf Englisch - roh, akustisch, ohne Radio-Glanz. Musikalisch zwischen Larry Fleet und Chris Stapleton. Seinen ersten Auftritt hatte er als Opener bei einem Scout-Event im Februar 2026. Im Sommer 2026 erscheint seine erste Single.</p>
           <h3>Short Bio (EN)</h3>
           <p>Ricky Sachs is a singer-songwriter from Aalen, Germany. He writes and plays Country in English -raw, acoustic, no radio polish. Somewhere between Larry Fleet and Chris Stapleton. First single dropping summer 2026.</p>
         </div>
