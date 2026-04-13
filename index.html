@@ -1163,7 +1163,11 @@
       height: auto;
       mix-blend-mode: screen;
       opacity: 0;
-      animation: plFade 0.7s ease-out 0.2s forwards;
+      animation: plFade 0.7s ease-out 0.2s both, plPulse 2.4s ease-in-out 1s infinite;
+    }
+
+    .preloader-monogram.out {
+      animation: plLogoOut 0.55s cubic-bezier(0.77,0,0.175,1) forwards !important;
     }
 
     .preloader-bar {
@@ -1188,6 +1192,16 @@
     @keyframes plFade {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes plPulse {
+      0%, 100% { transform: scale(1);    opacity: 1; }
+      50%       { transform: scale(1.05); opacity: 0.82; }
+    }
+
+    @keyframes plLogoOut {
+      from { transform: scale(1);    opacity: 1; }
+      to   { transform: translateY(-90px) scale(0.88); opacity: 0; }
     }
 
     @keyframes plBar {
@@ -1991,8 +2005,10 @@
       var pl = document.getElementById('preloader');
       if (!pl) return;
       function dismiss() {
-        pl.classList.add('out');
-        setTimeout(function() { if (pl.parentNode) pl.parentNode.removeChild(pl); }, 1000);
+        var logo = pl.querySelector('.preloader-monogram');
+        if (logo) logo.classList.add('out');
+        setTimeout(function() { pl.classList.add('out'); }, 380);
+        setTimeout(function() { if (pl.parentNode) pl.parentNode.removeChild(pl); }, 1400);
       }
       if (document.readyState === 'complete') {
         setTimeout(dismiss, 900);
