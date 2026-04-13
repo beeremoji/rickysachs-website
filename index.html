@@ -385,6 +385,35 @@
       display: block;
     }
 
+    /* HORIZONTAL SLIDE SCENE (musik -> about) */
+    .slide-scene {
+      height: 300vh;
+      position: relative;
+    }
+    .slide-stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .slide-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      will-change: transform;
+    }
+    .slide-panel {
+      width: 50%;
+      height: 100%;
+      overflow-y: auto;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .slide-panel > .section-inner {
+      width: 100%;
+    }
+
     .about-photo-placeholder {
       width: 100%;
       height: 100%;
@@ -1347,6 +1376,12 @@
     }
 
     @media (max-width: 768px) {
+      /* Disable horizontal slide on mobile - sections flow normally */
+      .slide-scene { height: auto; }
+      .slide-stage { position: static; height: auto; overflow: visible; }
+      .slide-track { display: block; width: 100%; height: auto; transform: none !important; }
+      .slide-panel { width: 100%; height: auto; overflow-y: visible; display: block; }
+
       nav {
         padding-left: max(1.25rem, env(safe-area-inset-left));
         padding-right: max(1.25rem, env(safe-area-inset-right));
@@ -1492,37 +1527,46 @@
     </div>
   </div>
 
-  <!-- MUSIC -->
-  <div id="musik">
-    <div class="section-inner">
-      <span class="section-label">Live</span>
-      <h2>Raise This Town</h2>
-      <a class="video-link" href="https://www.youtube.com/watch?v=ND1yHpNLx6E" target="_blank" rel="noopener">
-        <img src="img/raise-this-town.jpg" alt="Ricky Sachs - Raise This Town (Aalen 2026)" loading="lazy">
-        <div class="video-play"></div>
-      </a>
-    </div>
-  </div>
+  <!-- SLIDE SCENE: Musik → About -->
+  <div class="slide-scene" id="slide-scene">
+    <div class="slide-stage">
+      <div class="slide-track" id="slide-track">
 
-  <!-- ABOUT -->
-  <div id="ueber">
-    <div class="section-inner">
-      <div class="about-grid">
-        <div class="about-text">
-          <span class="section-label">Über</span>
-          <h2>German Country</h2>
-          <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Deutschland. Er schreibt und spielt seine eigenen Songs - roh, akustisch, auf Englisch.</p>
-          <p>Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Echte Gitarre, echter Raum, kein Radio-Glanz.</p>
-          <p>Im Sommer 2026 erscheint die erste Single.</p>
-          <div class="about-links">
-            <a href="#shows" class="about-link">Aktuelle Shows</a>
-            <a href="#booking" class="about-link">Booking anfragen</a>
+        <!-- MUSIC -->
+        <div class="slide-panel" id="musik">
+          <div class="section-inner">
+            <span class="section-label">Live</span>
+            <h2>Raise This Town</h2>
+            <a class="video-link" href="https://www.youtube.com/watch?v=ND1yHpNLx6E" target="_blank" rel="noopener">
+              <img src="img/raise-this-town.jpg" alt="Ricky Sachs - Raise This Town (Aalen 2026)" loading="lazy">
+              <div class="video-play"></div>
+            </a>
           </div>
         </div>
-        <div class="about-photo">
-          <!-- Pressefoto hier einfügen: img/press.jpg -->
-          <img src="img/portrait.png" alt="Ricky Sachs - Country Musiker aus Aalen, Deutschland" loading="lazy">
+
+        <!-- ABOUT -->
+        <div class="slide-panel" id="ueber">
+          <div class="section-inner">
+            <div class="about-grid">
+              <div class="about-text">
+                <span class="section-label">Über</span>
+                <h2>German Country</h2>
+                <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Deutschland. Er schreibt und spielt seine eigenen Songs - roh, akustisch, auf Englisch.</p>
+                <p>Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Echte Gitarre, echter Raum, kein Radio-Glanz.</p>
+                <p>Im Sommer 2026 erscheint die erste Single.</p>
+                <div class="about-links">
+                  <a href="#shows" class="about-link">Aktuelle Shows</a>
+                  <a href="#booking" class="about-link">Booking anfragen</a>
+                </div>
+              </div>
+              <div class="about-photo">
+                <!-- Pressefoto hier einfügen: img/press.jpg -->
+                <img src="img/portrait.png" alt="Ricky Sachs - Country Musiker aus Aalen, Deutschland" loading="lazy">
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -1959,6 +2003,7 @@
       ];
       groups.forEach(function(g) {
         document.querySelectorAll(g.sel).forEach(function(el, i) {
+          if (el.closest('.slide-scene')) return; // handled by slide transition
           el.classList.add(g.cls);
           var d = (g.stagger != null) ? i * g.stagger : (g.delay || 0);
           if (d > 0) el.dataset.revealDelay = d;
@@ -1998,6 +2043,32 @@
         my = e.clientY / window.innerHeight;
         update();
       });
+    })();
+
+    // HORIZONTAL SLIDE: Musik → About
+    (function() {
+      var scene = document.getElementById('slide-scene');
+      var track = document.getElementById('slide-track');
+      if (!scene || !track) return;
+
+      function easeInOut(t) {
+        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      }
+
+      function onSlideScroll() {
+        // Only run on non-mobile (matches CSS breakpoint)
+        if (window.innerWidth <= 768) return;
+        var vh = window.innerHeight;
+        var scrolled = -scene.getBoundingClientRect().top;
+        // Transition zone: 1×vh to 2×vh into the scene
+        var raw = (scrolled - vh) / vh;
+        var progress = Math.max(0, Math.min(1, raw));
+        track.style.transform = 'translateX(' + (-easeInOut(progress) * 50) + '%)';
+      }
+
+      window.addEventListener('scroll', onSlideScroll, { passive: true });
+      window.addEventListener('resize', onSlideScroll, { passive: true });
+      onSlideScroll();
     })();
 
     // PRELOADER
