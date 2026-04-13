@@ -648,15 +648,44 @@
 
     /* Steps */
     .cfg-step { display: none; }
-    .cfg-step.active {
-      display: block;
-      animation: cfgSlide 0.3s ease;
-    }
+    .cfg-step.active { display: block; }
 
-    @keyframes cfgSlide {
-      from { opacity: 0; transform: translateX(18px); }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(36px); }
       to   { opacity: 1; transform: translateX(0); }
     }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-36px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes cardReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cfg-step.going-fwd { animation: slideInRight 0.42s cubic-bezier(0.22,1,0.36,1) both; }
+    .cfg-step.going-bck { animation: slideInLeft  0.42s cubic-bezier(0.22,1,0.36,1) both; }
+
+    /* Staggered card reveal */
+    .cfg-step.going-fwd .cfg-card, .cfg-step.going-bck .cfg-card {
+      animation: cardReveal 0.36s ease both;
+    }
+    .cfg-step.going-fwd .cfg-card:nth-child(1), .cfg-step.going-bck .cfg-card:nth-child(1) { animation-delay: 100ms; }
+    .cfg-step.going-fwd .cfg-card:nth-child(2), .cfg-step.going-bck .cfg-card:nth-child(2) { animation-delay: 155ms; }
+    .cfg-step.going-fwd .cfg-card:nth-child(3), .cfg-step.going-bck .cfg-card:nth-child(3) { animation-delay: 210ms; }
+    .cfg-step.going-fwd .cfg-card:nth-child(4), .cfg-step.going-bck .cfg-card:nth-child(4) { animation-delay: 265ms; }
+    .cfg-step.going-fwd .cfg-card:nth-child(5), .cfg-step.going-bck .cfg-card:nth-child(5) { animation-delay: 320ms; }
+
+    /* Staggered sentence lines */
+    .cfg-step.going-fwd .cfg-sentence-line:nth-child(1), .cfg-step.going-bck .cfg-sentence-line:nth-child(1) { animation: cardReveal 0.38s ease 0.08s both; }
+    .cfg-step.going-fwd .cfg-sentence-line:nth-child(2), .cfg-step.going-bck .cfg-sentence-line:nth-child(2) { animation: cardReveal 0.38s ease 0.16s both; }
+    .cfg-step.going-fwd .cfg-sentence-line:nth-child(3), .cfg-step.going-bck .cfg-sentence-line:nth-child(3) { animation: cardReveal 0.38s ease 0.24s both; }
+    .cfg-step.going-fwd .cfg-sentence-line:nth-child(4), .cfg-step.going-bck .cfg-sentence-line:nth-child(4) { animation: cardReveal 0.38s ease 0.32s both; }
+
+    /* Card dimmed (during selection) */
+    .cfg-card.dimmed { opacity: 0.18; transform: scale(0.97); transition: opacity 0.2s, transform 0.2s; }
 
     /* Questions */
     .cfg-q {
@@ -792,26 +821,62 @@
 
     .cfg-next-btn.hidden { display: none; }
 
+    /* Submit button shimmer */
+    .cfg-submit-btn { position: relative; overflow: hidden; }
+    .cfg-submit-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+      transform: skewX(-18deg);
+      transition: left 0.7s ease;
+    }
+    .cfg-submit-btn:hover::after { left: 160%; }
+
+    /* Progress dot ripple */
+    .cfg-dot { position: relative; }
+    .cfg-dot.active::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      border: 1px solid rgba(242,237,230,0.5);
+      animation: dotRipple 0.7s ease-out both;
+    }
+    @keyframes dotRipple {
+      from { transform: scale(1); opacity: 1; }
+      to   { transform: scale(2.6); opacity: 0; }
+    }
+
     /* Success */
     .cfg-done { padding: 2rem 0 3rem; }
 
-    .cfg-done-icon {
-      width: 52px;
-      height: 52px;
-      border: 1px solid var(--brown-mid);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: var(--brown-mid);
+    .cfg-done-svg {
+      width: 64px; height: 64px;
       margin-bottom: 2rem;
-      animation: iconPop 0.4s cubic-bezier(0.175,0.885,0.32,1.275) 0.15s both;
+      display: block;
     }
 
-    @keyframes iconPop {
-      from { transform: scale(0.5); opacity: 0; }
-      to   { transform: scale(1); opacity: 1; }
+    .cfg-done-circle {
+      stroke-dasharray: 151;
+      stroke-dashoffset: 151;
+      animation: drawStroke 0.75s cubic-bezier(0.65,0,0.35,1) 0.1s forwards;
+    }
+
+    .cfg-done-path {
+      stroke-dasharray: 42;
+      stroke-dashoffset: 42;
+      animation: drawStroke 0.45s cubic-bezier(0.65,0,0.35,1) 0.75s forwards;
+    }
+
+    @keyframes drawStroke { to { stroke-dashoffset: 0; } }
+
+    .cfg-done-title {
+      animation: cardReveal 0.5s ease 0.9s both;
+    }
+    .cfg-done-sub {
+      animation: cardReveal 0.5s ease 1.1s both;
     }
 
     .cfg-done-title {
@@ -963,6 +1028,14 @@
     }
 
     .section-dark .cfg-fallback a { color: rgba(242,237,230,0.45); }
+
+    /* Booking section depth */
+    #booking.section-dark {
+      background:
+        radial-gradient(ellipse at 18% 65%, rgba(92,68,51,0.6) 0%, transparent 52%),
+        radial-gradient(ellipse at 82% 18%, rgba(30,18,8,0.7) 0%, transparent 50%),
+        var(--brown-dark);
+    }
 
     @media (max-width: 600px) {
       .cfg-dot-label { display: none; }
@@ -1264,9 +1337,12 @@
         <!-- SCHRITT 5: Bestätigung -->
         <div class="cfg-step" id="cfg-step-5">
           <div class="cfg-done">
-            <div class="cfg-done-icon">&#10003;</div>
+            <svg class="cfg-done-svg" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+              <circle class="cfg-done-circle" cx="26" cy="26" r="24" stroke="rgba(242,237,230,0.3)" stroke-width="1"/>
+              <path class="cfg-done-path" d="M15 27 l8 8 l14-15" stroke="rgba(242,237,230,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <p class="cfg-done-title">Anfrage gesendet.</p>
-            <p class="cfg-done-sub">Ricky Sachs meldet sich in der Regel innerhalb von 48 Stunden. Bei dringenden Anfragen direkt auf Instagram: <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">@ricky.sachs</a></p>
+            <p class="cfg-done-sub">Ricky Sachs meldet sich in der Regel innerhalb von 48 Stunden. Bei dringenden Anfragen: <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">@ricky.sachs</a></p>
           </div>
         </div>
 
@@ -1362,15 +1438,21 @@
       }
 
       function goTo(n) {
-        document.querySelectorAll('.cfg-step').forEach(function(el) { el.classList.remove('active'); });
-        document.getElementById('cfg-step-' + n).classList.add('active');
+        var dir = n > step ? 'going-fwd' : 'going-bck';
+        document.querySelectorAll('.cfg-step').forEach(function(el) {
+          el.classList.remove('active', 'going-fwd', 'going-bck');
+        });
+        var el = document.getElementById('cfg-step-' + n);
+        el.classList.add('active');
+        requestAnimationFrame(function() { requestAnimationFrame(function() { el.classList.add(dir); }); });
         step = n;
         if (n === 3) initStep3();
         updateDots();
         updateTrail();
         document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (n === 2) setTimeout(function() { document.getElementById('f-datum').focus(); }, 350);
-        if (n === 4) setTimeout(function() { document.getElementById('f-name').focus(); }, 350);
+        if (n === 2) setTimeout(function() { document.getElementById('f-datum').focus(); }, 420);
+        if (n === 4) setTimeout(function() { document.getElementById('f-name').focus(); }, 420);
+        if (n === 5) document.getElementById('cfg-nav').style.opacity = '0';
       }
 
       document.querySelectorAll('.cfg-card').forEach(function(card) {
@@ -1380,7 +1462,10 @@
           this.classList.add('selected');
           d[field] = this.dataset.value;
           if (field === 'eventType') {
-            setTimeout(function() { goTo(2); }, 240);
+            document.querySelectorAll('.cfg-card[data-field="eventType"]').forEach(function(c) {
+              if (c !== card) c.classList.add('dimmed');
+            });
+            setTimeout(function() { goTo(2); }, 360);
           } else if (field === 'guests') {
             setTimeout(function() {
               var g = document.getElementById('group-pa');
@@ -1471,6 +1556,13 @@
       document.getElementById('f-msg').addEventListener('input', function() {
         this.style.height = 'auto';
         this.style.height = this.scrollHeight + 'px';
+      });
+
+      // Init animation for step 1
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          document.getElementById('cfg-step-1').classList.add('going-fwd');
+        });
       });
 
       updateDots();
