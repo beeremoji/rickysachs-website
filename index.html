@@ -1096,7 +1096,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      z-index: 9998;
+      z-index: 50;
       pointer-events: none;
       opacity: 0.038;
       mix-blend-mode: overlay;
@@ -1110,12 +1110,12 @@
                   var(--brown-mid);
     }
 
-    /* PAGE LOAD */
-    .hero-logo { animation: heroReveal 1.1s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
-    .hero-cta  { animation: heroReveal 0.85s cubic-bezier(0.22,1,0.36,1) 0.65s both; }
-    @keyframes heroReveal {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* PAGE LOAD - Clip-path wipe reveal */
+    .hero-logo { animation: heroWipe 1.15s cubic-bezier(0.77,0,0.175,1) 0.55s both; }
+    .hero-cta  { animation: heroWipe 0.9s cubic-bezier(0.77,0,0.175,1) 1.15s both; }
+    @keyframes heroWipe {
+      from { clip-path: inset(100% 0 0 0); transform: translateY(10px); }
+      to   { clip-path: inset(0% 0 0 0);   transform: translateY(0); }
     }
 
     /* SCROLL REVEALS */
@@ -1137,6 +1137,161 @@
     .revealed {
       opacity: 1 !important;
       transform: none !important;
+    }
+
+    /* PRELOADER */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--brown-dark);
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.8rem;
+      transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .preloader.out { opacity: 0; pointer-events: none; }
+
+    .preloader-monogram {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--cream);
+      letter-spacing: 0.4em;
+      padding-left: 0.4em;
+      opacity: 0;
+      animation: plFade 0.7s ease-out 0.2s forwards;
+    }
+
+    .preloader-bar {
+      width: 52px;
+      height: 1px;
+      background: rgba(242,237,230,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preloader-bar::after {
+      content: '';
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(242,237,230,0.65);
+      animation: plBar 1s cubic-bezier(0.22,1,0.36,1) 0.35s forwards;
+    }
+
+    @keyframes plFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes plBar {
+      from { left: -100%; }
+      to   { left: 105%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .preloader { display: none; }
+    }
+
+    /* CUSTOM CURSOR */
+    @media (pointer: fine) {
+      *, *::before, *::after { cursor: none !important; }
+
+      .c-dot {
+        position: fixed;
+        width: 5px; height: 5px;
+        background: var(--cream);
+        border-radius: 50%;
+        top: 0; left: 0;
+        pointer-events: none;
+        z-index: 9002;
+        transform: translate(-50%, -50%);
+        will-change: left, top;
+        transition: transform 0.1s;
+      }
+
+      .c-dot.click { transform: translate(-50%, -50%) scale(2.8); }
+
+      .c-ring {
+        position: fixed;
+        width: 40px; height: 40px;
+        border: 1px solid rgba(242,237,230,0.5);
+        border-radius: 50%;
+        top: 0; left: 0;
+        pointer-events: none;
+        z-index: 9001;
+        transform: translate(-50%, -50%);
+        transition: width 0.45s cubic-bezier(0.22,1,0.36,1),
+                    height 0.45s cubic-bezier(0.22,1,0.36,1),
+                    border-color 0.3s,
+                    opacity 0.4s;
+        opacity: 0;
+        will-change: left, top;
+      }
+
+      .c-ring.visible { opacity: 1; }
+
+      .c-ring.hover {
+        width: 72px; height: 72px;
+        border-color: rgba(242,237,230,0.28);
+      }
+    }
+
+    /* MARQUEE */
+    .marquee-band {
+      background: var(--brown-dark);
+      padding: 1rem 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(242,237,230,0.06);
+      border-bottom: 1px solid rgba(242,237,230,0.06);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 22s linear infinite;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .marquee-part {
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-part span {
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(242,237,230,0.4);
+      padding: 0 2.2rem;
+      white-space: nowrap;
+      font-weight: 300;
+    }
+
+    .marquee-part span.m-name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: none;
+      color: rgba(242,237,230,0.6);
+    }
+
+    .marquee-part .m-dot {
+      color: rgba(242,237,230,0.18);
+      font-size: 0.5rem;
+      padding: 0;
     }
 
     /* RESPONSIVE */
@@ -1221,6 +1376,16 @@
 </head>
 <body>
 
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <span class="preloader-monogram">RS</span>
+    <div class="preloader-bar"></div>
+  </div>
+
+  <!-- CURSOR -->
+  <div class="c-dot" id="c-dot"></div>
+  <div class="c-ring" id="c-ring"></div>
+
   <!-- NAV -->
   <nav>
     <ul class="nav-links" id="nav-links">
@@ -1242,6 +1407,26 @@
     <div class="hero-content">
       <img src="img/logo.png" alt="Ricky Sachs - Country Sänger aus Deutschland" class="hero-logo">
       <a href="#booking" class="hero-cta">Booking anfragen</a>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-band" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-part">
+        <span class="m-name">Ricky Sachs</span><span class="m-dot">&#9679;</span>
+        <span>German Country</span><span class="m-dot">&#9679;</span>
+        <span>Aalen, Deutschland</span><span class="m-dot">&#9679;</span>
+        <span>Live 2026</span><span class="m-dot">&#9679;</span>
+        <span>Singer-Songwriter</span><span class="m-dot">&#9679;</span>
+      </div>
+      <div class="marquee-part" aria-hidden="true">
+        <span class="m-name">Ricky Sachs</span><span class="m-dot">&#9679;</span>
+        <span>German Country</span><span class="m-dot">&#9679;</span>
+        <span>Aalen, Deutschland</span><span class="m-dot">&#9679;</span>
+        <span>Live 2026</span><span class="m-dot">&#9679;</span>
+        <span>Singer-Songwriter</span><span class="m-dot">&#9679;</span>
+      </div>
     </div>
   </div>
 
@@ -1723,16 +1908,88 @@
       });
     })();
 
-    // HERO PARALLAX
+    // HERO PARALLAX (scroll + mouse)
     (function() {
       var hero = document.querySelector('.hero');
       if (!hero) return;
+      var sy = 0, mx = 0.5, my = 0.5;
+      function update() {
+        var ox = (mx - 0.5) * -22;
+        var oy = (my - 0.5) * -12;
+        hero.style.backgroundPosition = 'calc(50% + ' + ox + 'px) calc(25% + ' + (sy * 0.28 + oy) + 'px)';
+      }
       window.addEventListener('scroll', function() {
-        var sy = window.scrollY;
-        if (sy < window.innerHeight * 1.5) {
-          hero.style.backgroundPositionY = 'calc(25% + ' + (sy * 0.28) + 'px)';
-        }
+        sy = window.scrollY;
+        if (sy < window.innerHeight * 1.5) update();
       }, { passive: true });
+      document.addEventListener('mousemove', function(e) {
+        if (sy > window.innerHeight) return;
+        mx = e.clientX / window.innerWidth;
+        my = e.clientY / window.innerHeight;
+        update();
+      });
+    })();
+
+    // PRELOADER
+    (function() {
+      var pl = document.getElementById('preloader');
+      if (!pl) return;
+      function dismiss() {
+        pl.classList.add('out');
+        setTimeout(function() { if (pl.parentNode) pl.parentNode.removeChild(pl); }, 1000);
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(dismiss, 900);
+      } else {
+        window.addEventListener('load', function() { setTimeout(dismiss, 900); });
+      }
+    })();
+
+    // CUSTOM CURSOR
+    (function() {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+      var dot = document.getElementById('c-dot');
+      var ring = document.getElementById('c-ring');
+      if (!dot || !ring) return;
+      var mx = -100, my = -100, rx = -100, ry = -100;
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px';
+        dot.style.top  = my + 'px';
+        ring.classList.add('visible');
+      });
+      (function loop() {
+        rx += (mx - rx) * 0.1;
+        ry += (my - ry) * 0.1;
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+      document.querySelectorAll('a, button, .cfg-card, .show-item, .video-link, .about-link').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { ring.classList.add('hover'); });
+        el.addEventListener('mouseleave', function() { ring.classList.remove('hover'); });
+      });
+      document.addEventListener('mousedown', function() { dot.classList.add('click'); });
+      document.addEventListener('mouseup',   function() { dot.classList.remove('click'); });
+    })();
+
+    // PHOTO 3D TILT
+    (function() {
+      var photo = document.querySelector('.about-photo');
+      if (!photo || !window.matchMedia('(pointer: fine)').matches) return;
+      photo.addEventListener('mouseenter', function() {
+        photo.style.transition = 'transform 0.08s linear';
+      });
+      photo.addEventListener('mousemove', function(e) {
+        var r = photo.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
+        var dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
+        photo.style.transform = 'perspective(700px) rotateY(' + (dx * 7) + 'deg) rotateX(' + (-dy * 5) + 'deg) scale(1.025)';
+      });
+      photo.addEventListener('mouseleave', function() {
+        photo.style.transition = 'transform 0.65s cubic-bezier(0.22,1,0.36,1)';
+        photo.style.transform  = 'perspective(700px) rotateY(0deg) rotateX(0deg) scale(1)';
+      });
     })();
   </script>
 
