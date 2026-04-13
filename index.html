@@ -1159,11 +1159,9 @@
     .preloader.out { opacity: 0; pointer-events: none; }
 
     .preloader-monogram {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      color: var(--cream);
-      letter-spacing: 0.4em;
-      padding-left: 0.4em;
+      width: min(220px, 55vw);
+      height: auto;
+      mix-blend-mode: screen;
       opacity: 0;
       animation: plFade 0.7s ease-out 0.2s forwards;
     }
@@ -1428,7 +1426,7 @@
 
   <!-- PRELOADER -->
   <div class="preloader" id="preloader" aria-hidden="true">
-    <span class="preloader-monogram">RS</span>
+    <img src="img/logo.png" alt="" class="preloader-monogram">
     <div class="preloader-bar"></div>
   </div>
 
