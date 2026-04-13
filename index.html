@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ricky Sachs -Country</title>
+  <meta name="description" content="Ricky Sachs -Country aus dem Schwaebischen. Live-Shows, Booking, Presse.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-dark: #3A2416;
+      --brown-mid: #5C4433;
+      --brown-light: #7A5C46;
+      --cream: #F2EDE6;
+      --cream-dark: #E0D8CE;
+      --text-dark: #2C1A0E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      font-weight: 300;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 56px;
+    }
+
+.nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--cream-dark);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cream); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 1px;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      background: var(--brown-dark);
+      background-image: url('img/Hero.jpeg');
+      background-size: cover;
+      background-position: center 25%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 5rem;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,15,20,0.2) 0%,
+        rgba(10,15,20,0.0) 30%,
+        rgba(20,15,10,0.55) 68%,
+        rgba(30,18,8,0.96) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 2.5rem;
+      max-width: 720px;
+    }
+
+    .hero-logo {
+      width: min(340px, 80vw);
+      height: auto;
+      mix-blend-mode: screen;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.8rem, 1.8vw, 1rem);
+      color: var(--cream-dark);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin-bottom: 2.25rem;
+      opacity: 0.85;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.8rem 2.25rem;
+      border: 1px solid rgba(242,237,230,0.7);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .hero-cta:hover {
+      background: var(--cream);
+      color: var(--brown-dark);
+    }
+
+    /* SECTIONS */
+    .section-inner {
+      padding: 5rem 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-dark {
+      background: var(--brown-mid);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .section-label-light {
+      color: rgba(242,237,230,0.5);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      line-height: 1.1;
+    }
+
+    h2.light { color: var(--cream); }
+
+    /* MUSIC */
+    .video-link {
+      display: block;
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .video-link img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px; height: 72px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .video-link:hover .video-play {
+      background: #ff0000;
+    }
+
+    .video-play::after {
+      content: '';
+      display: block;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 12px 0 12px 22px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 4px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      line-height: 1.85;
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+      color: #4A3828;
+    }
+
+    .about-photo {
+      background: var(--brown-light);
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: sticky;
+      top: 76px;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(242,237,230,0.3);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      min-height: 400px;
+    }
+
+    /* SHOWS */
+    .shows-list {
+      list-style: none;
+    }
+
+    .show-item {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid rgba(242,237,230,0.15);
+    }
+
+    .show-item:first-child {
+      border-top: 1px solid rgba(242,237,230,0.15);
+    }
+
+    .show-date {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--cream-dark);
+      opacity: 0.75;
+    }
+
+    .show-venue {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .show-location {
+      font-size: 0.78rem;
+      color: var(--cream-dark);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+    }
+
+    .show-status {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-dark);
+      opacity: 0.45;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* BOOKING */
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .booking-text p {
+      line-height: 1.85;
+      color: #4A3828;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-block .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-block a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--brown-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: block;
+    }
+
+    .contact-block a:hover { color: var(--brown-dark); }
+
+    /* PRESS */
+    .press-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .press-bio h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+
+    .press-bio p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--cream-dark);
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+
+    .press-links h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .press-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(242,237,230,0.1);
+      color: var(--cream-dark);
+      text-decoration: none;
+      font-size: 0.88rem;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+
+    .press-link:hover { opacity: 1; }
+
+    .press-link-arrow {
+      font-size: 0.75rem;
+      opacity: 0.5;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--brown-dark);
+      padding: 3rem 2.5rem;
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links a {
+      color: var(--cream-dark);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .social-links a:hover { opacity: 1; }
+
+    footer p {
+      font-size: 0.72rem;
+      color: var(--cream-dark);
+      opacity: 0.28;
+      letter-spacing: 0.05em;
+    }
+
+    footer a { color: inherit; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: var(--brown-dark);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .about-grid,
+      .booking-grid,
+      .press-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-photo {
+        aspect-ratio: 4/3;
+        position: static;
+      }
+
+      .show-item {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+
+      .show-status { text-align: left; margin-top: 0.4rem; }
+
+      .section-inner { padding: 3.5rem 1.5rem; }
+
+      .hero-content { padding: 0 1.5rem; }
+
+      .hero { padding-bottom: 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#musik">Musik</a></li>
+      <li><a href="#ueber">Über</a></li>
+      <li><a href="#shows">Shows</a></li>
+      <li><a href="#booking">Booking</a></li>
+      <li><a href="#presse">Presse</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" id="top">
+    <div class="hero-content">
+      <img src="img/logo.png" alt="Ricky Sachs" class="hero-logo">
+      <a href="#booking" class="hero-cta">Booking anfragen</a>
+    </div>
+  </div>
+
+  <!-- MUSIC -->
+  <div id="musik">
+    <div class="section-inner">
+      <span class="section-label">Live</span>
+      <h2>Raise This Town</h2>
+      <a class="video-link" href="https://www.youtube.com/watch?v=ND1yHpNLx6E" target="_blank" rel="noopener">
+        <img src="img/raise-this-town.jpg" alt="Ricky Sachs - Raise This Town (Aalen 2026)">
+        <div class="video-play"></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="ueber">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-label">Über</span>
+          <h2>German Country</h2>
+          <p>Ricky Sachs schreibt und spielt Country. Roh, akustisch, auf Englisch. Einflüsse: Larry Fleet, Chris Stapleton, Colter Wall.</p>
+          <p>Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Keine Radio-Produktion -echte Gitarre, echter Raum, kein Glanz.</p>
+          <p>Drei Veranstalter haben ihn unabhängig voneinander gebucht, ohne dass er aktiv gepitcht hat. Im Sommer 2026 erscheint die erste Single.</p>
+        </div>
+        <div class="about-photo">
+          <!-- Pressefoto hier einfügen: img/press.jpg -->
+          <img src="img/portrait.png" alt="Ricky Sachs">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOWS -->
+  <div id="shows" class="section-dark">
+    <div class="section-inner">
+      <span class="section-label section-label-light">Auftritte</span>
+      <h2 class="light">Shows</h2>
+      <ul class="shows-list">
+        <li class="show-item">
+          <span class="show-date">30. Mai 2026</span>
+          <div>
+            <div class="show-venue">Frapé Aalen</div>
+            <div class="show-location">Aalen, Baden-Württemberg</div>
+          </div>
+          <span class="show-status">Bestätigt</span>
+        </li>
+        <li class="show-item">
+          <span class="show-date">11. Juli 2026</span>
+          <div>
+            <div class="show-venue">US Car Rollin</div>
+            <div class="show-location">Fachsenfeld, Aalen</div>
+          </div>
+          <span class="show-status">Bestätigt</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BOOKING -->
+  <div id="booking">
+    <div class="section-inner">
+      <div class="booking-grid">
+        <div class="booking-text">
+          <span class="section-label">Kontakt</span>
+          <h2>Booking</h2>
+          <p>Anfragen für Konzerte, Festivals und Veranstaltungen -bevorzugt im Raum Ostwürttemberg und Umgebung.</p>
+          <p>Bitte Datum, Location und Art der Veranstaltung angeben.</p>
+        </div>
+        <div>
+          <div class="contact-block">
+            <span class="label">E-Mail</span>
+            <a href="mailto:booking@rickysachs.com">booking@rickysachs.com</a>
+          </div>
+          <div class="contact-block">
+            <span class="label">Instagram</span>
+            <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">@ricky.sachs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESS -->
+  <div id="presse" class="section-dark">
+    <div class="section-inner">
+      <span class="section-label section-label-light">Presse</span>
+      <h2 class="light">EPK</h2>
+      <div class="press-grid">
+        <div class="press-bio">
+          <h3>Kurz-Bio (DE)</h3>
+          <p>Ricky Sachs ist ein Singer-Songwriter aus dem Raum Aalen. Er schreibt und spielt Country auf Englisch -roh, akustisch, ohne Radio-Glanz. Musikalisch zwischen Larry Fleet und Chris Stapleton. Seinen ersten Auftritt hatte er als Opener bei einem Scout-Event im Februar 2026. Im Sommer 2026 erscheint seine erste Single.</p>
+          <h3>Short Bio (EN)</h3>
+          <p>Ricky Sachs is a singer-songwriter from Aalen, Germany. He writes and plays Country in English -raw, acoustic, no radio polish. Somewhere between Larry Fleet and Chris Stapleton. First single dropping summer 2026.</p>
+        </div>
+        <div class="press-links">
+          <h3>Presse-Anfragen</h3>
+          <a href="mailto:press@rickysachs.com" class="press-link">
+            <span class="press-link-arrow">&#8594;</span> press@rickysachs.com
+          </a>
+          <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener" class="press-link">
+            <span class="press-link-arrow">&#8594;</span> YouTube: @rickysachs
+          </a>
+          <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="press-link">
+            <span class="press-link-arrow">&#8594;</span> Instagram: @ricky.sachs
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="social-links">
+      <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.facebook.com/erik.sachs.31/" target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <p>&copy; 2026 Ricky Sachs / <a href="mailto:booking@rickysachs.com">Kontakt</a> / <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => navLinks.classList.remove('open'))
+    );
+
+    // Nav: transparent über Hero, dunkel sobald gescrollt
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.style.background = 'rgba(58,36,22,0.95)';
+        nav.style.backdropFilter = 'blur(4px)';
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
