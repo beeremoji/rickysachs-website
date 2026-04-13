@@ -1612,17 +1612,28 @@
     // SCROLL REVEALS
     (function() {
       var groups = [
+        // Section labels
         { sel: '.section-label, .section-label-light', cls: 'reveal', delay: 0 },
-        { sel: '#musik h2, #ueber h2, #shows h2, #booking h2, #presse h2', cls: 'reveal', delay: 80 },
-        { sel: '.about-text p', cls: 'reveal', stagger: 100 },
-        { sel: '.about-photo', cls: 'reveal-side', delay: 180 },
-        { sel: '.about-links', cls: 'reveal', delay: 300 },
+        // All H2s
+        { sel: 'h2', cls: 'reveal', delay: 80 },
+        // Music
         { sel: '.video-link', cls: 'reveal-scale', delay: 120 },
+        // About
+        { sel: '.about-text p', cls: 'reveal', stagger: 100 },
+        { sel: '.about-photo', cls: 'reveal-side', delay: 150 },
+        { sel: '.about-link', cls: 'reveal', stagger: 90 },
+        // Shows
         { sel: '.show-item', cls: 'reveal', stagger: 110 },
-        { sel: '.press-bio h3, .press-bio p', cls: 'reveal', stagger: 80 },
+        // Booking configurator
+        { sel: '#cfg', cls: 'reveal-scale', delay: 160 },
+        // Press
+        { sel: '.press-bio h3', cls: 'reveal', stagger: 80 },
+        { sel: '.press-bio p', cls: 'reveal', stagger: 80 },
+        { sel: '.press-links h3', cls: 'reveal', delay: 0 },
         { sel: '.press-link', cls: 'reveal', stagger: 90 },
-        { sel: '.social-links', cls: 'reveal', delay: 0 },
-        { sel: 'footer > p', cls: 'reveal', delay: 110 },
+        // Footer
+        { sel: '.social-links a', cls: 'reveal', stagger: 70 },
+        { sel: 'footer > p', cls: 'reveal', delay: 200 },
       ];
       groups.forEach(function(g) {
         document.querySelectorAll(g.sel).forEach(function(el, i) {
