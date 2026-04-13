@@ -1043,6 +1043,35 @@
       .cfg-si { min-width: 120px; }
     }
 
+    /* PAGE LOAD */
+    .hero-logo { animation: heroReveal 1.1s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+    .hero-cta  { animation: heroReveal 0.85s cubic-bezier(0.22,1,0.36,1) 0.65s both; }
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SCROLL REVEALS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-side {
+      opacity: 0;
+      transform: translateX(48px);
+      transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.94) translateY(28px);
+      transition: opacity 1.1s cubic-bezier(0.22,1,0.36,1), transform 1.1s cubic-bezier(0.22,1,0.36,1);
+    }
+    .revealed {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
     /* RESPONSIVE */
     .about-links {
       display: flex;
@@ -1578,7 +1607,55 @@
         nav.style.background = 'transparent';
         nav.style.backdropFilter = 'none';
       }
-    });
+    }, { passive: true });
+
+    // SCROLL REVEALS
+    (function() {
+      var groups = [
+        { sel: '.section-label, .section-label-light', cls: 'reveal', delay: 0 },
+        { sel: '#musik h2, #ueber h2, #shows h2, #booking h2, #presse h2', cls: 'reveal', delay: 80 },
+        { sel: '.about-text p', cls: 'reveal', stagger: 100 },
+        { sel: '.about-photo', cls: 'reveal-side', delay: 180 },
+        { sel: '.about-links', cls: 'reveal', delay: 300 },
+        { sel: '.video-link', cls: 'reveal-scale', delay: 120 },
+        { sel: '.show-item', cls: 'reveal', stagger: 110 },
+        { sel: '.press-bio h3, .press-bio p', cls: 'reveal', stagger: 80 },
+        { sel: '.press-link', cls: 'reveal', stagger: 90 },
+        { sel: '.social-links', cls: 'reveal', delay: 0 },
+        { sel: 'footer > p', cls: 'reveal', delay: 110 },
+      ];
+      groups.forEach(function(g) {
+        document.querySelectorAll(g.sel).forEach(function(el, i) {
+          el.classList.add(g.cls);
+          var d = (g.stagger != null) ? i * g.stagger : (g.delay || 0);
+          if (d > 0) el.dataset.revealDelay = d;
+        });
+      });
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          var el = e.target;
+          var delay = parseInt(el.dataset.revealDelay || 0);
+          setTimeout(function() { el.classList.add('revealed'); }, delay);
+          observer.unobserve(el);
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+      document.querySelectorAll('.reveal, .reveal-side, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+
+    // HERO PARALLAX
+    (function() {
+      var hero = document.querySelector('.hero');
+      if (!hero) return;
+      window.addEventListener('scroll', function() {
+        var sy = window.scrollY;
+        if (sy < window.innerHeight * 1.5) {
+          hero.style.backgroundPositionY = 'calc(25% + ' + (sy * 0.28) + 'px)';
+        }
+      }, { passive: true });
+    })();
   </script>
 
 </body>
