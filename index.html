@@ -310,49 +310,18 @@
     h2.light { color: var(--cream); }
 
     /* MUSIC */
-    .video-link {
-      display: block;
+    .video-embed {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
-      text-decoration: none;
     }
 
-    .video-link img {
+    .video-embed iframe {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .video-play {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 72px; height: 72px;
-      background: rgba(0,0,0,0.7);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .video-link:hover .video-play {
-      background: rgba(242,237,230,0.18);
-      backdrop-filter: blur(8px);
-    }
-
-    .video-play::after {
-      content: '';
-      display: block;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 12px 0 12px 22px;
-      border-color: transparent transparent transparent #fff;
-      margin-left: 4px;
+      border: none;
     }
 
     /* ABOUT */
@@ -385,34 +354,6 @@
       display: block;
     }
 
-    /* HORIZONTAL SLIDE SCENE (musik -> about) */
-    .slide-scene {
-      height: 600vh;
-      position: relative;
-    }
-    .slide-stage {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .slide-track {
-      display: flex;
-      width: 200%;
-      height: 100%;
-      will-change: transform;
-    }
-    .slide-panel {
-      width: 50%;
-      height: 100%;
-      overflow-y: auto;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-    .slide-panel > .section-inner {
-      width: 100%;
-    }
 
     .about-photo-placeholder {
       width: 100%;
@@ -1312,49 +1253,6 @@
       .preloader { display: none; }
     }
 
-    /* CUSTOM CURSOR */
-    @media (pointer: fine) {
-      *, *::before, *::after { cursor: none !important; }
-
-      .c-dot {
-        position: fixed;
-        width: 5px; height: 5px;
-        background: var(--cream);
-        border-radius: 50%;
-        top: 0; left: 0;
-        pointer-events: none;
-        z-index: 9002;
-        transform: translate(-50%, -50%);
-        will-change: left, top;
-        transition: transform 0.1s;
-      }
-
-      .c-dot.click { transform: translate(-50%, -50%) scale(2.8); }
-
-      .c-ring {
-        position: fixed;
-        width: 40px; height: 40px;
-        border: 1px solid rgba(242,237,230,0.5);
-        border-radius: 50%;
-        top: 0; left: 0;
-        pointer-events: none;
-        z-index: 9001;
-        transform: translate(-50%, -50%);
-        transition: width 0.45s cubic-bezier(0.22,1,0.36,1),
-                    height 0.45s cubic-bezier(0.22,1,0.36,1),
-                    border-color 0.3s,
-                    opacity 0.4s;
-        opacity: 0;
-        will-change: left, top;
-      }
-
-      .c-ring.visible { opacity: 1; }
-
-      .c-ring.hover {
-        width: 72px; height: 72px;
-        border-color: rgba(242,237,230,0.28);
-      }
-    }
 
     /* MARQUEE */
     .marquee-band {
@@ -1446,11 +1344,7 @@
     }
 
     @media (max-width: 768px) {
-      /* Disable horizontal slide on mobile - sections flow normally */
-      .slide-scene { height: auto; }
-      .slide-stage { position: static; height: auto; overflow: visible; }
-      .slide-track { display: block; width: 100%; height: auto; transform: none !important; }
-      .slide-panel { width: 100%; height: auto; overflow-y: visible; display: block; }
+
 
       nav {
         padding-left: max(1.25rem, env(safe-area-inset-left));
@@ -1553,8 +1447,7 @@
   </div>
 
   <!-- CURSOR -->
-  <div class="c-dot" id="c-dot"></div>
-  <div class="c-ring" id="c-ring"></div>
+
 
   <!-- NAV -->
   <nav>
@@ -1600,46 +1493,36 @@
     </div>
   </div>
 
-  <!-- SLIDE SCENE: Musik → About -->
-  <div class="slide-scene" id="slide-scene">
-    <div class="slide-stage">
-      <div class="slide-track" id="slide-track">
+  <!-- MUSIC -->
+  <div id="musik">
+    <div class="section-inner">
+      <span class="section-label">Live</span>
+      <h2>Live Video</h2>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/ND1yHpNLx6E" title="Ricky Sachs - Raise This Town (Aalen 2026)" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
 
-        <!-- MUSIC -->
-        <div class="slide-panel" id="musik">
-          <div class="section-inner">
-            <span class="section-label">Live</span>
-            <h2>Raise This Town</h2>
-            <a class="video-link" href="https://www.youtube.com/watch?v=ND1yHpNLx6E" target="_blank" rel="noopener">
-              <img src="img/raise-this-town.jpg" alt="Ricky Sachs - Raise This Town (Aalen 2026)" loading="lazy">
-              <div class="video-play"></div>
-            </a>
+  <!-- ABOUT -->
+  <div id="ueber">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-label">Über</span>
+          <h2>German Country</h2>
+          <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Deutschland. Er schreibt und spielt seine eigenen Songs - roh, akustisch, auf Englisch.</p>
+          <p>Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Echte Gitarre, echter Raum, kein Radio-Glanz.</p>
+          <p>Im Sommer 2026 erscheint die erste Single.</p>
+          <div class="about-links">
+            <a href="#shows" class="about-link">Aktuelle Shows</a>
+            <a href="#booking" class="about-link">Booking anfragen</a>
           </div>
         </div>
-
-        <!-- ABOUT -->
-        <div class="slide-panel" id="ueber">
-          <div class="section-inner">
-            <div class="about-grid">
-              <div class="about-text">
-                <span class="section-label">Über</span>
-                <h2>German Country</h2>
-                <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Deutschland. Er schreibt und spielt seine eigenen Songs - roh, akustisch, auf Englisch.</p>
-                <p>Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Echte Gitarre, echter Raum, kein Radio-Glanz.</p>
-                <p>Im Sommer 2026 erscheint die erste Single.</p>
-                <div class="about-links">
-                  <a href="#shows" class="about-link">Aktuelle Shows</a>
-                  <a href="#booking" class="about-link">Booking anfragen</a>
-                </div>
-              </div>
-              <div class="about-photo">
-                <!-- Pressefoto hier einfügen: img/press.jpg -->
-                <img src="img/portrait.png" alt="Ricky Sachs - Country Musiker aus Aalen, Deutschland" loading="lazy">
-              </div>
-            </div>
-          </div>
+        <div class="about-photo">
+          <!-- Pressefoto hier einfügen: img/press.jpg -->
+          <img src="img/portrait.png" alt="Ricky Sachs - Country Musiker aus Aalen, Deutschland" loading="lazy">
         </div>
-
       </div>
     </div>
   </div>
@@ -1757,15 +1640,6 @@
             </div>
           </div>
 
-          <div class="cfg-group hidden" id="group-budget">
-            <p class="cfg-q-sub">Budget / Honorar</p>
-            <div class="cfg-cards">
-              <button class="cfg-card" data-field="budget" data-value="500-1.000 EUR">500 - 1.000</button>
-              <button class="cfg-card" data-field="budget" data-value="1.000-2.000 EUR">1.000 - 2.000</button>
-              <button class="cfg-card" data-field="budget" data-value="2.000+ EUR">2.000+</button>
-              <button class="cfg-card" data-field="budget" data-value="Budget offen / nach Absprache">Offen</button>
-            </div>
-          </div>
 
           <button class="cfg-next-btn hidden" id="cfg-next-3">Weiter</button>
         </div>
@@ -1909,7 +1783,7 @@
 
     // BOOKING CONFIGURATOR
     (function() {
-      var d = { eventType:'', datum:'', ort:'', guests:'', pa:'', budget:'', name:'', email:'', tel:'', msg:'' };
+      var d = { eventType:'', datum:'', ort:'', guests:'', pa:'', name:'', email:'', tel:'', msg:'' };
       var step = 1;
 
       function updateDots() {
@@ -1932,7 +1806,6 @@
         if (d.datum || d.ort) chips.push([d.datum, d.ort].filter(Boolean).join(' · '));
         if (d.guests) chips.push(d.guests);
         if (d.pa) chips.push(d.pa);
-        if (d.budget) chips.push(d.budget);
         document.getElementById('cfg-trail').innerHTML = chips.map(function(c) {
           return '<span class="cfg-chip">' + c + '</span>';
         }).join('');
@@ -1940,8 +1813,7 @@
 
       function initStep3() {
         document.getElementById('group-pa').classList.toggle('hidden', !d.guests);
-        document.getElementById('group-budget').classList.toggle('hidden', !d.pa);
-        document.getElementById('cfg-next-3').classList.toggle('hidden', !d.budget);
+        document.getElementById('cfg-next-3').classList.toggle('hidden', !d.pa);
       }
 
       function goTo(n) {
@@ -1980,12 +1852,6 @@
               g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 220);
           } else if (field === 'pa') {
-            setTimeout(function() {
-              var g = document.getElementById('group-budget');
-              g.classList.remove('hidden');
-              g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 220);
-          } else if (field === 'budget') {
             setTimeout(function() {
               var btn = document.getElementById('cfg-next-3');
               btn.classList.remove('hidden');
@@ -2035,7 +1901,6 @@
             'Ort / Venue':           d.ort    || 'offen',
             'Gäste':                 d.guests || 'nicht angegeben',
             'PA / Beschallung':      d.pa     || 'nicht angegeben',
-            'Budget':                d.budget || 'nicht angegeben',
             'Telefon':               d.tel    || 'nicht angegeben',
             'Nachricht':             d.msg    || ''
           })
@@ -2095,7 +1960,7 @@
         // All H2s
         { sel: 'h2', cls: 'reveal', delay: 80 },
         // Music
-        { sel: '.video-link', cls: 'reveal-scale', delay: 120 },
+        { sel: '.video-embed', cls: 'reveal-scale', delay: 120 },
         // About
         { sel: '.about-text p', cls: 'reveal', stagger: 100 },
         { sel: '.about-photo', cls: 'reveal-side', delay: 150 },
@@ -2114,7 +1979,7 @@
       ];
       groups.forEach(function(g) {
         document.querySelectorAll(g.sel).forEach(function(el, i) {
-          if (el.closest('.slide-scene')) return; // handled by slide transition
+
           el.classList.add(g.cls);
           var d = (g.stagger != null) ? i * g.stagger : (g.delay || 0);
           if (d > 0) el.dataset.revealDelay = d;
@@ -2156,35 +2021,6 @@
       });
     })();
 
-    // HORIZONTAL SLIDE: Musik → About
-    (function() {
-      var scene = document.getElementById('slide-scene');
-      var track = document.getElementById('slide-track');
-      if (!scene || !track) return;
-
-      var ticking = false;
-
-      function updateSlide() {
-        if (window.innerWidth <= 768) { track.style.transform = ''; return; }
-        var vh = window.innerHeight;
-        var scrolled = -scene.getBoundingClientRect().top;
-        // Transition over first 100vh; remaining 100vh = dwell on about
-        var progress = Math.max(0, Math.min(1, scrolled / vh));
-        track.style.transform = 'translateX(' + (-progress * 50) + '%)';
-        ticking = false;
-      }
-
-      function onScroll() {
-        if (!ticking) {
-          requestAnimationFrame(updateSlide);
-          ticking = true;
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      updateSlide();
-    })();
 
     // PRELOADER
     (function() {
@@ -2203,33 +2039,6 @@
       }
     })();
 
-    // CUSTOM CURSOR
-    (function() {
-      if (!window.matchMedia('(pointer: fine)').matches) return;
-      var dot = document.getElementById('c-dot');
-      var ring = document.getElementById('c-ring');
-      if (!dot || !ring) return;
-      var mx = -100, my = -100, rx = -100, ry = -100;
-      document.addEventListener('mousemove', function(e) {
-        mx = e.clientX; my = e.clientY;
-        dot.style.left = mx + 'px';
-        dot.style.top  = my + 'px';
-        ring.classList.add('visible');
-      });
-      (function loop() {
-        rx += (mx - rx) * 0.1;
-        ry += (my - ry) * 0.1;
-        ring.style.left = rx + 'px';
-        ring.style.top  = ry + 'px';
-        requestAnimationFrame(loop);
-      })();
-      document.querySelectorAll('a, button, .cfg-card, .show-item, .video-link, .about-link').forEach(function(el) {
-        el.addEventListener('mouseenter', function() { ring.classList.add('hover'); });
-        el.addEventListener('mouseleave', function() { ring.classList.remove('hover'); });
-      });
-      document.addEventListener('mousedown', function() { dot.classList.add('click'); });
-      document.addEventListener('mouseup',   function() { dot.classList.remove('click'); });
-    })();
 
     // PHOTO 3D TILT
     (function() {
