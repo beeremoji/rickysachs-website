@@ -540,6 +540,174 @@
 
     footer a { color: inherit; }
 
+    /* CONFIGURATOR */
+    .cfg { max-width: 620px; }
+
+    .cfg-progress-wrap {
+      height: 2px;
+      background: var(--cream-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .cfg-progress-fill {
+      height: 100%;
+      background: var(--brown-mid);
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    .cfg-step-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 2.5rem;
+      display: block;
+    }
+
+    .cfg-step { display: none; }
+    .cfg-step.active {
+      display: block;
+      animation: cfgIn 0.28s ease;
+    }
+
+    @keyframes cfgIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cfg-q {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+
+    .cfg-q-sub {
+      font-size: 1rem;
+      margin-top: 2.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .cfg-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .cfg-card {
+      padding: 0.65rem 1.35rem;
+      border: 1px solid var(--cream-dark);
+      background: transparent;
+      color: var(--brown-mid);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+
+    .cfg-card:hover { border-color: var(--brown-mid); color: var(--brown-dark); }
+
+    .cfg-card.selected {
+      border-color: var(--brown-dark);
+      background: var(--brown-dark);
+      color: var(--cream);
+    }
+
+    .cfg-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .cfg-field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .cfg-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+    }
+
+    .cfg-input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--cream-dark);
+      padding: 0.5rem 0;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .cfg-input:focus { border-bottom-color: var(--brown-mid); }
+
+    .cfg-textarea { resize: vertical; min-height: 72px; }
+
+    .cfg-next-btn {
+      margin-top: 0.25rem;
+      padding: 0.8rem 2.25rem;
+      border: 1px solid rgba(242,237,230,0.7);
+      background: transparent;
+      color: var(--brown-dark);
+      border-color: var(--brown-mid);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cfg-next-btn:hover { background: var(--brown-dark); color: var(--cream); border-color: var(--brown-dark); }
+
+    .cfg-submit-btn {
+      margin-top: 0.25rem;
+      padding: 0.8rem 2.25rem;
+      border: 1px solid var(--brown-dark);
+      background: var(--brown-dark);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .cfg-submit-btn:hover { background: var(--brown-mid); border-color: var(--brown-mid); }
+
+    .cfg-done-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      padding-top: 1rem;
+    }
+
+    .cfg-done-sub {
+      color: #4A3828;
+      line-height: 1.85;
+      font-size: 0.95rem;
+    }
+
+    .cfg-fallback {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cream-dark);
+      font-size: 0.8rem;
+      color: var(--brown-light);
+    }
+
+    .cfg-fallback a { color: var(--brown-mid); text-decoration: underline; text-underline-offset: 3px; }
+
     /* RESPONSIVE */
     .about-links {
       display: flex;
@@ -709,24 +877,102 @@
   <!-- BOOKING -->
   <div id="booking">
     <div class="section-inner">
-      <div class="booking-grid">
-        <div class="booking-text">
-          <span class="section-label">Kontakt</span>
-          <h2>Booking</h2>
-          <p>Anfragen für Konzerte, Festivals und Veranstaltungen - bevorzugt im Raum Ostwürttemberg, Baden-Württemberg und ganz Deutschland.</p>
-          <p>Bitte Datum, Location und Art der Veranstaltung angeben. Technik und Set-up werden auf Wunsch mitgeteilt.</p>
-          <p>Weitere Informationen im <a href="#presse">EPK / Pressebereich</a>.</p>
+      <span class="section-label">Kontakt</span>
+      <h2>Booking</h2>
+
+      <div class="cfg" id="cfg">
+        <div class="cfg-progress-wrap">
+          <div class="cfg-progress-fill" id="cfg-fill"></div>
         </div>
-        <div>
-          <div class="contact-block">
-            <span class="label">E-Mail</span>
-            <a href="mailto:booking@rickysachs.com">booking@rickysachs.com</a>
-          </div>
-          <div class="contact-block">
-            <span class="label">Instagram</span>
-            <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">@ricky.sachs</a>
+        <span class="cfg-step-label" id="cfg-step-label">Schritt 1 von 4</span>
+
+        <!-- SCHRITT 1: Veranstaltungstyp -->
+        <div class="cfg-step active" id="cfg-step-1">
+          <p class="cfg-q">Was für eine Veranstaltung planst du?</p>
+          <div class="cfg-cards">
+            <button class="cfg-card" data-field="eventType" data-value="Konzert / Gig">Konzert / Gig</button>
+            <button class="cfg-card" data-field="eventType" data-value="Festival">Festival</button>
+            <button class="cfg-card" data-field="eventType" data-value="Firmenveranstaltung">Firmenveranstaltung</button>
+            <button class="cfg-card" data-field="eventType" data-value="Hochzeit / Private Feier">Hochzeit / Feier</button>
+            <button class="cfg-card" data-field="eventType" data-value="Sonstiges">Sonstiges</button>
           </div>
         </div>
+
+        <!-- SCHRITT 2: Datum & Ort -->
+        <div class="cfg-step" id="cfg-step-2">
+          <p class="cfg-q">Wann und wo findet es statt?</p>
+          <div class="cfg-fields">
+            <div class="cfg-field">
+              <label class="cfg-label" for="f-datum">Datum oder Zeitraum</label>
+              <input class="cfg-input" type="text" id="f-datum" placeholder="z.B. 20. September 2026 oder Herbst 2026">
+            </div>
+            <div class="cfg-field">
+              <label class="cfg-label" for="f-ort">Ort / Venue</label>
+              <input class="cfg-input" type="text" id="f-ort" placeholder="z.B. Biergarten Zur Krone, Aalen">
+            </div>
+          </div>
+          <button class="cfg-next-btn" id="cfg-next-2">Weiter</button>
+        </div>
+
+        <!-- SCHRITT 3: Rahmen -->
+        <div class="cfg-step" id="cfg-step-3">
+          <p class="cfg-q">Noch ein paar Details.</p>
+          <p class="cfg-q cfg-q-sub">Wie viele Gäste erwartest du?</p>
+          <div class="cfg-cards">
+            <button class="cfg-card" data-field="guests" data-value="bis 50 Personen">bis 50</button>
+            <button class="cfg-card" data-field="guests" data-value="50-150 Personen">50 - 150</button>
+            <button class="cfg-card" data-field="guests" data-value="150-500 Personen">150 - 500</button>
+            <button class="cfg-card" data-field="guests" data-value="über 500 Personen">500+</button>
+          </div>
+          <p class="cfg-q cfg-q-sub">PA / Beschallung vorhanden?</p>
+          <div class="cfg-cards">
+            <button class="cfg-card" data-field="pa" data-value="Ja, PA vorhanden">Ja</button>
+            <button class="cfg-card" data-field="pa" data-value="Nein, keine PA">Nein</button>
+            <button class="cfg-card" data-field="pa" data-value="Noch unklar">Noch unklar</button>
+          </div>
+          <p class="cfg-q cfg-q-sub">Budget / Honorar</p>
+          <div class="cfg-cards">
+            <button class="cfg-card" data-field="budget" data-value="bis 300 EUR">bis 300</button>
+            <button class="cfg-card" data-field="budget" data-value="300-600 EUR">300 - 600</button>
+            <button class="cfg-card" data-field="budget" data-value="600-1.000 EUR">600 - 1.000</button>
+            <button class="cfg-card" data-field="budget" data-value="über 1.000 EUR">1.000+</button>
+            <button class="cfg-card" data-field="budget" data-value="Budget offen / nach Absprache">Offen</button>
+          </div>
+        </div>
+
+        <!-- SCHRITT 4: Kontakt -->
+        <div class="cfg-step" id="cfg-step-4">
+          <p class="cfg-q">Wie können wir dich erreichen?</p>
+          <div class="cfg-fields">
+            <div class="cfg-field">
+              <label class="cfg-label" for="f-name">Name *</label>
+              <input class="cfg-input" type="text" id="f-name" placeholder="Dein Name oder Organisation">
+            </div>
+            <div class="cfg-field">
+              <label class="cfg-label" for="f-email">E-Mail *</label>
+              <input class="cfg-input" type="email" id="f-email" placeholder="email@beispiel.de">
+            </div>
+            <div class="cfg-field">
+              <label class="cfg-label" for="f-tel">Telefon (optional)</label>
+              <input class="cfg-input" type="tel" id="f-tel" placeholder="+49 ...">
+            </div>
+            <div class="cfg-field">
+              <label class="cfg-label" for="f-msg">Noch etwas? (optional)</label>
+              <textarea class="cfg-input cfg-textarea" id="f-msg" rows="3" placeholder="Besonderheiten, Fragen, Wünsche..."></textarea>
+            </div>
+          </div>
+          <button class="cfg-submit-btn" id="cfg-submit">Anfrage senden</button>
+        </div>
+
+        <!-- SCHRITT 5: Bestätigung -->
+        <div class="cfg-step" id="cfg-step-5">
+          <p class="cfg-done-title">Anfrage gesendet.</p>
+          <p class="cfg-done-sub">Dein Email-Programm öffnet sich mit der fertigen Anfrage. Einfach absenden - Ricky Sachs meldet sich in der Regel innerhalb von 48 Stunden.</p>
+        </div>
+      </div>
+
+      <div class="cfg-fallback">
+        Lieber direkt? <a href="mailto:booking@rickysachs.com">booking@rickysachs.com</a> / <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">@ricky.sachs</a>
       </div>
     </div>
   </div>
@@ -776,6 +1022,79 @@
     navLinks.querySelectorAll('a').forEach(a =>
       a.addEventListener('click', () => navLinks.classList.remove('open'))
     );
+
+    // BOOKING CONFIGURATOR
+    (function() {
+      var d = { eventType:'', datum:'', ort:'', guests:'', pa:'', budget:'', name:'', email:'', tel:'', msg:'' };
+      var step = 1;
+
+      function updateProgress() {
+        document.getElementById('cfg-fill').style.width = ((step - 1) / 4 * 100) + '%';
+        var lbl = document.getElementById('cfg-step-label');
+        lbl.textContent = step <= 4 ? 'Schritt ' + step + ' von 4' : '';
+      }
+
+      function goTo(n) {
+        document.querySelectorAll('.cfg-step').forEach(function(el) { el.classList.remove('active'); });
+        document.getElementById('cfg-step-' + n).classList.add('active');
+        step = n;
+        updateProgress();
+        document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      document.querySelectorAll('.cfg-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          var field = this.dataset.field;
+          document.querySelectorAll('.cfg-card[data-field="' + field + '"]').forEach(function(c) { c.classList.remove('selected'); });
+          this.classList.add('selected');
+          d[field] = this.dataset.value;
+          if (field === 'eventType') { setTimeout(function() { goTo(2); }, 220); }
+          else if (field === 'guests' || field === 'pa' || field === 'budget') {
+            if (d.guests && d.pa && d.budget) { setTimeout(function() { goTo(4); }, 220); }
+          }
+        });
+      });
+
+      document.getElementById('cfg-next-2').addEventListener('click', function() {
+        d.datum = document.getElementById('f-datum').value.trim();
+        d.ort   = document.getElementById('f-ort').value.trim();
+        goTo(3);
+      });
+
+      document.getElementById('cfg-submit').addEventListener('click', function() {
+        d.name  = document.getElementById('f-name').value.trim();
+        d.email = document.getElementById('f-email').value.trim();
+        d.tel   = document.getElementById('f-tel').value.trim();
+        d.msg   = document.getElementById('f-msg').value.trim();
+        if (!d.name || !d.email) { alert('Bitte Name und E-Mail angeben.'); return; }
+
+        var subject = 'Booking-Anfrage: ' + d.eventType + (d.datum ? ' - ' + d.datum : '');
+        var body = [
+          'Booking-Anfrage via rickysachs.com',
+          '',
+          'VERANSTALTUNG',
+          'Art: '            + d.eventType,
+          'Datum: '          + (d.datum || 'offen'),
+          'Ort / Venue: '    + (d.ort   || 'offen'),
+          'Gäste: '          + (d.guests || 'nicht angegeben'),
+          'PA / Beschallung: '+ (d.pa   || 'nicht angegeben'),
+          'Budget: '         + (d.budget || 'nicht angegeben'),
+          '',
+          'KONTAKT',
+          'Name: '           + d.name,
+          'E-Mail: '         + d.email,
+          'Telefon: '        + (d.tel || 'nicht angegeben'),
+          d.msg ? '\nNACHRICHT\n' + d.msg : ''
+        ].join('\n');
+
+        var a = document.createElement('a');
+        a.href = 'mailto:booking@rickysachs.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        a.click();
+        goTo(5);
+      });
+
+      updateProgress();
+    })();
 
     // Nav: transparent über Hero, dunkel sobald gescrollt
     const nav = document.querySelector('nav');
