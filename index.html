@@ -2051,24 +2051,28 @@
       var track = document.getElementById('slide-track');
       if (!scene || !track) return;
 
-      function easeInOut(t) {
-        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      }
+      var ticking = false;
 
-      function onSlideScroll() {
-        // Only run on non-mobile (matches CSS breakpoint)
-        if (window.innerWidth <= 768) return;
+      function updateSlide() {
+        if (window.innerWidth <= 768) { track.style.transform = ''; return; }
         var vh = window.innerHeight;
         var scrolled = -scene.getBoundingClientRect().top;
-        // Transition zone: 1×vh to 2×vh into the scene
-        var raw = (scrolled - vh) / vh;
-        var progress = Math.max(0, Math.min(1, raw));
-        track.style.transform = 'translateX(' + (-easeInOut(progress) * 50) + '%)';
+        // Linear: transition zone from 1×vh to 2×vh into the scene
+        var progress = Math.max(0, Math.min(1, (scrolled - vh) / vh));
+        track.style.transform = 'translateX(' + (-progress * 50) + '%)';
+        ticking = false;
       }
 
-      window.addEventListener('scroll', onSlideScroll, { passive: true });
-      window.addEventListener('resize', onSlideScroll, { passive: true });
-      onSlideScroll();
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(updateSlide);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      updateSlide();
     })();
 
     // PRELOADER
