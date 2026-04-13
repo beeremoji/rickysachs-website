@@ -570,19 +570,23 @@
 
     footer p {
       font-size: 0.72rem;
-      color: rgba(224,216,206,0.42);
+      color: rgba(224,216,206,0.45);
       letter-spacing: 0.05em;
     }
 
     footer p a {
-      color: rgba(224,216,206,0.72);
+      color: rgba(224,216,206,0.85);
       text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: rgba(224,216,206,0.25);
-      transition: color 0.2s;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(224,216,206,0.4);
+      transition: color 0.2s, text-decoration-color 0.2s;
     }
 
-    footer p a:hover { color: var(--cream); }
+    footer p a:hover {
+      color: var(--cream);
+      text-decoration-color: var(--cream);
+    }
 
     /* CONFIGURATOR */
     .cfg { max-width: 660px; }
@@ -1697,7 +1701,6 @@
         { sel: '.press-link', cls: 'reveal', stagger: 90 },
         // Footer
         { sel: '.social-links a', cls: 'reveal', stagger: 70 },
-        { sel: 'footer > p', cls: 'reveal', delay: 200 },
       ];
       groups.forEach(function(g) {
         document.querySelectorAll(g.sel).forEach(function(el, i) {
