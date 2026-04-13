@@ -541,94 +541,215 @@
     footer a { color: inherit; }
 
     /* CONFIGURATOR */
-    .cfg { max-width: 620px; }
+    .cfg { max-width: 660px; }
 
-    .cfg-progress-wrap {
-      height: 2px;
-      background: var(--cream-dark);
-      margin-bottom: 0.6rem;
+    /* Progress dots */
+    .cfg-nav {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 1.2rem;
+      transition: opacity 0.3s;
     }
 
-    .cfg-progress-fill {
-      height: 100%;
-      background: var(--brown-mid);
-      transition: width 0.4s ease;
-      width: 0%;
+    .cfg-dot {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--cream-dark);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s, border-color 0.3s;
     }
 
-    .cfg-step-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
+    .cfg-dot-num {
+      font-size: 0.65rem;
+      color: var(--brown-light);
+      font-family: 'Lato', sans-serif;
+      transition: color 0.3s;
+    }
+
+    .cfg-dot-label {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--brown-light);
-      margin-bottom: 2.5rem;
+      white-space: nowrap;
+      opacity: 0.45;
+      transition: opacity 0.3s, color 0.3s, font-weight 0.3s;
+    }
+
+    .cfg-dot.active { border-color: var(--brown-dark); background: var(--brown-dark); }
+    .cfg-dot.active .cfg-dot-num { color: var(--cream); }
+    .cfg-dot.active .cfg-dot-label { opacity: 1; color: var(--brown-dark); }
+
+    .cfg-dot.done { border-color: var(--brown-mid); background: var(--brown-mid); }
+    .cfg-dot.done .cfg-dot-num { color: var(--cream); }
+    .cfg-dot.done .cfg-dot-label { opacity: 0.6; }
+
+    .cfg-dot-line {
+      flex: 1;
+      height: 1px;
+      background: var(--cream-dark);
+      transition: background 0.4s;
+    }
+
+    .cfg-dot-line.done { background: var(--brown-mid); }
+
+    /* Trail chips */
+    .cfg-trail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      min-height: 1.6rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .cfg-chip {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--brown-light);
+      background: var(--cream-dark);
+      padding: 0.22rem 0.65rem;
+      animation: chipIn 0.22s ease;
+    }
+
+    @keyframes chipIn {
+      from { opacity: 0; transform: translateX(-5px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Back button */
+    .cfg-back {
+      background: none;
+      border: none;
+      color: var(--brown-light);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 2rem;
+      opacity: 0.5;
+      transition: opacity 0.2s;
       display: block;
     }
 
+    .cfg-back:hover { opacity: 1; }
+
+    /* Steps */
     .cfg-step { display: none; }
     .cfg-step.active {
       display: block;
-      animation: cfgIn 0.28s ease;
+      animation: cfgSlide 0.3s ease;
     }
 
-    @keyframes cfgIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @keyframes cfgSlide {
+      from { opacity: 0; transform: translateX(18px); }
+      to   { opacity: 1; transform: translateX(0); }
     }
 
+    /* Questions */
     .cfg-q {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
       font-weight: 700;
       color: var(--text-dark);
-      margin-bottom: 1.5rem;
-      line-height: 1.15;
+      margin-bottom: 1.75rem;
+      line-height: 1.1;
     }
 
     .cfg-q-sub {
-      font-size: 1rem;
-      margin-top: 2.25rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
       margin-bottom: 1rem;
+      margin-top: 0;
+      line-height: 1.2;
     }
 
+    /* Cards */
     .cfg-cards {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.65rem;
+      gap: 0.6rem;
     }
 
     .cfg-card {
-      padding: 0.65rem 1.35rem;
+      position: relative;
+      padding: 0.8rem 1.5rem;
       border: 1px solid var(--cream-dark);
       background: transparent;
-      color: var(--brown-mid);
+      color: var(--text-dark);
       font-family: 'Lato', sans-serif;
-      font-size: 0.88rem;
-      letter-spacing: 0.06em;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
       cursor: pointer;
-      transition: border-color 0.15s, background 0.15s, color 0.15s;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
     }
 
-    .cfg-card:hover { border-color: var(--brown-mid); color: var(--brown-dark); }
+    .cfg-card:hover {
+      border-color: var(--brown-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(58,36,22,0.1);
+    }
 
     .cfg-card.selected {
       border-color: var(--brown-dark);
       background: var(--brown-dark);
       color: var(--cream);
+      transform: none;
+      box-shadow: none;
     }
 
+    .cfg-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 0.4rem;
+      right: 0.55rem;
+      font-size: 0.58rem;
+      opacity: 0.55;
+    }
+
+    /* Progressive reveal groups */
+    .cfg-group {
+      overflow: hidden;
+      transition: max-height 0.45s ease, opacity 0.35s ease, margin 0.35s ease;
+      max-height: 300px;
+      opacity: 1;
+      margin-bottom: 2rem;
+    }
+
+    .cfg-group.hidden {
+      max-height: 0;
+      opacity: 0;
+      margin-bottom: 0;
+      pointer-events: none;
+    }
+
+    /* Inputs */
     .cfg-fields {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .cfg-field { display: flex; flex-direction: column; gap: 0.4rem; }
 
     .cfg-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--brown-light);
     }
@@ -637,9 +758,9 @@
       background: transparent;
       border: none;
       border-bottom: 1px solid var(--cream-dark);
-      padding: 0.5rem 0;
+      padding: 0.6rem 0;
       font-family: 'Lato', sans-serif;
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--text-dark);
       outline: none;
       transition: border-color 0.2s;
@@ -647,29 +768,12 @@
     }
 
     .cfg-input:focus { border-bottom-color: var(--brown-mid); }
-
     .cfg-textarea { resize: vertical; min-height: 72px; }
 
-    .cfg-next-btn {
-      margin-top: 0.25rem;
-      padding: 0.8rem 2.25rem;
-      border: 1px solid rgba(242,237,230,0.7);
-      background: transparent;
-      color: var(--brown-dark);
-      border-color: var(--brown-mid);
-      font-family: 'Lato', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .cfg-next-btn:hover { background: var(--brown-dark); color: var(--cream); border-color: var(--brown-dark); }
-
-    .cfg-submit-btn {
-      margin-top: 0.25rem;
-      padding: 0.8rem 2.25rem;
+    /* Action buttons */
+    .cfg-next-btn, .cfg-submit-btn {
+      margin-top: 1.25rem;
+      padding: 0.9rem 2.5rem;
       border: 1px solid var(--brown-dark);
       background: var(--brown-dark);
       color: var(--cream);
@@ -678,35 +782,71 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, border-color 0.2s;
     }
 
-    .cfg-submit-btn:hover { background: var(--brown-mid); border-color: var(--brown-mid); }
+    .cfg-next-btn:hover, .cfg-submit-btn:hover {
+      background: var(--brown-mid);
+      border-color: var(--brown-mid);
+    }
+
+    .cfg-next-btn.hidden { display: none; }
+
+    /* Success */
+    .cfg-done { padding: 2rem 0 3rem; }
+
+    .cfg-done-icon {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--brown-mid);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--brown-mid);
+      margin-bottom: 2rem;
+      animation: iconPop 0.4s cubic-bezier(0.175,0.885,0.32,1.275) 0.15s both;
+    }
+
+    @keyframes iconPop {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
 
     .cfg-done-title {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 700;
       color: var(--text-dark);
       margin-bottom: 1rem;
-      padding-top: 1rem;
+      line-height: 1.1;
     }
 
     .cfg-done-sub {
       color: #4A3828;
       line-height: 1.85;
       font-size: 0.95rem;
+      max-width: 440px;
     }
 
+    .cfg-done-sub a { color: var(--brown-mid); }
+
+    /* Fallback */
     .cfg-fallback {
-      margin-top: 3rem;
+      margin-top: 3.5rem;
       padding-top: 2rem;
       border-top: 1px solid var(--cream-dark);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--brown-light);
     }
 
     .cfg-fallback a { color: var(--brown-mid); text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (max-width: 600px) {
+      .cfg-dot-label { display: none; }
+      .cfg-nav { margin-bottom: 2rem; padding-bottom: 0; }
+    }
 
     /* RESPONSIVE */
     .about-links {
@@ -881,12 +1021,34 @@
       <h2>Booking</h2>
 
       <div class="cfg" id="cfg">
-        <div class="cfg-progress-wrap">
-          <div class="cfg-progress-fill" id="cfg-fill"></div>
-        </div>
-        <span class="cfg-step-label" id="cfg-step-label">Schritt 1 von 4</span>
 
-        <!-- SCHRITT 1: Veranstaltungstyp -->
+        <!-- PROGRESS DOTS -->
+        <div class="cfg-nav" id="cfg-nav">
+          <div class="cfg-dot active" id="cfg-dot-1">
+            <span class="cfg-dot-num">1</span>
+            <span class="cfg-dot-label">Art</span>
+          </div>
+          <div class="cfg-dot-line" id="cfg-line-1"></div>
+          <div class="cfg-dot" id="cfg-dot-2">
+            <span class="cfg-dot-num">2</span>
+            <span class="cfg-dot-label">Termin</span>
+          </div>
+          <div class="cfg-dot-line" id="cfg-line-2"></div>
+          <div class="cfg-dot" id="cfg-dot-3">
+            <span class="cfg-dot-num">3</span>
+            <span class="cfg-dot-label">Details</span>
+          </div>
+          <div class="cfg-dot-line" id="cfg-line-3"></div>
+          <div class="cfg-dot" id="cfg-dot-4">
+            <span class="cfg-dot-num">4</span>
+            <span class="cfg-dot-label">Kontakt</span>
+          </div>
+        </div>
+
+        <!-- TRAIL -->
+        <div class="cfg-trail" id="cfg-trail"></div>
+
+        <!-- SCHRITT 1 -->
         <div class="cfg-step active" id="cfg-step-1">
           <p class="cfg-q">Was für eine Veranstaltung planst du?</p>
           <div class="cfg-cards">
@@ -898,8 +1060,9 @@
           </div>
         </div>
 
-        <!-- SCHRITT 2: Datum & Ort -->
+        <!-- SCHRITT 2 -->
         <div class="cfg-step" id="cfg-step-2">
+          <button class="cfg-back" id="cfg-back-2">&#8592; Zurück</button>
           <p class="cfg-q">Wann und wo findet es statt?</p>
           <div class="cfg-fields">
             <div class="cfg-field">
@@ -914,34 +1077,47 @@
           <button class="cfg-next-btn" id="cfg-next-2">Weiter</button>
         </div>
 
-        <!-- SCHRITT 3: Rahmen -->
+        <!-- SCHRITT 3 - progressive reveal -->
         <div class="cfg-step" id="cfg-step-3">
+          <button class="cfg-back" id="cfg-back-3">&#8592; Zurück</button>
           <p class="cfg-q">Noch ein paar Details.</p>
-          <p class="cfg-q cfg-q-sub">Wie viele Gäste erwartest du?</p>
-          <div class="cfg-cards">
-            <button class="cfg-card" data-field="guests" data-value="bis 50 Personen">bis 50</button>
-            <button class="cfg-card" data-field="guests" data-value="50-150 Personen">50 - 150</button>
-            <button class="cfg-card" data-field="guests" data-value="150-500 Personen">150 - 500</button>
-            <button class="cfg-card" data-field="guests" data-value="über 500 Personen">500+</button>
+
+          <div class="cfg-group" id="group-guests">
+            <p class="cfg-q-sub">Wie viele Gäste erwartest du?</p>
+            <div class="cfg-cards">
+              <button class="cfg-card" data-field="guests" data-value="bis 50 Personen">bis 50</button>
+              <button class="cfg-card" data-field="guests" data-value="50-150 Personen">50 - 150</button>
+              <button class="cfg-card" data-field="guests" data-value="150-500 Personen">150 - 500</button>
+              <button class="cfg-card" data-field="guests" data-value="über 500 Personen">500+</button>
+            </div>
           </div>
-          <p class="cfg-q cfg-q-sub">PA / Beschallung vorhanden?</p>
-          <div class="cfg-cards">
-            <button class="cfg-card" data-field="pa" data-value="Ja, PA vorhanden">Ja</button>
-            <button class="cfg-card" data-field="pa" data-value="Nein, keine PA">Nein</button>
-            <button class="cfg-card" data-field="pa" data-value="Noch unklar">Noch unklar</button>
+
+          <div class="cfg-group hidden" id="group-pa">
+            <p class="cfg-q-sub">PA / Beschallung vorhanden?</p>
+            <div class="cfg-cards">
+              <button class="cfg-card" data-field="pa" data-value="Ja, PA vorhanden">Ja</button>
+              <button class="cfg-card" data-field="pa" data-value="Nein, keine PA">Nein</button>
+              <button class="cfg-card" data-field="pa" data-value="Noch unklar">Noch unklar</button>
+            </div>
           </div>
-          <p class="cfg-q cfg-q-sub">Budget / Honorar</p>
-          <div class="cfg-cards">
-            <button class="cfg-card" data-field="budget" data-value="bis 300 EUR">bis 300</button>
-            <button class="cfg-card" data-field="budget" data-value="300-600 EUR">300 - 600</button>
-            <button class="cfg-card" data-field="budget" data-value="600-1.000 EUR">600 - 1.000</button>
-            <button class="cfg-card" data-field="budget" data-value="über 1.000 EUR">1.000+</button>
-            <button class="cfg-card" data-field="budget" data-value="Budget offen / nach Absprache">Offen</button>
+
+          <div class="cfg-group hidden" id="group-budget">
+            <p class="cfg-q-sub">Budget / Honorar</p>
+            <div class="cfg-cards">
+              <button class="cfg-card" data-field="budget" data-value="bis 300 EUR">bis 300</button>
+              <button class="cfg-card" data-field="budget" data-value="300-600 EUR">300 - 600</button>
+              <button class="cfg-card" data-field="budget" data-value="600-1.000 EUR">600 - 1.000</button>
+              <button class="cfg-card" data-field="budget" data-value="über 1.000 EUR">1.000+</button>
+              <button class="cfg-card" data-field="budget" data-value="Budget offen / nach Absprache">Offen</button>
+            </div>
           </div>
+
+          <button class="cfg-next-btn hidden" id="cfg-next-3">Weiter</button>
         </div>
 
-        <!-- SCHRITT 4: Kontakt -->
+        <!-- SCHRITT 4 -->
         <div class="cfg-step" id="cfg-step-4">
+          <button class="cfg-back" id="cfg-back-4">&#8592; Zurück</button>
           <p class="cfg-q">Wie können wir dich erreichen?</p>
           <div class="cfg-fields">
             <div class="cfg-field">
@@ -966,9 +1142,13 @@
 
         <!-- SCHRITT 5: Bestätigung -->
         <div class="cfg-step" id="cfg-step-5">
-          <p class="cfg-done-title">Anfrage gesendet.</p>
-          <p class="cfg-done-sub">Dein Email-Programm öffnet sich mit der fertigen Anfrage. Einfach absenden - Ricky Sachs meldet sich in der Regel innerhalb von 48 Stunden.</p>
+          <div class="cfg-done">
+            <div class="cfg-done-icon">&#10003;</div>
+            <p class="cfg-done-title">Anfrage gesendet.</p>
+            <p class="cfg-done-sub">Ricky Sachs meldet sich in der Regel innerhalb von 48 Stunden. Bei dringenden Anfragen direkt auf Instagram: <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">@ricky.sachs</a></p>
+          </div>
         </div>
+
       </div>
 
       <div class="cfg-fallback">
@@ -1028,17 +1208,45 @@
       var d = { eventType:'', datum:'', ort:'', guests:'', pa:'', budget:'', name:'', email:'', tel:'', msg:'' };
       var step = 1;
 
-      function updateProgress() {
-        document.getElementById('cfg-fill').style.width = ((step - 1) / 4 * 100) + '%';
-        var lbl = document.getElementById('cfg-step-label');
-        lbl.textContent = step <= 4 ? 'Schritt ' + step + ' von 4' : '';
+      function updateDots() {
+        for (var i = 1; i <= 4; i++) {
+          var dot = document.getElementById('cfg-dot-' + i);
+          if (!dot) continue;
+          dot.classList.remove('active', 'done');
+          var num = dot.querySelector('.cfg-dot-num');
+          if (i < step) { dot.classList.add('done'); num.textContent = '✓'; }
+          else { num.textContent = i; if (i === step) dot.classList.add('active'); }
+          var line = document.getElementById('cfg-line-' + i);
+          if (line) line.classList.toggle('done', i < step);
+        }
+        document.getElementById('cfg-nav').style.opacity = step === 5 ? '0' : '1';
+      }
+
+      function updateTrail() {
+        var chips = [];
+        if (d.eventType) chips.push(d.eventType);
+        if (d.datum || d.ort) chips.push([d.datum, d.ort].filter(Boolean).join(' · '));
+        if (d.guests) chips.push(d.guests);
+        if (d.pa) chips.push(d.pa);
+        if (d.budget) chips.push(d.budget);
+        document.getElementById('cfg-trail').innerHTML = chips.map(function(c) {
+          return '<span class="cfg-chip">' + c + '</span>';
+        }).join('');
+      }
+
+      function initStep3() {
+        document.getElementById('group-pa').classList.toggle('hidden', !d.guests);
+        document.getElementById('group-budget').classList.toggle('hidden', !d.pa);
+        document.getElementById('cfg-next-3').classList.toggle('hidden', !d.budget);
       }
 
       function goTo(n) {
         document.querySelectorAll('.cfg-step').forEach(function(el) { el.classList.remove('active'); });
         document.getElementById('cfg-step-' + n).classList.add('active');
         step = n;
-        updateProgress();
+        if (n === 3) initStep3();
+        updateDots();
+        updateTrail();
         document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
@@ -1048,9 +1256,26 @@
           document.querySelectorAll('.cfg-card[data-field="' + field + '"]').forEach(function(c) { c.classList.remove('selected'); });
           this.classList.add('selected');
           d[field] = this.dataset.value;
-          if (field === 'eventType') { setTimeout(function() { goTo(2); }, 220); }
-          else if (field === 'guests' || field === 'pa' || field === 'budget') {
-            if (d.guests && d.pa && d.budget) { setTimeout(function() { goTo(4); }, 220); }
+          if (field === 'eventType') {
+            setTimeout(function() { goTo(2); }, 240);
+          } else if (field === 'guests') {
+            setTimeout(function() {
+              var g = document.getElementById('group-pa');
+              g.classList.remove('hidden');
+              g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 220);
+          } else if (field === 'pa') {
+            setTimeout(function() {
+              var g = document.getElementById('group-budget');
+              g.classList.remove('hidden');
+              g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 220);
+          } else if (field === 'budget') {
+            setTimeout(function() {
+              var btn = document.getElementById('cfg-next-3');
+              btn.classList.remove('hidden');
+              btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 220);
           }
         });
       });
@@ -1061,6 +1286,18 @@
         goTo(3);
       });
 
+      document.getElementById('cfg-next-3').addEventListener('click', function() { goTo(4); });
+
+      document.getElementById('cfg-back-2').addEventListener('click', function() { goTo(1); });
+      document.getElementById('cfg-back-3').addEventListener('click', function() { goTo(2); });
+      document.getElementById('cfg-back-4').addEventListener('click', function() { goTo(3); });
+
+      ['f-datum', 'f-ort'].forEach(function(id) {
+        document.getElementById(id).addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') document.getElementById('cfg-next-2').click();
+        });
+      });
+
       document.getElementById('cfg-submit').addEventListener('click', function() {
         d.name  = document.getElementById('f-name').value.trim();
         d.email = document.getElementById('f-email').value.trim();
@@ -1069,7 +1306,7 @@
         if (!d.name || !d.email) { alert('Bitte Name und E-Mail angeben.'); return; }
 
         var btn = document.getElementById('cfg-submit');
-        btn.textContent = 'Wird gesendet...';
+        btn.textContent = 'Wird gesendet ...';
         btn.disabled = true;
 
         fetch('https://formspree.io/f/xzdybenz', {
@@ -1088,9 +1325,10 @@
             'Nachricht':             d.msg    || ''
           })
         })
-        .then(function(res) {
-          if (res.ok) { goTo(5); }
-          else { throw new Error('Fehler'); }
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.ok) { goTo(5); }
+          else { throw new Error(); }
         })
         .catch(function() {
           btn.textContent = 'Anfrage senden';
@@ -1099,7 +1337,7 @@
         });
       });
 
-      updateProgress();
+      updateDots();
     })();
 
     // Nav: transparent über Hero, dunkel sobald gescrollt
