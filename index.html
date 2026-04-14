@@ -233,9 +233,10 @@
       height: 100svh;
       min-height: 600px;
       position: relative;
+      z-index: 1;
       display: flex;
       align-items: flex-end;
-      padding-bottom: 5rem;
+      padding-bottom: 8rem;
     }
 
     .hero::after {
@@ -244,11 +245,11 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.45) 0%,
-        rgba(0,0,0,0.1) 20%,
+        rgba(0,0,0,0.4) 0%,
+        rgba(0,0,0,0.08) 20%,
         rgba(0,0,0,0.0) 40%,
-        rgba(0,0,0,0.5) 72%,
-        rgba(0,0,0,0.92) 100%
+        rgba(0,0,0,0.35) 70%,
+        rgba(0,0,0,0.65) 100%
       );
     }
 
@@ -346,8 +347,11 @@
       background: rgba(13, 6, 2, 0.55);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 8%, black 22%, black calc(100% - 18%), transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 8%, black 22%, black calc(100% - 18%), transparent 100%);
+      margin-top: -120px;
+      position: relative;
+      z-index: 2;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 6%, rgba(0,0,0,0.7) 14%, black 26%, black calc(100% - 18%), transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 6%, rgba(0,0,0,0.7) 14%, black 26%, black calc(100% - 18%), transparent 100%);
     }
 
     .video-wrap {
