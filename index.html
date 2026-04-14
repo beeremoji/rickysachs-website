@@ -2001,26 +2001,6 @@
       onScroll();
     })();
 
-    // BACKGROUND PARALLAX (scroll + mouse)
-    (function() {
-      var bg = document.getElementById('bg-fixed');
-      if (!bg) return;
-      var sy = 0, mx = 0.5, my = 0.5;
-      function update() {
-        var ox = (mx - 0.5) * -22;
-        var oy = (my - 0.5) * -12;
-        bg.style.backgroundPosition = 'calc(50% + ' + ox + 'px) calc(25% + ' + (sy * 0.18 + oy) + 'px)';
-      }
-      window.addEventListener('scroll', function() {
-        sy = window.scrollY;
-        update();
-      }, { passive: true });
-      document.addEventListener('mousemove', function(e) {
-        mx = e.clientX / window.innerWidth;
-        my = e.clientY / window.innerHeight;
-        update();
-      });
-    })();
 
 
     // PRELOADER
