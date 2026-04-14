@@ -128,6 +128,14 @@
       font-weight: 300;
     }
 
+    /* FIXED BACKGROUND - stays while content scrolls over */
+    .bg-fixed {
+      position: fixed;
+      inset: 0;
+      background: url('img/Hero.jpeg') center 25% / cover no-repeat;
+      z-index: -1;
+    }
+
     /* NAV */
     nav {
       position: fixed;
@@ -140,6 +148,18 @@
       align-items: center;
       justify-content: space-between;
       height: 110px;
+      transition: background 0.4s, backdrop-filter 0.4s, height 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(13, 6, 2, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      height: 72px;
+    }
+
+    nav.scrolled .nav-logo img {
+      height: 52px;
     }
 
     .nav-logo {
@@ -213,10 +233,6 @@
       height: 100vh;
       height: 100svh;
       min-height: 600px;
-      background: var(--brown-dark);
-      background-image: url('img/Hero.jpeg');
-      background-size: cover;
-      background-position: center 25%;
       position: relative;
       display: flex;
       align-items: flex-end;
@@ -280,7 +296,9 @@
     }
 
     .section-dark {
-      background: var(--site-bg-mid);
+      background: rgba(20, 9, 3, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .section-label {
@@ -323,7 +341,9 @@
 
     /* MUSIC */
     #musik {
-      background: var(--site-bg);
+      background: rgba(13, 6, 2, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .video-wrap {
@@ -347,7 +367,9 @@
 
     /* ABOUT */
     #ueber {
-      background: var(--site-bg);
+      background: rgba(13, 6, 2, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .about-grid {
@@ -544,7 +566,9 @@
 
     /* FREE STUFF */
     #freestuff {
-      background: var(--site-bg);
+      background: rgba(13, 6, 2, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .wallpaper-grid {
@@ -1464,8 +1488,8 @@
     <div class="preloader-bar"></div>
   </div>
 
-  <!-- CURSOR -->
-
+  <!-- FIXED BACKGROUND -->
+  <div class="bg-fixed" id="bg-fixed"></div>
 
   <!-- NAV -->
   <nav>
@@ -2023,22 +2047,31 @@
       });
     })();
 
-    // HERO PARALLAX (scroll + mouse)
+    // NAV SCROLL STATE
     (function() {
-      var hero = document.querySelector('.hero');
-      if (!hero) return;
+      var nav = document.querySelector('nav');
+      function onScroll() {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // BACKGROUND PARALLAX (scroll + mouse)
+    (function() {
+      var bg = document.getElementById('bg-fixed');
+      if (!bg) return;
       var sy = 0, mx = 0.5, my = 0.5;
       function update() {
         var ox = (mx - 0.5) * -22;
         var oy = (my - 0.5) * -12;
-        hero.style.backgroundPosition = 'calc(50% + ' + ox + 'px) calc(25% + ' + (sy * 0.28 + oy) + 'px)';
+        bg.style.backgroundPosition = 'calc(50% + ' + ox + 'px) calc(25% + ' + (sy * 0.18 + oy) + 'px)';
       }
       window.addEventListener('scroll', function() {
         sy = window.scrollY;
-        if (sy < window.innerHeight * 1.5) update();
+        update();
       }, { passive: true });
       document.addEventListener('mousemove', function(e) {
-        if (sy > window.innerHeight) return;
         mx = e.clientX / window.innerWidth;
         my = e.clientY / window.innerHeight;
         update();
