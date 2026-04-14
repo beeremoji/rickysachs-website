@@ -135,11 +135,11 @@
       width: 100%;
       z-index: 100;
       background: transparent;
-      padding: 0 2rem;
+      padding: 0 2.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 56px;
+      height: 72px;
     }
 
     .nav-logo {
@@ -150,10 +150,10 @@
     }
 
     .nav-logo img {
-      height: 30px;
+      height: 46px;
       width: auto;
       mix-blend-mode: screen;
-      opacity: 0.85;
+      opacity: 0.9;
       transition: opacity 0.2s;
     }
 
@@ -241,14 +241,6 @@
       z-index: 1;
       padding: 0 2.5rem;
       max-width: 720px;
-    }
-
-    .hero-logo {
-      width: min(340px, 80vw);
-      height: auto;
-      mix-blend-mode: screen;
-      margin-bottom: 1.25rem;
-      display: block;
     }
 
     .hero-tagline {
@@ -1204,8 +1196,7 @@
     }
 
     /* PAGE LOAD - Clip-path wipe reveal */
-    .hero-logo { animation: heroWipe 1.15s cubic-bezier(0.77,0,0.175,1) 0.55s both; }
-    .hero-cta  { animation: heroWipe 0.9s cubic-bezier(0.77,0,0.175,1) 1.15s both; }
+    .hero-cta  { animation: heroWipe 0.9s cubic-bezier(0.77,0,0.175,1) 0.55s both; }
     @keyframes heroWipe {
       from { clip-path: inset(100% 0 0 0); transform: translateY(10px); }
       to   { clip-path: inset(0% 0 0 0);   transform: translateY(0); }
@@ -1512,7 +1503,7 @@
   <!-- NAV -->
   <nav>
     <a href="#top" class="nav-logo">
-      <img src="img/logo.png" alt="Ricky Sachs">
+      <img src="img/logo_long.png" alt="Ricky Sachs">
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#musik">Musik</a></li>
@@ -1531,7 +1522,6 @@
   <!-- HERO -->
   <div class="hero" id="top">
     <div class="hero-content">
-      <img src="img/logo.png" alt="Ricky Sachs - Country Sänger aus Deutschland" class="hero-logo">
       <a href="#booking" class="hero-cta">Booking anfragen</a>
     </div>
   </div>
