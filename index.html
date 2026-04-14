@@ -119,17 +119,22 @@
       --site-bg-mid: #1E0F07;
     }
 
-    html { scroll-behavior: smooth; }
-
-    html {
-      background: #050200 url('img/Hero.jpeg') center 25% / cover fixed no-repeat;
-    }
+    html { scroll-behavior: smooth; background: #050200; }
 
     body {
       font-family: 'Lato', sans-serif;
       background: transparent;
       color: var(--cream-dark);
       font-weight: 300;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: url('img/Hero.jpeg') center 25% / cover no-repeat;
     }
 
     /* NAV */
@@ -634,7 +639,9 @@
 
     /* FOOTER */
     footer {
-      background: var(--brown-dark);
+      background: rgba(13, 6, 2, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       padding: 3rem 2.5rem;
       text-align: center;
     }
