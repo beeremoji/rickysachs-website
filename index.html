@@ -119,7 +119,7 @@
       --site-bg-mid: #1E0F07;
     }
 
-    html { scroll-behavior: smooth; background: #050200; }
+    html { scroll-behavior: smooth; background: #050200; overscroll-behavior: none; }
 
     body {
       font-family: 'Lato', sans-serif;
@@ -371,7 +371,7 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: min(300px, 38%) 1fr;
+      grid-template-columns: 1fr min(260px, 30%);
       gap: 4rem;
       align-items: start;
     }
@@ -1328,8 +1328,8 @@
       h2 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
 
       .about-grid { grid-template-columns: 1fr; gap: 0; }
-      .about-photo { aspect-ratio: 4/3; order: 0; }
-      .about-text { padding-top: 2rem; }
+      .about-photo { display: none; }
+      .about-text { padding-top: 0; }
 
       .booking-grid,
       .press-grid,
