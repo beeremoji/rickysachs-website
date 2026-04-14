@@ -115,14 +115,16 @@
       --cream: #F2EDE6;
       --cream-dark: #E0D8CE;
       --text-dark: #2C1A0E;
+      --site-bg: #130A04;
+      --site-bg-mid: #1E0F07;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Lato', sans-serif;
-      background: var(--cream);
-      color: var(--text-dark);
+      background: var(--site-bg);
+      color: var(--cream-dark);
       font-weight: 300;
     }
 
@@ -263,20 +265,20 @@
 
     /* SECTIONS */
     .section-inner {
-      padding: 5rem 2.5rem;
-      max-width: 900px;
+      padding: 7rem 4rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     .section-dark {
-      background: var(--brown-mid);
+      background: var(--site-bg-mid);
     }
 
     .section-label {
       font-size: 0.7rem;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--brown-light);
+      color: rgba(242,237,230,0.45);
       margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
@@ -300,16 +302,31 @@
 
     h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 700;
       margin-bottom: 2.5rem;
-      line-height: 1.1;
-      letter-spacing: 0.01em;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--cream);
     }
 
     h2.light { color: var(--cream); }
 
     /* MUSIC */
+    #musik {
+      background: var(--site-bg);
+    }
+
+    #musik .section-inner {
+      padding-bottom: 0;
+    }
+
+    .video-wrap {
+      margin-top: 3rem;
+      margin-left: -4rem;
+      margin-right: -4rem;
+    }
+
     .video-embed {
       position: relative;
       padding-bottom: 56.25%;
@@ -325,35 +342,51 @@
     }
 
     /* ABOUT */
+    #ueber {
+      background: var(--site-bg);
+    }
+
+    #ueber .section-inner {
+      padding-top: 0;
+      max-width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      line-height: 1.85;
-      font-size: 1rem;
-      margin-bottom: 1.25rem;
-      color: #4A3828;
+      min-height: 80vh;
     }
 
     .about-photo {
-      background: var(--brown-light);
-      aspect-ratio: 3/4;
+      background: var(--brown-dark);
       overflow: hidden;
-      position: sticky;
-      top: 76px;
+      order: -1;
     }
 
     .about-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       display: block;
     }
 
+    .about-text {
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--site-bg-mid);
+    }
+
+    .about-text p {
+      line-height: 1.85;
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+      color: rgba(224,216,206,0.75);
+    }
 
     .about-photo-placeholder {
       width: 100%;
@@ -435,7 +468,7 @@
 
     .booking-text p {
       line-height: 1.85;
-      color: #4A3828;
+      color: rgba(224,216,206,0.75);
       margin-bottom: 1.25rem;
     }
 
@@ -517,7 +550,7 @@
 
     /* FREE STUFF */
     #freestuff {
-      background: var(--cream);
+      background: var(--site-bg);
     }
 
     .wallpaper-grid {
@@ -564,7 +597,7 @@
       font-size: 0.82rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--brown-mid);
+      color: rgba(242,237,230,0.6);
       font-weight: 400;
     }
 
@@ -575,9 +608,9 @@
       font-size: 0.78rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--brown-dark);
+      color: var(--cream-dark);
       text-decoration: none;
-      border-bottom: 1px solid var(--brown-dark);
+      border-bottom: 1px solid rgba(224,216,206,0.35);
       padding-bottom: 1px;
       transition: opacity 0.2s;
       white-space: nowrap;
@@ -1318,18 +1351,19 @@
     .about-link {
       display: inline-block;
       padding: 0.55rem 1.4rem;
-      border: 1px solid var(--brown-mid);
-      color: var(--brown-dark);
+      border: 1px solid rgba(242,237,230,0.3);
+      color: var(--cream-dark);
       text-decoration: none;
       font-size: 0.78rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      transition: background 0.3s, color 0.3s, letter-spacing 0.45s cubic-bezier(0.22,1,0.36,1);
+      transition: background 0.3s, color 0.3s, border-color 0.3s, letter-spacing 0.45s cubic-bezier(0.22,1,0.36,1);
     }
 
     .about-link:hover {
-      background: var(--brown-dark);
-      color: var(--cream);
+      background: var(--cream);
+      color: var(--brown-dark);
+      border-color: var(--cream);
       letter-spacing: 0.2em;
     }
 
@@ -1384,7 +1418,6 @@
       .nav-hamburger.open span:nth-child(2) { opacity: 0; }
       .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-      .about-grid,
       .booking-grid,
       .press-grid,
       .wallpaper-grid {
@@ -1394,9 +1427,17 @@
 
       .wallpaper-preview.mobile-ratio { max-width: 120px; }
 
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
       .about-photo {
-        aspect-ratio: 3/4;
-        position: static;
+        aspect-ratio: 4/3;
+        order: 0;
+      }
+
+      .about-text {
+        padding: 3rem 1.5rem;
       }
 
       .show-item {
@@ -1406,7 +1447,9 @@
 
       .show-status { text-align: left; margin-top: 0.4rem; }
 
-      .section-inner { padding: 3.5rem 1.5rem; }
+      .section-inner { padding: 4rem 1.5rem; }
+
+      .video-wrap { margin-left: -1.5rem; margin-right: -1.5rem; }
 
       .hero-content { padding: 0 1.5rem; }
 
@@ -1498,8 +1541,10 @@
     <div class="section-inner">
       <span class="section-label">Live</span>
       <h2>Live Video</h2>
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/ND1yHpNLx6E" title="Ricky Sachs - Raise This Town (Aalen 2026)" allowfullscreen loading="lazy"></iframe>
+      <div class="video-wrap">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/ND1yHpNLx6E" title="Ricky Sachs - Raise This Town (Aalen 2026)" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
   </div>
