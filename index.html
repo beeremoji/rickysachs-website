@@ -350,24 +350,17 @@
       background: var(--site-bg);
     }
 
-    #ueber .section-inner {
-      padding-top: 0;
-      max-width: 100%;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
+      grid-template-columns: 340px 1fr;
+      gap: 4rem;
+      align-items: start;
     }
 
     .about-photo {
       background: var(--brown-dark);
       overflow: hidden;
-      order: -1;
-      max-height: 600px;
+      aspect-ratio: 3/4;
     }
 
     .about-photo img {
@@ -378,17 +371,9 @@
       display: block;
     }
 
-    .about-text {
-      padding: 6rem 5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: var(--site-bg-mid);
-    }
-
     .about-text p {
       line-height: 1.85;
-      font-size: 1.05rem;
+      font-size: 1rem;
       margin-bottom: 1.25rem;
       color: rgba(224,216,206,0.75);
     }
