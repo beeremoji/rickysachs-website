@@ -122,7 +122,7 @@
     html { scroll-behavior: smooth; }
 
     html {
-      background: #050200;
+      background: #050200 url('img/Hero.jpeg') center 25% / cover fixed no-repeat;
     }
 
     body {
@@ -130,14 +130,6 @@
       background: transparent;
       color: var(--cream-dark);
       font-weight: 300;
-    }
-
-    /* FIXED BACKGROUND - stays while content scrolls over */
-    .bg-fixed {
-      position: fixed;
-      inset: 0;
-      background: url('img/Hero.jpeg') center 25% / cover no-repeat;
-      z-index: -1;
     }
 
     /* NAV */
@@ -1440,9 +1432,6 @@
     <img src="img/logo.png" alt="Ricky Sachs" class="preloader-monogram">
     <div class="preloader-bar"></div>
   </div>
-
-  <!-- FIXED BACKGROUND -->
-  <div class="bg-fixed" id="bg-fixed"></div>
 
   <!-- NAV -->
   <nav>
