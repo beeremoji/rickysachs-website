@@ -138,9 +138,26 @@
       padding: 0 2rem;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
       height: 56px;
     }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img {
+      height: 30px;
+      width: auto;
+      mix-blend-mode: screen;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .nav-logo:hover img { opacity: 1; }
 
 .nav-links {
       display: flex;
@@ -1494,6 +1511,9 @@
 
   <!-- NAV -->
   <nav>
+    <a href="#top" class="nav-logo">
+      <img src="img/logo.png" alt="Ricky Sachs">
+    </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#musik">Musik</a></li>
       <li><a href="#ueber">Über</a></li>
