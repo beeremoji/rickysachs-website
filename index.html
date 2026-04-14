@@ -1304,43 +1304,6 @@
     }
 
 
-    /* MARQUEE */
-    .marquee-band {
-      background: var(--brown-dark);
-      padding: 1rem 0;
-      overflow: hidden;
-      border-top: 1px solid rgba(242,237,230,0.06);
-      border-bottom: 1px solid rgba(242,237,230,0.06);
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marqueeScroll 22s linear infinite;
-      will-change: transform;
-    }
-
-    .marquee-track:hover { animation-play-state: paused; }
-
-    @keyframes marqueeScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    .marquee-part {
-      display: flex;
-      align-items: center;
-    }
-
-    .marquee-part span {
-      font-size: 0.68rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(242,237,230,0.4);
-      padding: 0 2.2rem;
-      white-space: nowrap;
-      font-weight: 300;
-    }
 
     .marquee-part span.m-name {
       font-family: 'Playfair Display', serif;
@@ -1517,25 +1480,6 @@
     </div>
   </div>
 
-  <!-- MARQUEE -->
-  <div class="marquee-band" aria-hidden="true">
-    <div class="marquee-track">
-      <div class="marquee-part">
-        <span class="m-name">Ricky Sachs</span><span class="m-dot">&#9679;</span>
-        <span>German Country</span><span class="m-dot">&#9679;</span>
-        <span>Aalen, Deutschland</span><span class="m-dot">&#9679;</span>
-        <span>Live 2026</span><span class="m-dot">&#9679;</span>
-        <span>Singer-Songwriter</span><span class="m-dot">&#9679;</span>
-      </div>
-      <div class="marquee-part" aria-hidden="true">
-        <span class="m-name">Ricky Sachs</span><span class="m-dot">&#9679;</span>
-        <span>German Country</span><span class="m-dot">&#9679;</span>
-        <span>Aalen, Deutschland</span><span class="m-dot">&#9679;</span>
-        <span>Live 2026</span><span class="m-dot">&#9679;</span>
-        <span>Singer-Songwriter</span><span class="m-dot">&#9679;</span>
-      </div>
-    </div>
-  </div>
 
   <!-- MUSIC -->
   <div id="musik">
