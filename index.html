@@ -104,7 +104,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -367,6 +368,31 @@
       width: 100%; height: 100%;
       border: none;
     }
+
+    .yt-facade {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      cursor: pointer;
+      background: #000;
+    }
+    .yt-facade img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .yt-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 68px;
+      height: 48px;
+      transition: opacity 0.2s;
+    }
+    .yt-facade:hover .yt-play { opacity: 0.75; }
 
     /* ABOUT */
     #ueber {
@@ -1179,10 +1205,10 @@
 
     .section-dark .cfg-fallback {
       border-top-color: rgba(242,237,230,0.08);
-      color: rgba(242,237,230,0.28);
+      color: rgba(242,237,230,0.55);
     }
 
-    .section-dark .cfg-fallback a { color: rgba(242,237,230,0.45); }
+    .section-dark .cfg-fallback a { color: rgba(242,237,230,0.75); }
 
 
     @media (max-width: 600px) {
@@ -1211,7 +1237,7 @@
       font-size: 0.75rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(242,237,230,0.45);
+      color: rgba(242,237,230,0.65);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -1224,7 +1250,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(242,237,230,0.4);
+      color: rgba(242,237,230,0.65);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -1488,7 +1514,7 @@
   <!-- NAV -->
   <nav>
     <a href="#top" class="nav-logo">
-      <img src="img/logo_long.png" alt="Ricky Sachs">
+      <img src="img/logo_long.webp" alt="Ricky Sachs" width="176" height="64" fetchpriority="high">
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#musik">Musik</a></li>
@@ -1503,6 +1529,7 @@
     </button>
   </nav>
 
+  <main>
   <h1 class="sr-only">Ricky Sachs - Country Sänger aus Deutschland</h1>
 
   <!-- HERO -->
@@ -1521,7 +1548,12 @@
       <h2>Ricky Sachs - Raise This Town (Aalen 2026)</h2>
       <div class="video-wrap">
         <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/ND1yHpNLx6E" title="Ricky Sachs - Raise This Town (Aalen 2026)" allowfullscreen loading="lazy"></iframe>
+          <div class="yt-facade" data-id="ND1yHpNLx6E" role="button" tabindex="0" aria-label="Video abspielen: Ricky Sachs - Raise This Town (Aalen 2026)">
+            <img src="https://i.ytimg.com/vi/ND1yHpNLx6E/hqdefault.jpg" alt="Ricky Sachs - Raise This Town (Aalen 2026)" loading="lazy">
+            <button class="yt-play" aria-hidden="true" tabindex="-1">
+              <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg"><rect width="68" height="48" rx="8" fill="#FF0000" fill-opacity="0.88"/><path d="M45 24L28 34V14L45 24Z" fill="white"/></svg>
+            </button>
+          </div>
         </div>
       </div>
       <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="musik-ig-link">Mehr Live-Mitschnitte: @ricky.sachs ↗</a>
@@ -1587,7 +1619,7 @@
         </div>
         <div class="about-photo">
           <!-- Pressefoto hier einfügen: img/press.jpg -->
-          <img src="img/portrait.png" alt="Ricky Sachs - Country Musiker aus Aalen, Deutschland" loading="lazy">
+          <img src="img/portrait.webp" alt="Ricky Sachs - Country Musiker aus Aalen, Deutschland" loading="lazy">
         </div>
       </div>
     </div>
@@ -1768,6 +1800,8 @@
       </div>
     </div>
   </div>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -2027,6 +2061,22 @@
       updateVeil();
     })();
 
+
+    // YOUTUBE FACADE
+    document.querySelectorAll('.yt-facade').forEach(function(facade) {
+      function load() {
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + facade.dataset.id + '?autoplay=1';
+        iframe.title = facade.getAttribute('aria-label');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.allow = 'autoplay; encrypted-media';
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+        facade.parentNode.appendChild(iframe);
+        facade.remove();
+      }
+      facade.addEventListener('click', load);
+      facade.addEventListener('keydown', function(e) { if(e.key==='Enter'||e.key===' ') load(); });
+    });
 
     // PHOTO 3D TILT
     (function() {
