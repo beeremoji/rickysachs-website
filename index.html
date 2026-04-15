@@ -1191,6 +1191,113 @@
       .cfg-si { min-width: 120px; }
     }
 
+    /* HERO INSTAGRAM LINK */
+    .hero-ig {
+      display: block;
+      margin-top: 1.25rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(242,237,230,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .hero-ig:hover { color: var(--cream); }
+
+    /* MUSIK IG LINK */
+    .musik-ig-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(242,237,230,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .musik-ig-link:hover { color: var(--cream); }
+
+    /* SHOWS IG LINK */
+    .shows-ig-link {
+      display: inline-block;
+      margin-top: 1.75rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(242,237,230,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .shows-ig-link:hover { color: var(--cream); }
+
+    /* INSTAGRAM BLOCK (ehem. Free Stuff) */
+    .ig-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .ig-block-text {
+      max-width: 520px;
+    }
+
+    .ig-block-text h2 {
+      margin-bottom: 1.25rem;
+      line-height: 1.05;
+    }
+
+    .ig-block-sub {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: rgba(224,216,206,0.65);
+      margin-bottom: 2rem;
+      max-width: 420px;
+    }
+
+    .ig-block-cta {
+      display: inline-block;
+      padding: 0.85rem 2.25rem;
+      border: 1px solid rgba(242,237,230,0.6);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.3s, color 0.3s, border-color 0.3s, letter-spacing 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .ig-block-cta:hover {
+      background: var(--cream);
+      color: var(--brown-dark);
+      border-color: var(--cream);
+      letter-spacing: 0.24em;
+    }
+
+    .ig-block-handle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(242,237,230,0.06);
+      white-space: nowrap;
+      user-select: none;
+      flex-shrink: 0;
+      letter-spacing: -0.01em;
+    }
+
+    /* ABOUT IG LINK */
+    .about-ig-link {
+      color: rgba(224,216,206,0.75);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(224,216,206,0.3);
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    .about-ig-link:hover {
+      color: var(--cream);
+      text-decoration-color: var(--cream);
+    }
+
     /* GRAIN OVERLAY - luxuriöse Film-Textur */
     body::after {
       content: '';
@@ -1361,6 +1468,9 @@
 
       .cfg-next-btn, .cfg-submit-btn { width: 100%; text-align: center; }
 
+      .ig-block { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .ig-block-handle { display: none; }
+
       .reveal      { transform: translateY(16px); }
       .reveal-side { transform: translateX(20px); }
       .reveal-scale { transform: scale(0.97) translateY(12px); }
@@ -1383,7 +1493,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#musik">Musik</a></li>
       <li><a href="#shows">Shows</a></li>
-      <li><a href="#freestuff">Free Stuff</a></li>
+      <li><a href="#freestuff">Instagram</a></li>
       <li><a href="#ueber">Über</a></li>
       <li><a href="#booking">Booking</a></li>
       <li><a href="#presse">Presse</a></li>
@@ -1399,6 +1509,7 @@
   <div class="hero" id="top">
     <div class="hero-content">
       <a href="#booking" class="hero-cta">Booking anfragen</a>
+      <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="hero-ig">Live-Clips auf @ricky.sachs ↗</a>
     </div>
   </div>
 
@@ -1413,6 +1524,7 @@
           <iframe src="https://www.youtube.com/embed/ND1yHpNLx6E" title="Ricky Sachs - Raise This Town (Aalen 2026)" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
+      <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="musik-ig-link">Mehr Live-Mitschnitte: @ricky.sachs ↗</a>
     </div>
   </div>
 
@@ -1439,39 +1551,21 @@
           <span class="show-status">Bestätigt</span>
         </li>
       </ul>
+      <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="shows-ig-link">Nach jedem Gig: neue Live-Clips auf @ricky.sachs ↗</a>
     </div>
   </div>
 
-  <!-- FREE STUFF -->
+  <!-- INSTAGRAM -->
   <div id="freestuff" class="section-dark">
     <div class="section-inner">
-      <span class="section-label">Für Fans</span>
-      <h2>Free Stuff</h2>
-
-      <div class="wallpaper-grid">
-
-        <!-- Desktop Wallpaper -->
-        <div class="wallpaper-card">
-          <div class="wallpaper-preview desktop-ratio">
-            <img src="img/wallpaper-desktop.png" alt="Ricky Sachs Desktop Wallpaper">
-          </div>
-          <div class="wallpaper-info">
-            <span class="wallpaper-title">Desktop Wallpaper</span>
-            <a class="wallpaper-dl" href="img/wallpaper-desktop.png" download="RickySachs-Wallpaper-Desktop.png">&#8595; Download</a>
-          </div>
+      <div class="ig-block">
+        <div class="ig-block-text">
+          <span class="section-label section-label-light">Instagram</span>
+          <h2 class="light">Live-Clips.<br>Backstage.<br>Echte Momente.</h2>
+          <p class="ig-block-sub">Was auf der Bühne passiert, landet auf Instagram. Live-Mitschnitte, Probenvideos, alles was nicht auf die Website passt.</p>
+          <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="ig-block-cta">@ricky.sachs folgen ↗</a>
         </div>
-
-        <!-- iPhone Wallpaper -->
-        <div class="wallpaper-card">
-          <div class="wallpaper-preview mobile-ratio">
-            <img src="img/wallpaper-iphone.png" alt="Ricky Sachs iPhone Wallpaper">
-          </div>
-          <div class="wallpaper-info">
-            <span class="wallpaper-title">iPhone Wallpaper</span>
-            <a class="wallpaper-dl" href="img/wallpaper-iphone.png" download="RickySachs-Wallpaper-iPhone.png">&#8595; Download</a>
-          </div>
-        </div>
-
+        <div class="ig-block-handle" aria-hidden="true">@ricky.sachs</div>
       </div>
     </div>
   </div>
@@ -1485,7 +1579,7 @@
           <h2>German Country</h2>
           <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Württemberg. Er schreibt und spielt seine eigenen Songs, auf Englisch, mit Akustikgitarre.</p>
           <p>Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Echte Gitarre, ein Mensch, ein Mikro. Der Sound steht in der amerikanischen Country-Tradition, beeinflusst von Künstlern wie Morgan Wallen, Tyler Childers und Luke Combs.</p>
-          <p>Im Sommer 2026 erscheint die erste Single. Bis dahin: live erleben.</p>
+          <p>Im Sommer 2026 erscheint die erste Single. Bis dahin: live erleben — oder mitverfolgen auf <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="about-ig-link">@ricky.sachs</a>.</p>
           <div class="about-links">
             <a href="#shows" class="about-link">Aktuelle Shows</a>
             <a href="#booking" class="about-link">Booking anfragen</a>
@@ -1629,7 +1723,7 @@
               <path class="cfg-done-path" d="M15 27 l8 8 l14-15" stroke="rgba(242,237,230,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <p class="cfg-done-title">Anfrage gesendet.</p>
-            <p class="cfg-done-sub">Ricky Sachs meldet sich in der Regel innerhalb von 48 Stunden. Bei dringenden Anfragen: <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">@ricky.sachs</a></p>
+            <p class="cfg-done-sub">Ricky meldet sich innerhalb von 48 Stunden. Bis dahin: aktuelle Updates und Live-Clips auf <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">@ricky.sachs</a>.</p>
           </div>
         </div>
 
