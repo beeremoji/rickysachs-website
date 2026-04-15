@@ -15,14 +15,14 @@
   <meta property="og:url" content="https://rickysachs.com/">
   <meta property="og:title" content="Ricky Sachs - Country Sänger aus Deutschland">
   <meta property="og:description" content="Ricky Sachs ist Country-Sänger aus Aalen, Deutschland. Acoustic Country auf Englisch - roh, echt, unverstellt.">
-  <meta property="og:image" content="https://rickysachs.com/img/portrait.png">
+  <meta property="og:image" content="https://rickysachs.com/img/portrait.webp">
   <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="Ricky Sachs">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ricky Sachs - Country Sänger aus Deutschland">
   <meta name="twitter:description" content="Ricky Sachs ist Country-Sänger aus Aalen, Deutschland. Acoustic Country auf Englisch - roh, echt, unverstellt.">
-  <meta name="twitter:image" content="https://rickysachs.com/img/portrait.png">
+  <meta name="twitter:image" content="https://rickysachs.com/img/portrait.webp">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -36,7 +36,7 @@
     "genre": ["Country Music", "Country", "German Country", "Acoustic Country", "Singer-Songwriter"],
     "description": "Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Deutschland. Acoustic Country auf Englisch - roh, unverstellt, ohne Radio-Glanz.",
     "url": "https://rickysachs.com",
-    "image": "https://rickysachs.com/img/portrait.png",
+    "image": "https://rickysachs.com/img/portrait.webp",
     "email": "booking@rickysachs.com",
     "sameAs": [
       "https://www.instagram.com/ricky.sachs",
@@ -1505,6 +1505,138 @@
     footer {
       padding-bottom: max(2rem, env(safe-area-inset-bottom));
     }
+
+    /* --- COOKIE BANNER --- */
+    #cookie-banner {
+      position: fixed;
+      bottom: max(1.5rem, env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(540px, calc(100vw - 2rem));
+      background: var(--dark);
+      border: 1px solid rgba(242,237,230,0.15);
+      color: var(--cream);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      font-family: 'Lato', sans-serif;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    }
+    #cookie-banner p {
+      margin: 0;
+      flex: 1;
+      min-width: 200px;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+    #cookie-banner a {
+      color: var(--cream);
+      text-decoration: underline;
+      opacity: 1;
+    }
+    #cookie-ok {
+      background: rgba(242,237,230,0.12);
+      border: 1px solid rgba(242,237,230,0.3);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.1rem;
+      border-radius: 2px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #cookie-ok:hover { background: rgba(242,237,230,0.22); }
+
+    /* --- EPK DOWNLOADS --- */
+    .epk-downloads {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    .epk-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--cream);
+      border: 1px solid rgba(242,237,230,0.3);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .epk-btn:hover { background: rgba(242,237,230,0.1); border-color: rgba(242,237,230,0.6); }
+    .epk-btn--primary {
+      background: rgba(242,237,230,0.12);
+      border-color: rgba(242,237,230,0.5);
+    }
+    .epk-btn--primary:hover { background: rgba(242,237,230,0.22); }
+
+    /* --- NEWSLETTER FORM --- */
+    .nl-wrap {
+      margin-top: 1.8rem;
+    }
+    .nl-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 0.6rem;
+    }
+    .nl-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .nl-form input[type="email"] {
+      flex: 1;
+      min-width: 180px;
+      background: rgba(242,237,230,0.07);
+      border: 1px solid rgba(242,237,230,0.25);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 2px;
+      outline: none;
+    }
+    .nl-form input[type="email"]::placeholder { opacity: 0.45; }
+    .nl-form input[type="email"]:focus { border-color: rgba(242,237,230,0.55); }
+    .nl-form button {
+      background: rgba(242,237,230,0.1);
+      border: 1px solid rgba(242,237,230,0.35);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .nl-form button:hover { background: rgba(242,237,230,0.18); }
+    .nl-success { font-size: 0.85rem; opacity: 0.7; display: none; }
+
+    /* Hero newsletter - light variant */
+    .hero-nl {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .hero-nl .nl-label { color: var(--cream); }
+    .hero-nl .nl-form input[type="email"] { background: rgba(255,255,255,0.08); }
   </style>
 </head>
 <body>
@@ -1537,6 +1669,15 @@
     <div class="hero-content">
       <a href="#booking" class="hero-cta">Booking anfragen</a>
       <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="hero-ig">Live-Clips auf @ricky.sachs ↗</a>
+      <div class="hero-nl">
+        <p class="nl-label">Erste Single + Insider-Updates - direkt ins Postfach</p>
+        <!-- MailerLite: action URL hier eintragen sobald Account eingerichtet -->
+        <form class="nl-form" id="nl-hero" data-nl="hero">
+          <input type="email" name="email" placeholder="deine@email.de" required autocomplete="email">
+          <button type="submit">Dabei sein</button>
+        </form>
+        <p class="nl-success" id="nl-hero-ok">Danke! Du bist dabei.</p>
+      </div>
     </div>
   </div>
 
@@ -1709,12 +1850,31 @@
             </div>
           </div>
 
+          <div class="cfg-group hidden" id="group-budget">
+            <p class="cfg-q-sub">Budget-Rahmen?</p>
+            <div class="cfg-cards">
+              <button class="cfg-card" data-field="budget" data-value="bis 500 €">bis 500 €</button>
+              <button class="cfg-card" data-field="budget" data-value="500 - 1.500 €">500 - 1.500 €</button>
+              <button class="cfg-card" data-field="budget" data-value="1.500 - 3.000 €">1.500 - 3.000 €</button>
+              <button class="cfg-card" data-field="budget" data-value="3.000 €+">3.000 €+</button>
+            </div>
+          </div>
+
           <div class="cfg-group hidden" id="group-pa">
             <p class="cfg-q-sub">PA / Beschallung vorhanden?</p>
             <div class="cfg-cards">
               <button class="cfg-card" data-field="pa" data-value="Ja, PA vorhanden">Ja</button>
               <button class="cfg-card" data-field="pa" data-value="Nein, keine PA">Nein</button>
               <button class="cfg-card" data-field="pa" data-value="Noch unklar">Noch unklar</button>
+            </div>
+          </div>
+
+          <div class="cfg-group hidden" id="group-location">
+            <p class="cfg-q-sub">Indoor oder Outdoor?</p>
+            <div class="cfg-cards">
+              <button class="cfg-card" data-field="location_type" data-value="Indoor">Indoor</button>
+              <button class="cfg-card" data-field="location_type" data-value="Outdoor">Outdoor</button>
+              <button class="cfg-card" data-field="location_type" data-value="Beides möglich">Beides möglich</button>
             </div>
           </div>
 
@@ -1796,6 +1956,14 @@
           <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="press-link">
             <span class="press-link-arrow">&#8594;</span> Instagram: @ricky.sachs
           </a>
+          <div class="epk-downloads">
+            <a href="files/bio-de.pdf" download class="epk-btn">Bio DE</a>
+            <a href="files/bio-en.pdf" download class="epk-btn">Bio EN</a>
+            <a href="files/tech-rider.pdf" download class="epk-btn">Tech Rider</a>
+            <a href="files/stage-plot.pdf" download class="epk-btn">Stage Plot</a>
+            <a href="files/logo-pack.zip" download class="epk-btn">Logo Pack</a>
+            <a href="files/press-pack.zip" download class="epk-btn epk-btn--primary">Alles als ZIP</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1805,6 +1973,15 @@
 
   <!-- FOOTER -->
   <footer>
+    <div class="nl-wrap" style="margin-bottom:1.5rem;">
+      <p class="nl-label" style="color:var(--cream);">Dabei sein - erste Single + Insider-Updates</p>
+      <!-- MailerLite: action URL hier eintragen sobald Account eingerichtet -->
+      <form class="nl-form" id="nl-footer" data-nl="footer">
+        <input type="email" name="email" placeholder="deine@email.de" required autocomplete="email">
+        <button type="submit">Dabei sein</button>
+      </form>
+      <p class="nl-success" id="nl-footer-ok">Danke! Du bist dabei.</p>
+    </div>
     <div class="social-links">
       <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener">YouTube</a>
@@ -1895,11 +2072,23 @@
             setTimeout(function() { goTo(2); }, 360);
           } else if (field === 'guests') {
             setTimeout(function() {
+              var g = document.getElementById('group-budget');
+              g.classList.remove('hidden');
+              g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 220);
+          } else if (field === 'budget') {
+            setTimeout(function() {
               var g = document.getElementById('group-pa');
               g.classList.remove('hidden');
               g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 220);
           } else if (field === 'pa') {
+            setTimeout(function() {
+              var g = document.getElementById('group-location');
+              g.classList.remove('hidden');
+              g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 220);
+          } else if (field === 'location_type') {
             setTimeout(function() {
               var btn = document.getElementById('cfg-next-3');
               btn.classList.remove('hidden');
@@ -1945,12 +2134,14 @@
             name:                    d.name,
             email:                   d.email,
             'Art der Veranstaltung': d.eventType,
-            'Datum':                 d.datum  || 'offen',
-            'Ort / Venue':           d.ort    || 'offen',
-            'Gäste':                 d.guests || 'nicht angegeben',
-            'PA / Beschallung':      d.pa     || 'nicht angegeben',
-            'Telefon':               d.tel    || 'nicht angegeben',
-            'Nachricht':             d.msg    || ''
+            'Datum':                 d.datum         || 'offen',
+            'Ort / Venue':           d.ort           || 'offen',
+            'Gäste':                 d.guests        || 'nicht angegeben',
+            'Budget':                d.budget        || 'nicht angegeben',
+            'PA / Beschallung':      d.pa            || 'nicht angegeben',
+            'Indoor / Outdoor':      d.location_type || 'nicht angegeben',
+            'Telefon':               d.tel           || 'nicht angegeben',
+            'Nachricht':             d.msg           || ''
           })
         })
         .then(function(r) { return r.json(); })
@@ -2076,6 +2267,41 @@
       facade.addEventListener('click', load);
       facade.addEventListener('keydown', function(e) { if(e.key==='Enter'||e.key===' ') load(); });
     });
+
+    // COOKIE BANNER
+    (function() {
+      var banner = document.createElement('div');
+      banner.id = 'cookie-banner';
+      banner.setAttribute('role', 'dialog');
+      banner.setAttribute('aria-label', 'Cookie-Hinweis');
+      banner.innerHTML = '<p>Diese Website verwendet keine Tracking-Cookies. Das YouTube-Video wird erst nach Klick geladen. <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p><button id="cookie-ok">OK</button>';
+      document.body.appendChild(banner);
+      if (localStorage.getItem('cookie-ok')) { banner.style.display = 'none'; }
+      document.getElementById('cookie-ok').addEventListener('click', function() {
+        localStorage.setItem('cookie-ok', '1');
+        banner.style.display = 'none';
+      });
+    })();
+
+    // NEWSLETTER FORMS
+    // TODO: Ersetze die handleNlSubmit-Funktion mit MailerLite-API sobald Account eingerichtet
+    // Mailerlite Gruppe: "Website Subscribers" - Embed-URL von mailerlite.com/developers
+    function handleNlSubmit(formId, successId) {
+      var form = document.getElementById(formId);
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = form.querySelector('input[type="email"]').value.trim();
+        if (!email) return;
+        // TODO: Echte MailerLite-Submission hier eintragen, z.B.:
+        // fetch('https://connect.mailerlite.com/api/subscribers', { method:'POST', headers:{...}, body:... })
+        // Bis dahin: einfach Bestätigung zeigen
+        form.style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+      });
+    }
+    handleNlSubmit('nl-hero', 'nl-hero-ok');
+    handleNlSubmit('nl-footer', 'nl-footer-ok');
 
     // PHOTO 3D TILT
     (function() {
