@@ -2147,6 +2147,7 @@
         d.tel   = document.getElementById('f-tel').value.trim();
         d.msg   = document.getElementById('f-msg').value.trim();
         if (!d.name || !d.email) { alert('Bitte Name und E-Mail angeben.'); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) { alert('Bitte eine gültige E-Mail-Adresse angeben.'); return; }
         if (!document.getElementById('cfg-consent').checked) { alert('Bitte der Datenschutzerklarung zustimmen.'); return; }
 
         var btn = document.getElementById('cfg-submit');
