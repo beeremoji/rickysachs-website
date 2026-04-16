@@ -1,0 +1,9 @@
+name             = "rickysachs-booking"
+main             = "index.js"
+compatibility_date = "2025-01-01"
+
+# HUBSPOT_TOKEN wird als Secret gesetzt, nicht hier:
+# wrangler secret put HUBSPOT_TOKEN
+#
+# Nach dem Deploy: Worker-URL in Formspree eintragen
+# Formspree → Settings → Integrations → Webhook → URL einfügen
