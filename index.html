@@ -1883,16 +1883,6 @@
             </div>
           </div>
 
-          <div class="cfg-group hidden" id="group-budget">
-            <p class="cfg-q-sub">Budget-Rahmen?</p>
-            <div class="cfg-cards">
-              <button class="cfg-card" data-field="budget" data-value="bis 500 €">bis 500 €</button>
-              <button class="cfg-card" data-field="budget" data-value="500 - 1.500 €">500 - 1.500 €</button>
-              <button class="cfg-card" data-field="budget" data-value="1.500 - 3.000 €">1.500 - 3.000 €</button>
-              <button class="cfg-card" data-field="budget" data-value="3.000 €+">3.000 €+</button>
-            </div>
-          </div>
-
           <div class="cfg-group hidden" id="group-pa">
             <p class="cfg-q-sub">PA / Beschallung vorhanden?</p>
             <div class="cfg-cards">
@@ -2109,12 +2099,6 @@
             setTimeout(function() { goTo(2); }, 360);
           } else if (field === 'guests') {
             setTimeout(function() {
-              var g = document.getElementById('group-budget');
-              g.classList.remove('hidden');
-              g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 220);
-          } else if (field === 'budget') {
-            setTimeout(function() {
               var g = document.getElementById('group-pa');
               g.classList.remove('hidden');
               g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -2169,17 +2153,16 @@
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name:                    d.name,
-            email:                   d.email,
-            'Art der Veranstaltung': d.eventType,
-            'Datum':                 d.datum         || 'offen',
-            'Ort / Venue':           d.ort           || 'offen',
-            'Gäste':                 d.guests        || 'nicht angegeben',
-            'Budget':                d.budget        || 'nicht angegeben',
-            'PA / Beschallung':      d.pa            || 'nicht angegeben',
-            'Indoor / Outdoor':      d.location_type || 'nicht angegeben',
-            'Telefon':               d.tel           || 'nicht angegeben',
-            'Nachricht':             d.msg           || ''
+            name:           d.name,
+            email:          d.email,
+            event_type:     d.eventType         || '',
+            event_date:     d.datum             || 'offen',
+            venue:          d.ort               || 'offen',
+            guest_count:    d.guests            || 'nicht angegeben',
+            pa_system:      d.pa                || 'nicht angegeben',
+            location_type:  d.location_type     || 'nicht angegeben',
+            phone:          d.tel               || '',
+            message:        d.msg               || ''
           })
         })
         .then(function(r) { return r.json(); })
