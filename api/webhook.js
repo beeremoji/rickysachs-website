@@ -9,6 +9,7 @@
 const HUBSPOT_API   = 'https://api.hubapi.com';
 const DEAL_STAGE    = 'presentationscheduled'; // Reply
 const DEAL_PIPELINE = 'default';
+const OWNER_ID      = '88607418'; // Erik Sachs
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -101,9 +102,10 @@ async function createDeal(d, headers) {
   const deal = await hubspot('/crm/v3/objects/deals', headers, {
     properties: {
       dealname,
-      dealstage:   DEAL_STAGE,
-      pipeline:    DEAL_PIPELINE,
-      description: lines.join('\n'),
+      dealstage:         DEAL_STAGE,
+      pipeline:          DEAL_PIPELINE,
+      description:       lines.join('\n'),
+      hubspot_owner_id:  OWNER_ID,
     },
   });
 
