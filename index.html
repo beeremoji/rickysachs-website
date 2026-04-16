@@ -1627,6 +1627,38 @@
     }
     .nl-form button:hover { background: rgba(242,237,230,0.18); }
     .nl-success { font-size: 0.85rem; opacity: 0.7; display: none; }
+    .nl-consent {
+      font-size: 0.68rem;
+      opacity: 0.45;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+      color: var(--cream);
+    }
+    .nl-consent a { color: inherit; opacity: 0.8; text-underline-offset: 2px; }
+
+    /* Booking DSGVO consent checkbox */
+    .cfg-consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+    }
+    .cfg-consent-row input[type="checkbox"] {
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+      accent-color: var(--cream);
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
+    .cfg-consent-row span {
+      font-size: 0.75rem;
+      line-height: 1.55;
+      opacity: 0.55;
+      color: var(--cream);
+    }
+    .cfg-consent-row span a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
     /* Hero newsletter - light variant */
     .hero-nl {
@@ -1676,6 +1708,7 @@
           <input type="email" name="email" placeholder="deine@email.de" required autocomplete="email">
           <button type="submit">Dabei sein</button>
         </form>
+        <p class="nl-consent">Mit Absenden stimmst du der Verarbeitung deiner E-Mail zur Newsletter-Zusendung zu. Abmeldung jederzeit. <a href="datenschutz.html">Datenschutz</a></p>
         <p class="nl-success" id="nl-hero-ok">Danke! Du bist dabei.</p>
       </div>
     </div>
@@ -1904,6 +1937,10 @@
               <textarea class="cfg-si cfg-si-ta" id="f-msg" rows="2" placeholder="Besonderheiten, Wünsche..."></textarea>
             </div>
           </div>
+          <label class="cfg-consent-row">
+            <input type="checkbox" id="cfg-consent">
+            <span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklarung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung dieser Booking-Anfrage zu.</span>
+          </label>
           <button class="cfg-submit-btn" id="cfg-submit">Anfrage senden</button>
         </div>
 
@@ -1979,6 +2016,7 @@
         <input type="email" name="email" placeholder="deine@email.de" required autocomplete="email">
         <button type="submit">Dabei sein</button>
       </form>
+      <p class="nl-consent">Mit Absenden stimmst du der Verarbeitung deiner E-Mail zur Newsletter-Zusendung zu. Abmeldung jederzeit. <a href="datenschutz.html">Datenschutz</a></p>
       <p class="nl-success" id="nl-footer-ok">Danke! Du bist dabei.</p>
     </div>
     <div class="social-links">
@@ -2121,6 +2159,7 @@
         d.tel   = document.getElementById('f-tel').value.trim();
         d.msg   = document.getElementById('f-msg').value.trim();
         if (!d.name || !d.email) { alert('Bitte Name und E-Mail angeben.'); return; }
+        if (!document.getElementById('cfg-consent').checked) { alert('Bitte der Datenschutzerklarung zustimmen.'); return; }
 
         var btn = document.getElementById('cfg-submit');
         btn.textContent = 'Wird gesendet ...';
