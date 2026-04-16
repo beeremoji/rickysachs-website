@@ -2319,11 +2319,26 @@
         e.preventDefault();
         var email = form.querySelector('input[type="email"]').value.trim();
         if (!email) return;
-        // TODO: Echte MailerLite-Submission hier eintragen, z.B.:
-        // fetch('https://connect.mailerlite.com/api/subscribers', { method:'POST', headers:{...}, body:... })
-        // Bis dahin: einfach Bestätigung zeigen
-        form.style.display = 'none';
-        document.getElementById(successId).style.display = 'block';
+        var btn = form.querySelector('button[type="submit"]');
+        if (btn) { btn.disabled = true; }
+        fetch('https://rickysachs-website.vercel.app/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email }),
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.ok) {
+            form.style.display = 'none';
+            document.getElementById(successId).style.display = 'block';
+          } else {
+            throw new Error(data.error || 'error');
+          }
+        })
+        .catch(function() {
+          if (btn) { btn.disabled = false; }
+          alert('Fehler beim Eintragen. Bitte direkt an booking@rickysachs.com schreiben.');
+        });
       });
     }
     handleNlSubmit('nl-hero', 'nl-hero-ok');
