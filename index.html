@@ -449,61 +449,19 @@
       min-height: 400px;
     }
 
-    /* SHOWS */
-    .shows-list {
-      list-style: none;
+    /* SHOWS - BandsInTown Widget */
+    .bit-widget-wrap {
+      margin: 1.5rem 0 2rem;
     }
 
-    .show-item {
-      display: grid;
-      grid-template-columns: 150px 1fr auto;
-      gap: 1.5rem;
-      align-items: center;
-      padding: 1.75rem 0;
-      border-bottom: 1px solid rgba(242,237,230,0.15);
-      transition: box-shadow 0.4s cubic-bezier(0.22,1,0.36,1), background 0.4s;
-      cursor: default;
+    .bit-widget-wrap .bit-widget {
+      background: transparent !important;
+      font-family: 'Lato', sans-serif !important;
     }
 
-    .show-item:hover {
-      background: rgba(242,237,230,0.04);
-      box-shadow: -2px 0 0 rgba(242,237,230,0.3);
-    }
-
-    .show-item:first-child {
-      border-top: 1px solid rgba(242,237,230,0.15);
-    }
-
-    .show-date {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--cream-dark);
-      opacity: 0.75;
-    }
-
-    .show-venue {
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--cream);
-      margin-bottom: 0.2rem;
-    }
-
-    .show-location {
-      font-size: 0.78rem;
-      color: var(--cream-dark);
-      opacity: 0.5;
-      letter-spacing: 0.05em;
-    }
-
-    .show-status {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cream-dark);
-      opacity: 0.45;
-      text-align: right;
-      white-space: nowrap;
+    .bit-widget-wrap .bit-top-track-button,
+    .bit-widget-wrap .bit-follow-section {
+      display: none !important;
     }
 
     /* BOOKING */
@@ -1674,6 +1632,7 @@
     .hero-nl .nl-label { color: var(--cream); }
     .hero-nl .nl-form input[type="email"] { background: rgba(255,255,255,0.08); }
   </style>
+  <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
 </head>
 <body>
 
@@ -1743,24 +1702,20 @@
     <div class="section-inner">
       <span class="section-label section-label-light">Auftritte</span>
       <h2 class="light">Shows</h2>
-      <ul class="shows-list">
-        <li class="show-item">
-          <span class="show-date">30. Mai 2026</span>
-          <div>
-            <div class="show-venue">Frapé Aalen &mdash; Open Stage</div>
-            <div class="show-location">Julius-Bausch-Str. 32, Aalen &middot; 20:00 Uhr</div>
-          </div>
-          <span class="show-status">Bestätigt</span>
-        </li>
-        <li class="show-item">
-          <span class="show-date">11. Juli 2026</span>
-          <div>
-            <div class="show-venue">US Car Rollin 2026</div>
-            <div class="show-location">Fachsenfeld, Aalen &middot; 12:00 Uhr &middot; Eintritt frei</div>
-          </div>
-          <a href="https://www.us-cars-rollin.de/" target="_blank" rel="noopener" class="show-status">Infos ↗</a>
-        </li>
-      </ul>
+      <div class="bit-widget-wrap">
+        <a class="bit-widget-initializer"
+          data-artist-name="id_15643449"
+          data-app-id="e7c359d667ec564423e61105cb5aa6a5"
+          data-background-color="#130A04"
+          data-separator-color="#2a1508"
+          data-text-color="#F2EDE6"
+          data-link-color="#E0D8CE"
+          data-button-label-follow-up="Folgen"
+          data-font="Lato"
+          data-display-local-dates="false"
+          data-display-past-dates="false"
+        ></a>
+      </div>
       <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="shows-ig-link">Nach jedem Gig: neue Live-Clips auf @ricky.sachs ↗</a>
     </div>
   </div>
@@ -2220,8 +2175,6 @@
         { sel: '.about-text p', cls: 'reveal', stagger: 100 },
         { sel: '.about-photo', cls: 'reveal-side', delay: 150 },
         { sel: '.about-link', cls: 'reveal', stagger: 90 },
-        // Shows
-        { sel: '.show-item', cls: 'reveal', stagger: 110 },
         // Booking configurator
         { sel: '#cfg', cls: 'reveal-scale', delay: 160 },
         // Press
