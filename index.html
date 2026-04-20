@@ -1673,6 +1673,7 @@
         </form>
         <p class="nl-consent">Mit Absenden stimmst du der Verarbeitung deiner E-Mail zur Newsletter-Zusendung zu. Abmeldung jederzeit. <a href="datenschutz.html">Datenschutz</a></p>
         <p class="nl-success" id="nl-hero-ok">Fast da! Bitte bestätige deine Anmeldung per E-Mail.</p>
+        <p class="nl-error" id="nl-hero-err" style="display:none;font-size:0.8rem;color:rgba(242,237,230,0.7);margin-top:0.5rem;">Fehler beim Eintragen. Schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
       </div>
     </div>
   </div>
@@ -1891,6 +1892,7 @@
             <span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklarung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung dieser Booking-Anfrage zu.</span>
           </label>
           <button class="cfg-submit-btn" id="cfg-submit">Anfrage senden</button>
+          <p id="cfg-send-error" style="display:none;margin-top:1rem;font-size:0.8rem;color:rgba(242,237,230,0.7);">Technischer Fehler - bitte schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
         </div>
 
         <!-- SCHRITT 5: Bestätigung -->
@@ -1967,6 +1969,7 @@
       </form>
       <p class="nl-consent">Mit Absenden stimmst du der Verarbeitung deiner E-Mail zur Newsletter-Zusendung zu. Abmeldung jederzeit. <a href="datenschutz.html">Datenschutz</a></p>
       <p class="nl-success" id="nl-footer-ok">Fast da! Bitte bestätige deine Anmeldung per E-Mail.</p>
+      <p class="nl-error" id="nl-footer-err" style="display:none;font-size:0.8rem;color:rgba(242,237,230,0.6);margin-top:0.5rem;">Fehler beim Eintragen. Schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream-dark);">booking@rickysachs.com</a></p>
     </div>
     <div class="social-links">
       <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">Instagram</a>
@@ -2133,7 +2136,8 @@
         .catch(function() {
           btn.textContent = 'Anfrage senden';
           btn.disabled = false;
-          alert('Fehler beim Senden. Bitte direkt an booking@rickysachs.com schreiben.');
+          var errMsg = document.getElementById('cfg-send-error');
+          if (errMsg) { errMsg.style.display = 'block'; } else { alert('Fehler beim Senden. Bitte direkt an booking@rickysachs.com schreiben.'); }
         });
       });
 
@@ -2265,7 +2269,7 @@
     // NEWSLETTER FORMS
     // TODO: Ersetze die handleNlSubmit-Funktion mit MailerLite-API sobald Account eingerichtet
     // Mailerlite Gruppe: "Website Subscribers" - Embed-URL von mailerlite.com/developers
-    function handleNlSubmit(formId, successId) {
+    function handleNlSubmit(formId, successId, errorId) {
       var form = document.getElementById(formId);
       if (!form) return;
       form.addEventListener('submit', function(e) {
@@ -2290,12 +2294,13 @@
         })
         .catch(function() {
           if (btn) { btn.disabled = false; }
-          alert('Fehler beim Eintragen. Bitte direkt an booking@rickysachs.com schreiben.');
+          var errEl = errorId ? document.getElementById(errorId) : null;
+          if (errEl) errEl.style.display = 'block';
         });
       });
     }
-    handleNlSubmit('nl-hero', 'nl-hero-ok');
-    handleNlSubmit('nl-footer', 'nl-footer-ok');
+    handleNlSubmit('nl-hero', 'nl-hero-ok', 'nl-hero-err');
+    handleNlSubmit('nl-footer', 'nl-footer-ok', 'nl-footer-err');
 
     // PHOTO 3D TILT
     (function() {
