@@ -29,8 +29,8 @@ export default async function handler(req, res) {
 
   if (!response.ok) {
     console.error('[newsletter]', json);
-    return res.status(500).json({ ok: false, error: json.message || 'MailerLite error', detail: json });
+    return res.status(500).json({ ok: false, error: json.message || 'MailerLite error' });
   }
 
-  return res.status(200).json({ ok: true, detail: json });
+  return res.status(200).json({ ok: true });
 }
