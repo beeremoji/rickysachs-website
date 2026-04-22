@@ -2363,20 +2363,6 @@
       facade.addEventListener('keydown', function(e) { if(e.key==='Enter'||e.key===' ') load(); });
     });
 
-    // COOKIE BANNER
-    (function() {
-      var banner = document.createElement('div');
-      banner.id = 'cookie-banner';
-      banner.setAttribute('role', 'dialog');
-      banner.setAttribute('aria-label', 'Cookie-Hinweis');
-      banner.innerHTML = '<p>Diese Website verwendet keine Tracking-Cookies. Das YouTube-Video wird erst nach Klick geladen. <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p><button id="cookie-ok">OK</button>';
-      document.body.appendChild(banner);
-      if (localStorage.getItem('cookie-ok')) { banner.style.display = 'none'; }
-      document.getElementById('cookie-ok').addEventListener('click', function() {
-        localStorage.setItem('cookie-ok', '1');
-        banner.style.display = 'none';
-      });
-    })();
 
     // NEWSLETTER FORMS
     // TODO: Ersetze die handleNlSubmit-Funktion mit MailerLite-API sobald Account eingerichtet
@@ -2435,9 +2421,9 @@
   </script>
 
   <!-- Cookie Banner -->
-  <div id="cookie-banner" role="dialog" aria-label="Cookie-Hinweis" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#3A2416;color:#F2EDE6;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-size:0.85rem;font-family:inherit;flex-wrap:wrap;">
-    <p style="margin:0;">Diese Website verwendet keine Tracking-Cookies. Das YouTube-Video wird erst nach Klick geladen. <a href="datenschutz.html" style="color:#F2EDE6;text-decoration:underline;">Datenschutz &amp; Impressum</a></p>
-    <button id="cookie-ok" style="background:#F2EDE6;color:#3A2416;border:none;padding:0.5rem 1.2rem;font-family:inherit;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;">OK</button>
+  <div id="cookie-banner" role="dialog" aria-label="Cookie-Hinweis" style="display:none;">
+    <p>Diese Website verwendet keine Tracking-Cookies. Das YouTube-Video wird erst nach Klick geladen. <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
+    <button id="cookie-ok">OK</button>
   </div>
   <script>
     (function() {
