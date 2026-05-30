@@ -1493,6 +1493,34 @@
       letter-spacing: 0.24em;
     }
 
+    .social-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .social-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.1rem;
+      border: 1px solid rgba(242,237,230,0.3);
+      color: var(--cream-dark);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+      white-space: nowrap;
+    }
+
+    .social-link-btn:hover {
+      border-color: rgba(242,237,230,0.7);
+      color: var(--cream);
+      background: rgba(242,237,230,0.05);
+    }
+
     .ig-block-handle {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3rem, 7vw, 5.5rem);
@@ -1879,7 +1907,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#musik">Musik</a></li>
       <li><a href="#shows">Shows</a></li>
-      <li><a href="#freestuff">Instagram</a></li>
+      <li><a href="#freestuff">Socials</a></li>
       <li><a href="#ueber">Über</a></li>
       <li><a href="#booking">Booking</a></li>
       <li><a href="#presse">Presse</a></li>
@@ -1985,10 +2013,16 @@
     <div class="section-inner">
       <div class="ig-block">
         <div class="ig-block-text">
-          <span class="section-label section-label-light">Instagram</span>
+          <span class="section-label section-label-light">Socials</span>
           <h2 class="light">Live-Clips.<br>Backstage.<br>Echte Momente.</h2>
           <p class="ig-block-sub">Was auf der Bühne passiert, landet auf Instagram. Live-Mitschnitte, Probenvideos, alles was nicht auf die Website passt.</p>
-          <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="ig-block-cta">@ricky.sachs folgen ↗</a>
+          <div class="social-links-row">
+            <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="social-link-btn">Instagram</a>
+            <a href="https://tiktok.com/@therickysachs" target="_blank" rel="noopener" class="social-link-btn">TikTok</a>
+            <a href="https://www.facebook.com/therickysachs" target="_blank" rel="noopener" class="social-link-btn">Facebook</a>
+            <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener" class="social-link-btn">YouTube</a>
+            <a href="https://open.spotify.com/track/4IIZBGbfVQwWU1PtAQvmve" target="_blank" rel="noopener" class="social-link-btn">Spotify</a>
+          </div>
         </div>
         <div class="ig-block-handle" aria-hidden="true">@ricky.sachs</div>
       </div>
