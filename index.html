@@ -347,6 +347,15 @@
     .nav-links a:hover { color: var(--cream); }
     .nav-links a:hover::after { width: 100%; }
 
+    .nav-link-venues {
+      border: 1px solid rgba(242,237,230,0.3) !important;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+      transition: border-color 0.25s, color 0.25s !important;
+    }
+    .nav-link-venues:hover { border-color: rgba(242,237,230,0.7) !important; }
+    .nav-link-venues::after { display: none !important; }
+
     .nav-hamburger {
       display: none;
       flex-direction: column;
@@ -867,6 +876,47 @@
     }
 
     .wallpaper-dl:hover { opacity: 0.5; }
+
+    /* VENUES CTA */
+    .venues-cta-wrap {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(242,237,230,0.08);
+    }
+
+    .venues-cta-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      margin-bottom: 0.75rem;
+    }
+
+    .venues-cta-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--cream);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .venues-cta-btn {
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      border: 1px solid rgba(242,237,230,0.5);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .venues-cta-btn:hover {
+      background: var(--cream);
+      color: var(--brown-dark);
+      border-color: var(--cream);
+    }
 
     /* FOOTER */
     footer {
@@ -1906,11 +1956,10 @@
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#musik">Musik</a></li>
+      <li><a href="#ueber">Über</a></li>
       <li><a href="#shows">Shows</a></li>
       <li><a href="#freestuff">Socials</a></li>
-      <li><a href="#ueber">Über</a></li>
-      <li><a href="#booking">Booking</a></li>
-      <li><a href="#presse">Presse</a></li>
+      <li><a href="booking.html" class="nav-link-venues">Für Venues</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
@@ -1924,8 +1973,8 @@
   <div class="hero" id="top">
     <div class="hero-content">
       <div class="hero-content-glass">
-        <a href="#booking" class="hero-cta">Booking anfragen</a>
-        <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="hero-ig">Live-Clips auf @ricky.sachs ↗</a>
+        <a href="listen.html" class="hero-cta">Told You To Stay hören</a>
+        <a href="#shows" class="hero-ig">Upcoming Shows ↓</a>
         <div class="hero-nl">
           <p class="hero-nl-heading" style="display:none;font-family:'Playfair Display',serif;font-size:clamp(2rem,8vw,2.8rem);color:var(--cream);margin:0 0 0.5rem;font-weight:700;letter-spacing:0.01em;">Newsletter</p>
           <p class="nl-label">Neue Musik + Insider-Updates - direkt ins Postfach</p>
@@ -1985,6 +2034,27 @@
     </div>
   </div>
 
+  <!-- ABOUT -->
+  <div id="ueber">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-label">Über</span>
+          <h2>German Country</h2>
+          <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Württemberg. Er schreibt und spielt seine eigenen Songs, auf Englisch, mit Akustikgitarre.</p>
+          <p>Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Echte Gitarre, ein Mensch, ein Mikro. Der Sound steht in der amerikanischen Country-Tradition, beeinflusst von Künstlern wie Morgan Wallen, Tyler Childers und Luke Combs.</p>
+          <div class="about-links">
+            <a href="#shows" class="about-link">Aktuelle Shows</a>
+            <a href="#freestuff" class="about-link">Socials</a>
+          </div>
+        </div>
+        <div class="about-photo">
+          <img src="img/portrait.webp" alt="Ricky Sachs - Country Musiker aus Aalen, Deutschland" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- SHOWS -->
   <div id="shows" class="section-dark">
     <div class="section-inner">
@@ -2008,7 +2078,7 @@
     </div>
   </div>
 
-  <!-- INSTAGRAM -->
+  <!-- SOCIALS -->
   <div id="freestuff" class="section-dark">
     <div class="section-inner">
       <div class="ig-block">
@@ -2029,31 +2099,9 @@
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <div id="ueber">
-    <div class="section-inner">
-      <div class="about-grid">
-        <div class="about-text">
-          <span class="section-label">Über</span>
-          <h2>German Country</h2>
-          <p>Ricky Sachs ist Country-Sänger und Singer-Songwriter aus Aalen, Württemberg. Er schreibt und spielt seine eigenen Songs, auf Englisch, mit Akustikgitarre.</p>
-          <p>Die Songs handeln von Heimweh, Abschied und dem, was bleibt. Echte Gitarre, ein Mensch, ein Mikro. Der Sound steht in der amerikanischen Country-Tradition, beeinflusst von Künstlern wie Morgan Wallen, Tyler Childers und Luke Combs.</p>
-
-          <div class="about-links">
-            <a href="#shows" class="about-link">Aktuelle Shows</a>
-            <a href="#booking" class="about-link">Booking anfragen</a>
-          </div>
-        </div>
-        <div class="about-photo">
-          <!-- Pressefoto hier einfügen: img/press.jpg -->
-          <img src="img/portrait.webp" alt="Ricky Sachs - Country Musiker aus Aalen, Deutschland" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <!-- BOOKING REMOVED - see booking.html -->
   <!-- BOOKING -->
-  <div id="booking" class="section-dark">
+  <div id="booking" class="section-dark" style="display:none">
     <div class="section-inner">
       <span class="section-label section-label-light">Kontakt</span>
       <h2 class="light">Ricky Sachs buchen</h2>
@@ -2208,44 +2256,12 @@
     </div>
   </div>
 
-  <!-- PRESS -->
-  <div id="presse" class="section-dark">
-    <div class="section-inner">
-      <span class="section-label section-label-light">Presse</span>
-      <h2 class="light">EPK</h2>
-      <div class="press-grid">
-        <div class="press-bio">
-          <h3>Kurz-Bio (DE)</h3>
-          <p>Ricky Sachs ist Country-Sänger und Songwriter aus Aalen, Baden-Württemberg. Er schreibt und spielt eigene Songs auf Englisch, akustisch, solo mit Gitarre.</p>
-          <p>Aufgewachsen in Unterkochen. Country hat er zum ersten Mal gehört, als sein Bruder und sein Vater Johnny Cash im alten VW Bully aufgedreht haben. Irgendwann hat er angefangen, selbst zu schreiben.</p>
-          <p>Live tritt er solo auf, mit Akustikgitarre und Stimme. Er spielt seit Jahren auf Bühnen in Süddeutschland. Im Februar 2026 stand er als Support Act für die Stoner-Rock-Band Yeast Machine beim Pfadirock auf der Bühne. Im Mai 2026 erschien seine erste Single "Told You To Stay" - ein Song über das "Was wäre wenn" einer vergangenen Beziehung. Weitere Auftritte folgen im Frapé Aalen und beim US Car Rollin Festival in Fachsenfeld im Juli 2026.</p>
-
-          <h3>Short Bio (EN)</h3>
-          <p>Ricky Sachs is a Country singer and songwriter from Aalen, Germany. He writes and performs original songs in English, acoustic, solo with guitar.</p>
-          <p>He grew up in Unterkochen, a small town in southern Germany. He first heard Country when his brother and his father turned up Johnny Cash in an old VW van. At some point he started writing his own.</p>
-          <p>He performs solo, with acoustic guitar and voice. He has been playing stages in southern Germany for years. In February 2026 he opened for Stoner Rock band Yeast Machine at Pfadirock. In May 2026 he released his debut single "Told You To Stay" - a song about the what-ifs of a past relationship. Upcoming shows include US Car Rollin Festival in Fachsenfeld in July 2026.</p>
-
-        </div>
-        <div class="press-links">
-          <h3>Presse-Anfragen</h3>
-          <a href="mailto:press@rickysachs.com" class="press-link">
-            <span class="press-link-arrow">&#8594;</span> press@rickysachs.com
-          </a>
-          <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener" class="press-link">
-            <span class="press-link-arrow">&#8594;</span> YouTube: @rickysachs
-          </a>
-          <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="press-link">
-            <span class="press-link-arrow">&#8594;</span> Instagram: @ricky.sachs
-          </a>
-          <div class="epk-downloads">
-            <a href="files/ricky_sachs_bio_de.pdf" download class="epk-btn">Bio DE</a>
-            <a href="files/ricky_sachs_bio_en.pdf" download class="epk-btn">Bio EN</a>
-            <a href="files/ricky_sachs_tech_rider.pdf" download class="epk-btn">Tech Rider + Stage Plot</a>
-            <a href="files/ricky_sachs_logo_pack.zip" download class="epk-btn">Logo Pack</a>
-            <a href="files/ricky_sachs_press_kit.zip" download class="epk-btn epk-btn--primary">Alles als ZIP</a>
-          </div>
-        </div>
-      </div>
+  <!-- VENUES CTA -->
+  <div class="venues-cta-wrap">
+    <div class="section-inner" style="text-align:center; padding-top:3.5rem; padding-bottom:3.5rem;">
+      <p class="venues-cta-label">Venue / Festival / Veranstaltung</p>
+      <p class="venues-cta-heading">Ricky Sachs buchen</p>
+      <a href="booking.html" class="venues-cta-btn">Zur Booking-Seite &#8594;</a>
     </div>
   </div>
 
