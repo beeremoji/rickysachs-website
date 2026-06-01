@@ -424,19 +424,22 @@
 
     .hero-cta {
       display: inline-block;
-      padding: 0.8rem 2.25rem;
-      border: 1px solid rgba(242,237,230,0.7);
-      color: var(--cream);
+      padding: 0.9rem 2.5rem;
+      background: var(--cream);
+      color: var(--brown-dark);
+      border: 1px solid var(--cream);
       text-decoration: none;
       font-size: 0.8rem;
+      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       transition: background 0.3s, color 0.3s, letter-spacing 0.45s cubic-bezier(0.22,1,0.36,1), border-color 0.3s;
     }
 
     .hero-cta:hover {
-      background: var(--cream);
-      color: var(--brown-dark);
+      background: transparent;
+      color: var(--cream);
+      border-color: var(--cream);
       letter-spacing: 0.24em;
       border-color: var(--cream);
     }
