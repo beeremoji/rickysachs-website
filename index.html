@@ -1843,54 +1843,6 @@
       padding-bottom: max(2rem, env(safe-area-inset-bottom));
     }
 
-    /* --- COOKIE BANNER --- */
-    #cookie-banner {
-      position: fixed;
-      bottom: max(1.5rem, env(safe-area-inset-bottom));
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(540px, calc(100vw - 2rem));
-      background: var(--dark);
-      border: 1px solid rgba(242,237,230,0.15);
-      color: var(--cream);
-      padding: 1rem 1.25rem;
-      border-radius: 4px;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      font-size: 0.78rem;
-      font-family: 'Lato', sans-serif;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-    }
-    #cookie-banner p {
-      margin: 0;
-      flex: 1;
-      min-width: 200px;
-      opacity: 0.8;
-      line-height: 1.5;
-    }
-    #cookie-banner a {
-      color: var(--cream);
-      text-decoration: underline;
-      opacity: 1;
-    }
-    #cookie-ok {
-      background: rgba(242,237,230,0.12);
-      border: 1px solid rgba(242,237,230,0.3);
-      color: var(--cream);
-      font-family: 'Lato', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.45rem 1.1rem;
-      border-radius: 2px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    #cookie-ok:hover { background: rgba(242,237,230,0.22); }
-
     /* --- EPK DOWNLOADS --- */
     .epk-downloads {
       display: flex;
@@ -2735,22 +2687,6 @@
     })();
   </script>
 
-  <!-- Cookie Banner -->
-  <div id="cookie-banner" role="dialog" aria-label="Cookie-Hinweis" style="display:none;">
-    <p>Diese Website verwendet keine Tracking-Cookies. Das YouTube-Video wird erst nach Klick geladen. <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
-    <button id="cookie-ok">OK</button>
-  </div>
-  <script>
-    (function() {
-      if (!localStorage.getItem('cookie-ok')) {
-        document.getElementById('cookie-banner').style.display = 'flex';
-      }
-      document.getElementById('cookie-ok').addEventListener('click', function() {
-        localStorage.setItem('cookie-ok', '1');
-        document.getElementById('cookie-banner').style.display = 'none';
-      });
-    })();
-  </script>
 
 </body>
 </html>
