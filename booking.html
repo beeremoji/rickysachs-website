@@ -1015,9 +1015,6 @@
     document.getElementById('cfg-back-4').addEventListener('click', () => goToStep(3));
 
     // Submit
-    // Web3Forms access key: get yours free at https://web3forms.com/
-    const WEB3FORMS_KEY = '61982dc8-4a0d-47af-b60e-c8bd9d9d779c';
-
     document.getElementById('cfg-submit').addEventListener('click', async () => {
       if (!document.getElementById('cfg-consent').checked) return;
       formData.name  = document.getElementById('f-name').value.trim();
@@ -1031,28 +1028,13 @@
       btn.disabled = true;
 
       try {
-        const payload = {
-          access_key: WEB3FORMS_KEY,
-          subject: 'Neue Booking-Anfrage: ' + (formData.eventType || 'Anfrage'),
-          from_name: formData.name || 'Unbekannt',
-          email: formData.email,
-          'Art der Veranstaltung': formData.eventType || '-',
-          'Datum': formData.datum || '-',
-          'Ort': formData.ort || '-',
-          'Gaesteliste': formData.guests || '-',
-          'PA vorhanden': formData.pa || '-',
-          'Indoor / Outdoor': formData.location_type || '-',
-          'Telefon': formData.tel || '-',
-          'Nachricht': formData.msg || '-',
-          botcheck: ''
-        };
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch('/api/booking', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
         });
         const json = await res.json();
-        if (!res.ok || !json.success) throw new Error(json.message || 'error');
+        if (!res.ok || !json.ok) throw new Error(json.error || 'error');
         goToStep(5);
       } catch {
         document.getElementById('cfg-send-error').style.display = 'block';
