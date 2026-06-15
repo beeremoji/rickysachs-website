@@ -590,6 +590,20 @@
     .single-btn-spotify { background: #1DB954; color: #000; }
     .single-btn-apple   { background: var(--cream); color: #1a0a02; }
 
+    .single-btn-all {
+      display: inline-block;
+      margin-top: 0.9rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dark);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .single-btn-all:hover { color: var(--cream); border-color: rgba(255,255,255,0.5); }
+
     .single-block-live-label {
       font-size: 0.65rem;
       letter-spacing: 0.18em;
@@ -2015,6 +2029,7 @@
               Apple Music
             </a>
           </div>
+          <a href="listen.html" class="single-btn-all">Told You To Stay hören</a>
         </div>
       </div>
 
