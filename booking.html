@@ -894,7 +894,7 @@
             <span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung dieser Booking-Anfrage zu.</span>
           </label>
           <button class="cfg-submit-btn" id="cfg-submit">Anfrage senden</button>
-          <p id="cfg-send-error" style="display:none;margin-top:1rem;font-size:0.8rem;color:rgba(242,237,230,0.7);">Technischer Fehler - bitte schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
+          <p id="cfg-send-error" style="display:none;margin-top:1rem;font-size:0.8rem;color:rgba(242,237,230,0.7);">Etwas hat nicht geklappt - schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
         </div>
 
         <div class="cfg-step" id="cfg-step-5">
@@ -1015,6 +1015,9 @@
     document.getElementById('cfg-back-4').addEventListener('click', () => goToStep(3));
 
     // Submit
+    // Web3Forms access key: get yours free at https://web3forms.com/
+    const WEB3FORMS_KEY = 'DEIN_ACCESS_KEY_HIER';
+
     document.getElementById('cfg-submit').addEventListener('click', async () => {
       if (!document.getElementById('cfg-consent').checked) return;
       formData.name  = document.getElementById('f-name').value.trim();
@@ -1028,12 +1031,28 @@
       btn.disabled = true;
 
       try {
-        const res = await fetch('/api/booking', {
+        const payload = {
+          access_key: WEB3FORMS_KEY,
+          subject: 'Neue Booking-Anfrage: ' + (formData.eventType || 'Anfrage'),
+          from_name: formData.name || 'Unbekannt',
+          email: formData.email,
+          'Art der Veranstaltung': formData.eventType || '-',
+          'Datum': formData.datum || '-',
+          'Ort': formData.ort || '-',
+          'Gaesteliste': formData.guests || '-',
+          'PA vorhanden': formData.pa || '-',
+          'Indoor / Outdoor': formData.location_type || '-',
+          'Telefon': formData.tel || '-',
+          'Nachricht': formData.msg || '-',
+          botcheck: ''
+        };
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
         });
-        if (!res.ok) throw new Error();
+        const json = await res.json();
+        if (!res.ok || !json.success) throw new Error(json.message || 'error');
         goToStep(5);
       } catch {
         document.getElementById('cfg-send-error').style.display = 'block';
