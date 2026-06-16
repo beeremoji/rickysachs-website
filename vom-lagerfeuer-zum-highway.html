@@ -24,9 +24,11 @@
   <meta property="og:description" content="Vom Lagerfeuer zum Highway to Happiness - wie ein Pfadfinder aus Aalen zum Country Sänger aus Deutschland wurde.">
   <meta property="og:image" content="https://rickysachs.com/img/portrait.webp">
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
 
   <script type="application/ld+json">
   {
@@ -61,35 +63,70 @@
       --cream: #F2EDE6;
       --cream-dark: #E0D8CE;
       --text-dark: #2C1A0E;
+      --site-bg: #130A04;
+      --site-bg-mid: #1E0F07;
     }
+
+    html { scroll-behavior: smooth; background: #050200; overscroll-behavior: none; }
 
     body {
       font-family: 'Lato', sans-serif;
-      background: var(--cream);
-      color: var(--text-dark);
+      background: transparent;
+      color: var(--cream-dark);
       font-weight: 300;
+      isolation: isolate;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: url('img/hero.png') center 25% / cover no-repeat;
+    }
+
+    .bg-veil {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: rgba(5, 2, 0, 0.52);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 1;
+    }
+
+    /* NAV */
     nav {
-      background: var(--brown-dark);
-      padding: 0 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(19,10,4,0.55);
+      backdrop-filter: blur(6px);
+      padding: 0 2.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 56px;
+      height: 64px;
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .nav-logo img {
-      height: 36px;
+      height: 44px;
       width: auto;
       mix-blend-mode: screen;
+      opacity: 0.9;
+      transition: opacity 0.2s;
     }
+
+    .nav-logo:hover img { opacity: 1; }
 
     .nav-back {
       color: var(--cream-dark);
@@ -103,70 +140,95 @@
 
     .nav-back:hover { opacity: 1; }
 
+    main { position: relative; z-index: 2; }
+
+    /* ARTICLE HERO */
     .article-hero {
-      background: var(--brown-dark);
-      padding: 4rem 2rem 3.5rem;
-      text-align: center;
+      padding: 9rem 2.5rem 3.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(242,237,230,0.45);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 1.4rem;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.55;
+      flex-shrink: 0;
     }
 
     .article-hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 700;
       color: var(--cream);
-      line-height: 1.15;
-      max-width: 680px;
-      margin: 0 auto;
+      line-height: 1.12;
     }
 
+    /* CONTENT */
     .content {
       max-width: 680px;
       margin: 0 auto;
-      padding: 4rem 2rem 6rem;
+      padding: 0 2.5rem 6rem;
     }
 
     h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
       font-weight: 700;
       margin-top: 3rem;
-      margin-bottom: 1rem;
-      color: var(--brown-mid);
+      margin-bottom: 1.1rem;
+      color: var(--cream);
       line-height: 1.2;
     }
 
     p {
       line-height: 1.9;
-      margin-bottom: 1.2rem;
-      color: #4A3828;
+      margin-bottom: 1.25rem;
+      color: rgba(224,216,206,0.78);
       font-size: 1rem;
     }
 
     .lead {
       font-size: 1.1rem;
       line-height: 1.85;
-      color: var(--brown-mid);
+      color: var(--cream-dark);
       font-weight: 400;
       margin-bottom: 2rem;
-      border-left: 3px solid var(--brown-light);
+      border-left: 2px solid rgba(242,237,230,0.3);
       padding-left: 1.25rem;
     }
 
     .quote {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 1.15rem;
-      color: var(--brown-dark);
+      font-size: 1.2rem;
+      color: var(--cream);
       text-align: center;
-      margin: 2rem 0;
+      margin: 2.5rem 0;
       padding: 0 1rem;
     }
 
-    a { color: var(--brown-mid); text-decoration: underline; text-underline-offset: 3px; }
-    a:hover { color: var(--brown-dark); }
+    a { color: var(--cream-dark); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: var(--cream); }
 
+    /* CTA / single buttons (matches homepage) */
     .cta-block {
-      background: var(--brown-dark);
+      background: rgba(242,237,230,0.06);
+      border: 1px solid rgba(242,237,230,0.15);
       padding: 2rem 2.5rem;
       margin: 3rem 0;
       border-radius: 4px;
@@ -174,113 +236,253 @@
     }
 
     .cta-block p {
-      color: var(--cream-dark);
+      color: var(--cream);
       margin-bottom: 1.25rem;
       font-size: 0.95rem;
     }
 
-    .cta-btn {
-      display: inline-block;
-      background: #1DB954;
-      color: #000;
+    .single-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
       font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.65rem 1.4rem;
-      border-radius: 3px;
-      text-decoration: none;
-      margin: 0.3rem;
       letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      margin: 0.3rem;
     }
 
-    .cta-btn-secondary {
+    .single-btn:hover { opacity: 0.85; }
+    .single-btn svg { flex-shrink: 0; }
+    .single-btn-spotify { background: #1DB954; color: #000; }
+    .single-btn-apple   { background: var(--cream); color: #1a0a02; }
+
+    .back-link {
       display: inline-block;
-      background: var(--cream);
-      color: var(--brown-dark);
-      font-weight: 700;
+      margin-top: 1.5rem;
       font-size: 0.85rem;
-      padding: 0.65rem 1.4rem;
-      border-radius: 3px;
-      text-decoration: none;
-      margin: 0.3rem;
-      letter-spacing: 0.04em;
     }
 
-    .related {
-      font-size: 0.9rem;
-      margin-top: 2rem;
-    }
-
+    /* FOOTER */
     footer {
-      background: var(--brown-dark);
-      padding: 2rem 2.5rem;
+      position: relative;
+      z-index: 2;
+      padding: 3rem 2.5rem;
       text-align: center;
     }
 
-    footer p { font-size: 0.72rem; color: var(--cream-dark); opacity: 0.35; }
-    footer a { color: inherit; opacity: 0.6; }
+    .nl-wrap { margin-top: 0; margin-bottom: 1.5rem; }
+    .nl-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 0.6rem;
+      color: var(--cream);
+    }
+    .nl-form {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .nl-form input[type="email"] {
+      flex: 1;
+      min-width: 180px;
+      max-width: 280px;
+      background: rgba(242,237,230,0.07);
+      border: 1px solid rgba(242,237,230,0.25);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 2px;
+      outline: none;
+    }
+    .nl-form input[type="email"]::placeholder { opacity: 0.45; }
+    .nl-form input[type="email"]:focus { border-color: rgba(242,237,230,0.55); }
+    .nl-form button {
+      background: rgba(242,237,230,0.1);
+      border: 1px solid rgba(242,237,230,0.35);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      border-radius: 2px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .nl-form button:hover { background: rgba(242,237,230,0.18); }
+    .nl-success { font-size: 0.85rem; opacity: 0.7; display: none; }
+    .nl-consent {
+      font-size: 0.68rem;
+      opacity: 0.45;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+      color: var(--cream);
+    }
+    .nl-consent a { color: inherit; opacity: 0.8; text-underline-offset: 2px; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links a {
+      color: var(--cream-dark);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .social-links a:hover { opacity: 1; }
+
+    footer p { font-size: 0.72rem; color: rgba(224,216,206,0.62); letter-spacing: 0.05em; }
+    footer p a {
+      color: rgba(224,216,206,0.85);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(224,216,206,0.4);
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    footer p a:hover { color: var(--cream); text-decoration-color: var(--cream); }
 
     @media (max-width: 600px) {
-      .content { padding: 3rem 1.5rem 4rem; }
-      .article-hero { padding: 3rem 1.5rem 2.5rem; }
+      .article-hero { padding: 7.5rem 1.5rem 2.5rem; }
+      .content { padding: 0 1.5rem 4rem; }
     }
   </style>
 </head>
 <body>
 
+  <div class="bg-veil" aria-hidden="true"></div>
+
   <nav>
     <a href="index.html" class="nav-logo">
-      <img src="img/logo.png" alt="Ricky Sachs">
+      <img src="img/logo_long.webp" alt="Ricky Sachs" width="176" height="44">
     </a>
     <a href="index.html" class="nav-back">&#8592; Zurück</a>
   </nav>
 
-  <div class="article-hero">
-    <h1>Vom Lagerfeuer zum Highway</h1>
-  </div>
+  <main>
 
-  <div class="content">
-
-    <p class="lead">2013, Aalen, ein sonniger Dienstagabend. Noch bevor er die Tür erreicht, hört er es: ein mysteriöser Pfadfinder sitzt davor und spielt Gitarre. Er blickt auf zu Ricky und beginnt, sich eine Zigarette zu drehen.</p>
-
-    <p>Er selbst hat an diesem Abend noch keine Gitarre, keine Bühne, kein Mikrofon. Niemand in der Runde weiß, dass hier der eigentliche Anfangspunkt einer Country-Karriere liegt.</p>
-
-    <h2>Country Musik aus Deutschland beginnt am Lagerfeuer</h2>
-    <p>Doch bevor es der Highway to Happiness war, war es ein Lagerfeuer, an dem der erste Ton fiel. Seit den 1950er Jahren haben Generationen von Jugendlichen aus Aalen am Feuer gesessen, geschnitzt, gesungen, Geschichten erzählt. Genau dort, fernab von Nashville, lag der erste Moment, in dem Singen sich nach etwas Echtem anfühlte. Mit Blick ins Feuer lauschte Ricky den Songs, die die älteren Pfadfinder sangen.</p>
-    <p>Diese Erfahrung lässt sich nicht simulieren. Man kann sie nur durchleben.</p>
-
-    <h2>Pfingstlager als Schule fürs Songwriting</h2>
-    <p>Jedes Jahr fand das Pfingstlager unter einem neuen Motto statt. Mal eine Zeitreise. Mal eine einsame Insel. Mal Mittelalter-Fantasy mit einem Drachen, der ein Dorf bedroht. Eine ganze Welt wird gebaut, mit Figuren, Konflikt und Auflösung, und das jedes Jahr neu.</p>
-    <p>Genau dieses Prinzip steckt in jedem Song. Eine Figur, eine Geschichte, eine Wahrheit, die größer wird als die Bühne, auf der sie erzählt wird. Es war kein Zufall, dass aus zehn Jahren Lagermottos eine Leidenschaft wurde, die heute Teil seiner kreativen Arbeit als Country Sänger aus Deutschland ist.</p>
-
-    <h2>Vom Wölfling zum Leiter: Verantwortung als Markenkern</h2>
-    <p>Bei den Pfadfindern gilt ein einfaches Prinzip: Jeder übernimmt Verantwortung, der Fähigkeit entsprechend, und Ämter werden gewählt, nicht vergeben. Aus dem 8-jährigen Wölfling am Feuer wurde mit den Jahren ein Leiter, der ganze Lager mitplant, durchführt und verantwortet.</p>
-    <p>Diese Haltung erklärt auch, warum er sein Musikprojekt nicht wie ein Künstler führt, der auf einen Plattenvertrag wartet, sondern wie jemand, der Verantwortung übernimmt, bevor sie verlangt wird. Content, Musikproduktion und Auftrittsplanung liegen komplett in seiner eigenen Hand.</p>
-
-    <p class="quote">"Do it like a scout, not an artist."</p>
-
-    <h2>Das Friedenslicht: Symbol für echte Country Musik aus Deutschland</h2>
-    <p>Jedes Jahr holen die Pfadfinder das Friedenslicht aus Bethlehem nach Aalen und übergeben es an die nächsten Hände. Ein kleines Licht, das eine lange Strecke zurücklegt, um an einem fremden Ort etwas Echtes zu entzünden.</p>
-    <p>Es ist dasselbe Bild, das Country Musik aus Deutschland trägt. Etwas, das von weit her kommt, durch viele Hände geht, und am Ende trotzdem ankommt, weil es ehrlich ist.</p>
-
-    <h2>Willkommen auf dem Highway to Happiness</h2>
-    <p>Der Weg vom Lagerfeuer zur Bühne war kein Sprung. Es waren zehn Jahre Lagerfeuer, Verantwortung und Geschichten, die gelebt werden mussten, bevor sie ein Mikrofon verdient hatten.</p>
-    <p>Heute steht irgendwo in Aalen wieder ein Dienstagabend bevor. Vielleicht sitzt davor jemand mit einer Gitarre. Vielleicht hört ein Kind am Feuer zum ersten Mal zu, ohne zu wissen, was da gerade beginnt. Die Gitarre vor der Tür ist nicht verschwunden. Sie wurde nur weitergegeben, und diesmal hält er sie selbst.</p>
-
-    <div class="cta-block">
-      <p>Told You To Stay - jetzt hören</p>
-      <a href="https://open.spotify.com/track/4IIZBGbfVQwWU1PtAQvmve" class="cta-btn" target="_blank" rel="noopener">Spotify</a>
-      <a href="https://music.apple.com/de/album/told-you-to-stay/6768003053?i=6768003145" class="cta-btn-secondary" target="_blank" rel="noopener">Apple Music</a>
+    <div class="article-hero">
+      <span class="section-label">Artikel</span>
+      <h1>Vom Lagerfeuer zum Highway</h1>
     </div>
 
-    <p style="margin-top:2rem">
-      <a href="index.html">&larr; Zurück zur Startseite</a>
-    </p>
+    <div class="content">
 
-  </div>
+      <p class="lead">2013, Aalen, ein sonniger Dienstagabend. Noch bevor er die Tür erreicht, hört er es: ein mysteriöser Pfadfinder sitzt davor und spielt Gitarre. Er blickt auf zu Ricky und beginnt, sich eine Zigarette zu drehen.</p>
+
+      <p>Er selbst hat an diesem Abend noch keine Gitarre, keine Bühne, kein Mikrofon. Niemand in der Runde weiß, dass hier der eigentliche Anfangspunkt einer Country-Karriere liegt.</p>
+
+      <h2>Country Musik aus Deutschland beginnt am Lagerfeuer</h2>
+      <p>Doch bevor es der Highway to Happiness war, war es ein Lagerfeuer, an dem der erste Ton fiel. Seit den 1950er Jahren haben Generationen von Jugendlichen aus Aalen am Feuer gesessen, geschnitzt, gesungen, Geschichten erzählt. Genau dort, fernab von Nashville, lag der erste Moment, in dem Singen sich nach etwas Echtem anfühlte. Mit Blick ins Feuer lauschte Ricky den Songs, die die älteren Pfadfinder sangen.</p>
+      <p>Diese Erfahrung lässt sich nicht simulieren. Man kann sie nur durchleben.</p>
+
+      <h2>Pfingstlager als Schule fürs Songwriting</h2>
+      <p>Jedes Jahr fand das Pfingstlager unter einem neuen Motto statt. Mal eine Zeitreise. Mal eine einsame Insel. Mal Mittelalter-Fantasy mit einem Drachen, der ein Dorf bedroht. Eine ganze Welt wird gebaut, mit Figuren, Konflikt und Auflösung, und das jedes Jahr neu.</p>
+      <p>Genau dieses Prinzip steckt in jedem Song. Eine Figur, eine Geschichte, eine Wahrheit, die größer wird als die Bühne, auf der sie erzählt wird. Es war kein Zufall, dass aus zehn Jahren Lagermottos eine Leidenschaft wurde, die heute Teil seiner kreativen Arbeit als Country Sänger aus Deutschland ist.</p>
+
+      <h2>Vom Wölfling zum Leiter: Verantwortung als Markenkern</h2>
+      <p>Bei den Pfadfindern gilt ein einfaches Prinzip: Jeder übernimmt Verantwortung, der Fähigkeit entsprechend, und Ämter werden gewählt, nicht vergeben. Aus dem 8-jährigen Wölfling am Feuer wurde mit den Jahren ein Leiter, der ganze Lager mitplant, durchführt und verantwortet.</p>
+      <p>Diese Haltung erklärt auch, warum er sein Musikprojekt nicht wie ein Künstler führt, der auf einen Plattenvertrag wartet, sondern wie jemand, der Verantwortung übernimmt, bevor sie verlangt wird. Content, Musikproduktion und Auftrittsplanung liegen komplett in seiner eigenen Hand.</p>
+
+      <p class="quote">"Do it like a scout, not an artist."</p>
+
+      <h2>Das Friedenslicht: Symbol für echte Country Musik aus Deutschland</h2>
+      <p>Jedes Jahr holen die Pfadfinder das Friedenslicht aus Bethlehem nach Aalen und übergeben es an die nächsten Hände. Ein kleines Licht, das eine lange Strecke zurücklegt, um an einem fremden Ort etwas Echtes zu entzünden.</p>
+      <p>Es ist dasselbe Bild, das Country Musik aus Deutschland trägt. Etwas, das von weit her kommt, durch viele Hände geht, und am Ende trotzdem ankommt, weil es ehrlich ist.</p>
+
+      <h2>Willkommen auf dem Highway to Happiness</h2>
+      <p>Der Weg vom Lagerfeuer zur Bühne war kein Sprung. Es waren zehn Jahre Lagerfeuer, Verantwortung und Geschichten, die gelebt werden mussten, bevor sie ein Mikrofon verdient hatten.</p>
+      <p>Heute steht irgendwo in Aalen wieder ein Dienstagabend bevor. Vielleicht sitzt davor jemand mit einer Gitarre. Vielleicht hört ein Kind am Feuer zum ersten Mal zu, ohne zu wissen, was da gerade beginnt. Die Gitarre vor der Tür ist nicht verschwunden. Sie wurde nur weitergegeben, und diesmal hält er sie selbst.</p>
+
+      <div class="cta-block">
+        <p>Told You To Stay - jetzt hören</p>
+        <a href="https://open.spotify.com/track/4IIZBGbfVQwWU1PtAQvmve" class="single-btn single-btn-spotify" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 01-.857.207c-2.348-1.435-5.304-1.759-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.622.622 0 01.207.857zm1.223-2.722a.78.78 0 01-1.072.257C14.1 12.26 10.539 11.7 7.2 12.66a.78.78 0 01-.962-.52.78.78 0 01.52-.961c3.79-1.15 7.797-.594 10.77 1.251a.78.78 0 01.281 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.794c3.525-1.072 9.386-.865 13.092 1.325a.938.938 0 01-.932 1.626z"/></svg>
+          Spotify
+        </a>
+        <a href="https://music.apple.com/de/album/told-you-to-stay/6768003053?i=6768003145" class="single-btn single-btn-apple" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.064-2.31-2.24-3.09a5.99 5.99 0 00-1.88-.77c-.54-.13-1.07-.17-1.59-.19L18 0H6C3.16 0 .61 2.1.14 4.85a9.2 9.2 0 00-.14 1.72v10.87a9.2 9.2 0 00.14 1.72C.61 21.9 3.16 24 6 24h12c2.84 0 5.39-2.1 5.86-4.85.1-.57.14-1.14.14-1.72V6.12zM12 17.5c-3.03 0-5.5-2.47-5.5-5.5S8.97 6.5 12 6.5s5.5 2.47 5.5 5.5-2.47 5.5-5.5 5.5zm4-9.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 9.5 12 9.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Apple Music
+        </a>
+      </div>
+
+      <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
+
+    </div>
+
+  </main>
 
   <footer>
-    <p>&copy; 2026 Ricky Sachs / <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
+    <div class="nl-wrap">
+      <p class="nl-label">Neue Musik + Insider-Updates direkt ins Postfach</p>
+      <form class="nl-form" id="nl-footer" data-nl="footer">
+        <input type="email" name="email" placeholder="deine@email.de" required autocomplete="email">
+        <button type="submit">Dabei sein</button>
+      </form>
+      <p class="nl-consent">Mit Absenden stimmst du der Verarbeitung deiner E-Mail zur Newsletter-Zusendung zu. Abmeldung jederzeit. <a href="datenschutz.html">Datenschutz</a></p>
+      <p class="nl-success" id="nl-footer-ok">Fast da! Bitte bestätige deine Anmeldung per E-Mail.</p>
+      <p class="nl-error" id="nl-footer-err" style="display:none;font-size:0.8rem;color:rgba(242,237,230,0.6);margin-top:0.5rem;">Fehler beim Eintragen. Schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream-dark);">booking@rickysachs.com</a></p>
+    </div>
+    <div class="social-links">
+      <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://tiktok.com/@therickysachs" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.facebook.com/therickysachs" target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <p>&copy; 2026 Erik Sachs / <a href="mailto:booking@rickysachs.com">Kontakt</a> / <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
   </footer>
+
+  <script>
+    function handleNlSubmit(formId, successId, errorId) {
+      var form = document.getElementById(formId);
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = form.querySelector('input[type="email"]').value.trim();
+        if (!email) return;
+        var btn = form.querySelector('button[type="submit"]');
+        if (btn) { btn.disabled = true; }
+        fetch('https://rickysachs-website.vercel.app/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email }),
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.ok) {
+            form.style.display = 'none';
+            document.getElementById(successId).style.display = 'block';
+          } else {
+            throw new Error(data.error || 'error');
+          }
+        })
+        .catch(function() {
+          if (btn) { btn.disabled = false; }
+          var errEl = errorId ? document.getElementById(errorId) : null;
+          if (errEl) errEl.style.display = 'block';
+        });
+      });
+    }
+    handleNlSubmit('nl-footer', 'nl-footer-ok', 'nl-footer-err');
+  </script>
 
 </body>
 </html>
