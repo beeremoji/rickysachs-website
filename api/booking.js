@@ -39,7 +39,10 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         from: 'Booking Form <onboarding@resend.dev>',
-        to: ['booking@rickysachs.com'],
+        // TODO: zurück auf booking@rickysachs.com, sobald die Domain in Resend verifiziert ist
+        // (resend.com/domains) - bis dahin erlaubt der Resend-Sandbox-Modus nur die
+        // Account-E-Mail als Empfänger.
+        to: ['erik.sachs@hotmail.com'],
         reply_to: d.email,
         subject: `Booking-Anfrage: ${d.eventType || 'Neue Anfrage'} - ${d.name || d.email}`,
         html,
