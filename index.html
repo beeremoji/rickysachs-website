@@ -1767,7 +1767,9 @@
       position: fixed;
       inset: 0;
       z-index: 300;
-      background: #000;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 22%, rgba(58,36,15,0.55) 0%, rgba(0,0,0,0) 60%),
+        #050300;
       clip-path: circle(0% at var(--vx, 90%) var(--vy, 8%));
       transition: clip-path 0.85s cubic-bezier(0.65, 0, 0.35, 1);
       pointer-events: none;
@@ -1812,160 +1814,174 @@
     .venue-typewriter .letter {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.7rem, 6vw, 3.4rem);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.16em;
       color: var(--gold);
       opacity: 0;
       transform: translateY(6px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      text-shadow: 0 0 18px rgba(216,184,113,0.35);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      text-shadow: 0 0 24px rgba(216,184,113,0.3);
     }
     .venue-typewriter .letter.shown { opacity: 1; transform: translateY(0); }
 
-    .venue-typewriter .cursor {
-      display: inline-block;
-      width: 2px;
-      align-self: stretch;
-      margin-left: 0.12em;
-      background: var(--gold);
-      animation: cursorBlink 0.85s step-end infinite;
-    }
-    @keyframes cursorBlink { 50% { opacity: 0; } }
-
-    .venue-typewriter.fading { opacity: 0; transition: opacity 0.45s ease; }
+    .venue-typewriter.fading { opacity: 0; transition: opacity 0.6s ease; }
 
     .venue-content {
       position: relative;
-      max-width: 760px;
+      max-width: 620px;
       margin: 0 auto;
-      padding: 7rem 2rem 5rem;
+      padding: 8rem 2rem 5rem;
       opacity: 0;
       transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition: opacity 0.9s ease, transform 0.9s ease;
     }
     .venue-content.shown { opacity: 1; transform: translateY(0); }
 
     .venue-eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.8;
-      margin-bottom: 1rem;
+      color: rgba(216,184,113,0.7);
+      margin-bottom: 2.25rem;
       text-align: center;
+    }
+    .venue-eyebrow::before, .venue-eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 1.3rem;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.6;
+      vertical-align: middle;
+      margin: 0 0.7rem 0.15rem;
     }
 
     .venue-headline {
+      position: relative;
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: clamp(1.5rem, 4vw, 2.3rem);
+      font-weight: 400;
+      font-size: clamp(1.5rem, 3.6vw, 2.1rem);
       text-align: center;
-      color: var(--cream);
-      line-height: 1.35;
-      margin-bottom: 1.5rem;
+      color: var(--cream-dark);
+      line-height: 1.45;
+      max-width: 480px;
+      margin: 0 auto 2.25rem;
+    }
+    .venue-headline::before {
+      content: '\201C';
+      position: absolute;
+      top: -2.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-style: normal;
+      font-size: 4.5rem;
+      color: rgba(216,184,113,0.18);
+      line-height: 1;
+    }
+
+    .venue-rule {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(216,184,113,0.55), transparent);
+      margin: 0 auto 2.25rem;
     }
 
     .venue-sub {
       text-align: center;
-      max-width: 540px;
-      margin: 0 auto 2.5rem;
-      color: rgba(224,216,206,0.7);
-      line-height: 1.8;
-      font-size: 0.95rem;
+      max-width: 460px;
+      margin: 0 auto 2.25rem;
+      color: rgba(224,216,206,0.62);
+      line-height: 1.85;
+      font-size: 0.92rem;
     }
 
-    .venue-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-bottom: 3rem;
+    .venue-specs {
+      text-align: center;
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(216,184,113,0.8);
+      margin-bottom: 3.5rem;
     }
-
-    .venue-badge {
-      border: 1px solid rgba(216,184,113,0.3);
-      color: var(--gold);
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-      padding: 0.5rem 1rem;
-      border-radius: 2px;
-      opacity: 0.9;
-    }
-
-    .venue-divider {
-      width: 60px;
-      height: 1px;
-      background: rgba(216,184,113,0.4);
-      margin: 0 auto 3rem;
+    .venue-specs .sep {
+      color: rgba(216,184,113,0.32);
+      margin: 0 0.7em;
     }
 
     .venue-form {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 1.6rem 1.5rem;
     }
     .venue-form .full { grid-column: 1 / -1; }
     .venue-form label {
       display: block;
-      font-size: 0.66rem;
-      letter-spacing: 0.1em;
+      font-size: 0.64rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(242,237,230,0.5);
-      margin-bottom: 0.4rem;
+      color: rgba(242,237,230,0.4);
+      margin-bottom: 0.5rem;
     }
     .venue-form input, .venue-form select, .venue-form textarea {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(242,237,230,0.18);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(242,237,230,0.2);
       color: var(--cream);
       font-family: 'Lato', sans-serif;
-      font-size: 0.92rem;
-      padding: 0.65rem 0.8rem;
-      border-radius: 2px;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.05rem 0.6rem;
+      border-radius: 0;
       outline: none;
+      transition: border-color 0.3s;
     }
+    .venue-form input::placeholder, .venue-form textarea::placeholder { color: rgba(242,237,230,0.28); }
     .venue-form input:focus, .venue-form select:focus, .venue-form textarea:focus {
-      border-color: rgba(216,184,113,0.6);
+      border-color: rgba(216,184,113,0.7);
     }
-    .venue-form select option { background: #1a0f06; color: var(--cream); }
-    .venue-form textarea { resize: vertical; min-height: 80px; }
+    .venue-form select { appearance: none; cursor: pointer; }
+    .venue-form select option { background: #15100a; color: var(--cream); }
+    .venue-form textarea { resize: vertical; min-height: 64px; }
 
     .venue-submit {
       grid-column: 1 / -1;
-      margin-top: 0.5rem;
-      background: var(--gold);
-      color: #1a0a02;
-      border: none;
+      margin-top: 1.25rem;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(216,184,113,0.5);
       font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
+      font-weight: 400;
+      font-size: 0.74rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      padding: 0.85rem;
-      border-radius: 2px;
+      padding: 0.9rem;
+      border-radius: 0;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: background 0.35s, color 0.35s, letter-spacing 0.45s cubic-bezier(0.22,1,0.36,1), border-color 0.35s;
     }
-    .venue-submit:hover { opacity: 0.88; }
-    .venue-submit:disabled { opacity: 0.5; cursor: default; }
+    .venue-submit:hover { background: var(--gold); color: #1a0a02; letter-spacing: 0.28em; border-color: var(--gold); }
+    .venue-submit:disabled { opacity: 0.45; cursor: default; }
 
     .venue-success, .venue-error {
       text-align: center;
-      padding: 2rem 0;
+      padding: 1.5rem 0;
       display: none;
     }
     .venue-success p:first-child {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: var(--gold);
       margin-bottom: 0.75rem;
     }
-    .venue-error { color: rgba(224,216,206,0.7); font-size: 0.9rem; }
+    .venue-error { color: rgba(224,216,206,0.6); font-size: 0.88rem; }
     .venue-error a { color: var(--gold); }
 
     @media (max-width: 600px) {
       .venue-form { grid-template-columns: 1fr; }
-      .venue-content { padding: 6rem 1.25rem 4rem; }
+      .venue-content { padding: 6.5rem 1.5rem 4rem; }
+      .venue-headline::before { top: -2.2rem; font-size: 3.4rem; }
     }
 
     /* TABLET */
@@ -2577,15 +2593,10 @@
     <div class="venue-typewriter" id="venue-typewriter"></div>
     <div class="venue-content" id="venue-content">
       <p class="venue-eyebrow">Booking</p>
-      <p class="venue-headline">"Ein Mensch. Eine Gitarre. Ein Sound, der bleibt."</p>
+      <p class="venue-headline">Ein Mensch. Eine Gitarre. Ein Sound, der bleibt.</p>
+      <div class="venue-rule"></div>
       <p class="venue-sub">Ricky Sachs spielt Acoustic Country solo, akustisch, ohne Band-Logistik. Eigene Songs, eigene Produktion, eigene Planung - von der ersten Anfrage bis zum letzten Akkord auf der Bühne.</p>
-      <div class="venue-badges">
-        <span class="venue-badge">Solo-Act, voller Sound</span>
-        <span class="venue-badge">Flexibles Setup - drinnen &amp; draußen</span>
-        <span class="venue-badge">Eigene Produktion, kein Agentur-Aufschlag</span>
-        <span class="venue-badge">Klar organisiert, zuverlässig</span>
-      </div>
-      <div class="venue-divider"></div>
+      <p class="venue-specs">Solo-Act<span class="sep">&middot;</span>Eigene Produktion<span class="sep">&middot;</span>Flexibles Setup<span class="sep">&middot;</span>Zuverlässig</p>
 
       <form class="venue-form" id="venue-form">
         <div class="full">
@@ -3004,13 +3015,10 @@
           span.className = 'letter';
           span.textContent = ch === ' ' ? ' ' : ch;
           typewriter.appendChild(span);
-          setTimeout(function() { span.classList.add('shown'); }, 90 * i + 120);
+          setTimeout(function() { span.classList.add('shown'); }, 110 * i + 120);
         });
-        var cursor = document.createElement('span');
-        cursor.className = 'cursor';
-        typewriter.appendChild(cursor);
 
-        var totalTime = 90 * letters.length + 700;
+        var totalTime = 110 * letters.length + 800;
         setTimeout(function() {
           typewriter.classList.add('fading');
           setTimeout(function() {
