@@ -361,15 +361,25 @@
       border: 1px solid rgba(242,237,230,0.3) !important;
       padding: 0.3rem 0.75rem;
       border-radius: 2px;
-      transition: border-color 0.25s, color 0.25s !important;
-      animation: venuePulse 2.8s ease-in-out infinite;
+      transition: border-color 0.25s !important;
+      animation: venuePulse 2.6s ease-in-out infinite;
     }
-    .nav-link-venues:hover { border-color: rgba(216,184,113,0.85) !important; animation-play-state: paused; }
+    .nav-link-venues:hover { border-color: rgba(216,184,113,0.9) !important; animation-play-state: paused; color: #F6E4BB !important; text-shadow: 0 0 12px rgba(216,184,113,0.85); }
     .nav-link-venues::after { display: none !important; }
 
     @keyframes venuePulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(216,184,113,0); border-color: rgba(242,237,230,0.3); }
-      50% { box-shadow: 0 0 14px 2px rgba(216,184,113,0.45); border-color: rgba(216,184,113,0.6); }
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(216,184,113,0);
+        border-color: rgba(242,237,230,0.3);
+        color: var(--cream-dark);
+        text-shadow: 0 0 0 rgba(216,184,113,0);
+      }
+      50% {
+        box-shadow: 0 0 16px 2px rgba(216,184,113,0.4);
+        border-color: rgba(216,184,113,0.7);
+        color: #F6E4BB;
+        text-shadow: 0 0 8px rgba(216,184,113,0.85), 0 0 20px rgba(216,184,113,0.5);
+      }
     }
 
     .nav-hamburger {
@@ -1768,13 +1778,37 @@
       inset: 0;
       z-index: 300;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 22%, rgba(58,36,15,0.55) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(ellipse 90% 70% at 50% 30%, rgba(58,36,15,0.6) 0%, rgba(0,0,0,0) 62%),
+        linear-gradient(rgba(3,2,1,0.78), rgba(3,2,1,0.94)),
+        url('img/portrait.webp') center 18% / cover no-repeat,
         #050300;
       clip-path: circle(0% at var(--vx, 90%) var(--vy, 8%));
       transition: clip-path 0.85s cubic-bezier(0.65, 0, 0.35, 1);
       pointer-events: none;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+    }
+
+    #venue-overlay::before {
+      /* film grain */
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    #venue-overlay::after {
+      /* cinematic letterbox bars */
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(#000 0 0) top / 100% clamp(16px, 3vw, 36px) no-repeat,
+        linear-gradient(#000 0 0) bottom / 100% clamp(16px, 3vw, 36px) no-repeat;
     }
 
     #venue-overlay.open {
@@ -1805,11 +1839,30 @@
     .venue-typewriter {
       position: absolute;
       inset: 0;
+      z-index: 2;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       pointer-events: none;
     }
+
+    .venue-logo-mark {
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .venue-logo-mark.shown { opacity: 0.95; transform: translateY(0); }
+    .venue-logo-mark img {
+      height: clamp(32px, 5vw, 46px);
+      width: auto;
+      mix-blend-mode: screen;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .venue-type-line { display: flex; }
 
     .venue-typewriter .letter {
       font-family: 'Playfair Display', serif;
@@ -1827,6 +1880,7 @@
 
     .venue-content {
       position: relative;
+      z-index: 2;
       max-width: 620px;
       margin: 0 auto;
       padding: 8rem 2rem 5rem;
@@ -1835,6 +1889,15 @@
       transition: opacity 0.9s ease, transform 0.9s ease;
     }
     .venue-content.shown { opacity: 1; transform: translateY(0); }
+
+    .venue-logo {
+      display: block;
+      margin: 0 auto 2rem;
+      height: 30px;
+      width: auto;
+      mix-blend-mode: screen;
+      opacity: 0.9;
+    }
 
     .venue-eyebrow {
       font-size: 0.68rem;
@@ -2590,8 +2653,14 @@
   <!-- VENUE BOOKING - CINEMATIC OVERLAY -->
   <div id="venue-overlay" aria-hidden="true">
     <button class="venue-close" id="venue-close" aria-label="Schließen" type="button">&times;</button>
-    <div class="venue-typewriter" id="venue-typewriter"></div>
+    <div class="venue-typewriter" id="venue-typewriter">
+      <div class="venue-logo-mark" id="venue-logo-mark">
+        <img src="img/logo_long.webp" alt="Ricky Sachs" width="176" height="44">
+      </div>
+      <div class="venue-type-line" id="venue-type-line"></div>
+    </div>
     <div class="venue-content" id="venue-content">
+      <img class="venue-logo" src="img/logo_long.webp" alt="Ricky Sachs" width="160" height="40">
       <p class="venue-eyebrow">Booking</p>
       <p class="venue-headline">Ein Mensch. Eine Gitarre. Ein Sound, der bleibt.</p>
       <div class="venue-rule"></div>
@@ -3001,6 +3070,8 @@
     (function() {
       var overlay    = document.getElementById('venue-overlay');
       var typewriter = document.getElementById('venue-typewriter');
+      var logoMark   = document.getElementById('venue-logo-mark');
+      var typeLine   = document.getElementById('venue-type-line');
       var content    = document.getElementById('venue-content');
       var closeBtn   = document.getElementById('venue-close');
       var triggers   = document.querySelectorAll('.venue-cta');
@@ -3008,17 +3079,18 @@
       var typed      = false;
 
       function runTypewriter() {
-        typewriter.innerHTML = '';
+        logoMark.classList.add('shown');
+        typeLine.innerHTML = '';
         var letters = text.split('');
         letters.forEach(function(ch, i) {
           var span = document.createElement('span');
           span.className = 'letter';
           span.textContent = ch === ' ' ? ' ' : ch;
-          typewriter.appendChild(span);
-          setTimeout(function() { span.classList.add('shown'); }, 110 * i + 120);
+          typeLine.appendChild(span);
+          setTimeout(function() { span.classList.add('shown'); }, 110 * i + 550);
         });
 
-        var totalTime = 110 * letters.length + 800;
+        var totalTime = 110 * letters.length + 1250;
         setTimeout(function() {
           typewriter.classList.add('fading');
           setTimeout(function() {
@@ -3051,8 +3123,9 @@
         overlay.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
         setTimeout(function() {
-          typewriter.innerHTML = '';
+          typeLine.innerHTML = '';
           typewriter.classList.remove('fading');
+          logoMark.classList.remove('shown');
           content.classList.remove('shown');
           document.getElementById('venue-form').style.display = '';
           document.getElementById('venue-success').style.display = 'none';
