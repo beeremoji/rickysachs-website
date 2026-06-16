@@ -1023,7 +1023,7 @@
       btn.disabled = true;
 
       try {
-        const res = await fetch('/api/booking', {
+        const res = await fetch('https://rickysachs-website.vercel.app/api/booking', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)

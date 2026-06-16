@@ -362,9 +362,15 @@
       padding: 0.3rem 0.75rem;
       border-radius: 2px;
       transition: border-color 0.25s, color 0.25s !important;
+      animation: venuePulse 2.8s ease-in-out infinite;
     }
-    .nav-link-venues:hover { border-color: rgba(242,237,230,0.7) !important; }
+    .nav-link-venues:hover { border-color: rgba(216,184,113,0.85) !important; animation-play-state: paused; }
     .nav-link-venues::after { display: none !important; }
+
+    @keyframes venuePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(216,184,113,0); border-color: rgba(242,237,230,0.3); }
+      50% { box-shadow: 0 0 14px 2px rgba(216,184,113,0.45); border-color: rgba(216,184,113,0.6); }
+    }
 
     .nav-hamburger {
       display: none;
@@ -1754,6 +1760,214 @@
       border: 0;
     }
 
+    /* VENUE BOOKING - CINEMATIC OVERLAY */
+    :root { --gold: #D8B871; }
+
+    #venue-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: #000;
+      clip-path: circle(0% at var(--vx, 90%) var(--vy, 8%));
+      transition: clip-path 0.85s cubic-bezier(0.65, 0, 0.35, 1);
+      pointer-events: none;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #venue-overlay.open {
+      pointer-events: auto;
+      clip-path: circle(150% at var(--vx, 90%) var(--vy, 8%));
+    }
+
+    .venue-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.75rem;
+      z-index: 310;
+      background: none;
+      border: 1px solid rgba(216,184,113,0.35);
+      color: var(--gold);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease 0.4s, border-color 0.2s;
+    }
+    .venue-close:hover { border-color: var(--gold); }
+    #venue-overlay.open .venue-close { opacity: 0.75; }
+
+    .venue-typewriter {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .venue-typewriter .letter {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 6vw, 3.4rem);
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      text-shadow: 0 0 18px rgba(216,184,113,0.35);
+    }
+    .venue-typewriter .letter.shown { opacity: 1; transform: translateY(0); }
+
+    .venue-typewriter .cursor {
+      display: inline-block;
+      width: 2px;
+      align-self: stretch;
+      margin-left: 0.12em;
+      background: var(--gold);
+      animation: cursorBlink 0.85s step-end infinite;
+    }
+    @keyframes cursorBlink { 50% { opacity: 0; } }
+
+    .venue-typewriter.fading { opacity: 0; transition: opacity 0.45s ease; }
+
+    .venue-content {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .venue-content.shown { opacity: 1; transform: translateY(0); }
+
+    .venue-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .venue-headline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 4vw, 2.3rem);
+      text-align: center;
+      color: var(--cream);
+      line-height: 1.35;
+      margin-bottom: 1.5rem;
+    }
+
+    .venue-sub {
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      color: rgba(224,216,206,0.7);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .venue-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .venue-badge {
+      border: 1px solid rgba(216,184,113,0.3);
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 1rem;
+      border-radius: 2px;
+      opacity: 0.9;
+    }
+
+    .venue-divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(216,184,113,0.4);
+      margin: 0 auto 3rem;
+    }
+
+    .venue-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .venue-form .full { grid-column: 1 / -1; }
+    .venue-form label {
+      display: block;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(242,237,230,0.5);
+      margin-bottom: 0.4rem;
+    }
+    .venue-form input, .venue-form select, .venue-form textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(242,237,230,0.18);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.92rem;
+      padding: 0.65rem 0.8rem;
+      border-radius: 2px;
+      outline: none;
+    }
+    .venue-form input:focus, .venue-form select:focus, .venue-form textarea:focus {
+      border-color: rgba(216,184,113,0.6);
+    }
+    .venue-form select option { background: #1a0f06; color: var(--cream); }
+    .venue-form textarea { resize: vertical; min-height: 80px; }
+
+    .venue-submit {
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+      background: var(--gold);
+      color: #1a0a02;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .venue-submit:hover { opacity: 0.88; }
+    .venue-submit:disabled { opacity: 0.5; cursor: default; }
+
+    .venue-success, .venue-error {
+      text-align: center;
+      padding: 2rem 0;
+      display: none;
+    }
+    .venue-success p:first-child {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .venue-error { color: rgba(224,216,206,0.7); font-size: 0.9rem; }
+    .venue-error a { color: var(--gold); }
+
+    @media (max-width: 600px) {
+      .venue-form { grid-template-columns: 1fr; }
+      .venue-content { padding: 6rem 1.25rem 4rem; }
+    }
+
     /* TABLET */
     @media (max-width: 1024px) {
       nav { height: 72px; }
@@ -1974,7 +2188,7 @@
       <li><a href="#shows">Shows</a></li>
       <li><a href="#ueber">Über</a></li>
       <li><a href="#freestuff">Socials</a></li>
-      <li><a href="booking.html" class="nav-link-venues">Für Venues</a></li>
+      <li><a href="booking.html" class="nav-link-venues venue-cta">Für Venues</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
@@ -2067,7 +2281,7 @@
           <p>Ricky Sachs spielt Festivals, Stadtfeste und private Veranstaltungen in ganz Deutschland. Als Akustik-Solo-Act ist das Setup flexibel, der Eindruck bleibt.</p>
           <div class="about-links">
             <a href="#shows" class="about-link">Aktuelle Shows</a>
-            <a href="booking.html" class="about-link">Buchen</a>
+            <a href="booking.html" class="about-link venue-cta">Buchen</a>
             <a href="vom-lagerfeuer-zum-highway.html" class="about-link">Vom Lagerfeuer zum Highway</a>
           </div>
         </div>
@@ -2356,6 +2570,93 @@
     </div>
     <p>&copy; 2026 Erik Sachs / <a href="mailto:booking@rickysachs.com">Kontakt</a> / <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
   </footer>
+
+  <!-- VENUE BOOKING - CINEMATIC OVERLAY -->
+  <div id="venue-overlay" aria-hidden="true">
+    <button class="venue-close" id="venue-close" aria-label="Schließen" type="button">&times;</button>
+    <div class="venue-typewriter" id="venue-typewriter"></div>
+    <div class="venue-content" id="venue-content">
+      <p class="venue-eyebrow">Booking</p>
+      <p class="venue-headline">"Ein Mensch. Eine Gitarre. Ein Sound, der bleibt."</p>
+      <p class="venue-sub">Ricky Sachs spielt Acoustic Country solo, akustisch, ohne Band-Logistik. Eigene Songs, eigene Produktion, eigene Planung - von der ersten Anfrage bis zum letzten Akkord auf der Bühne.</p>
+      <div class="venue-badges">
+        <span class="venue-badge">Solo-Act, voller Sound</span>
+        <span class="venue-badge">Flexibles Setup - drinnen &amp; draußen</span>
+        <span class="venue-badge">Eigene Produktion, kein Agentur-Aufschlag</span>
+        <span class="venue-badge">Klar organisiert, zuverlässig</span>
+      </div>
+      <div class="venue-divider"></div>
+
+      <form class="venue-form" id="venue-form">
+        <div class="full">
+          <label for="v-eventType">Art der Veranstaltung</label>
+          <select id="v-eventType" name="eventType">
+            <option value="">Bitte wählen</option>
+            <option>Festival</option>
+            <option>Stadtfest</option>
+            <option>Firmenevent</option>
+            <option>Private Feier</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+        <div>
+          <label for="v-datum">Datum</label>
+          <input type="text" id="v-datum" name="datum" placeholder="TT.MM.JJJJ">
+        </div>
+        <div>
+          <label for="v-ort">Ort</label>
+          <input type="text" id="v-ort" name="ort" placeholder="Stadt / Location">
+        </div>
+        <div>
+          <label for="v-guests">Erwartete Gäste</label>
+          <input type="text" id="v-guests" name="guests" placeholder="ca. ...">
+        </div>
+        <div>
+          <label for="v-pa">PA-Anlage vorhanden?</label>
+          <select id="v-pa" name="pa">
+            <option value="">Bitte wählen</option>
+            <option>Ja</option>
+            <option>Nein</option>
+            <option>Unsicher</option>
+          </select>
+        </div>
+        <div class="full">
+          <label for="v-location_type">Indoor / Outdoor</label>
+          <select id="v-location_type" name="location_type">
+            <option value="">Bitte wählen</option>
+            <option>Indoor</option>
+            <option>Outdoor</option>
+            <option>Beides</option>
+          </select>
+        </div>
+        <div>
+          <label for="v-name">Name</label>
+          <input type="text" id="v-name" name="name" required autocomplete="name">
+        </div>
+        <div>
+          <label for="v-email">E-Mail</label>
+          <input type="email" id="v-email" name="email" required autocomplete="email">
+        </div>
+        <div class="full">
+          <label for="v-tel">Telefon (optional)</label>
+          <input type="tel" id="v-tel" name="tel" autocomplete="tel">
+        </div>
+        <div class="full">
+          <label for="v-msg">Nachricht (optional)</label>
+          <textarea id="v-msg" name="msg" placeholder="Erzähl kurz, worum es geht ..."></textarea>
+        </div>
+        <button type="submit" class="venue-submit" id="venue-submit">Anfrage senden</button>
+      </form>
+
+      <div class="venue-success" id="venue-success">
+        <p>Angekommen.</p>
+        <p style="color:rgba(224,216,206,0.7);font-size:0.9rem;">Danke für die Anfrage - Antwort kommt persönlich per E-Mail.</p>
+      </div>
+      <div class="venue-error" id="venue-error">
+        Etwas hat nicht geklappt. Schreib direkt an <a href="mailto:booking@rickysachs.com">booking@rickysachs.com</a>.
+      </div>
+    </div>
+  </div>
 
   <script>
     const hamburger = document.getElementById('hamburger');
@@ -2682,6 +2983,122 @@
       photo.addEventListener('mouseleave', function() {
         photo.style.transition = 'transform 0.65s cubic-bezier(0.22,1,0.36,1)';
         photo.style.transform  = 'perspective(700px) rotateY(0deg) rotateX(0deg) scale(1)';
+      });
+    })();
+
+    // VENUE BOOKING - CINEMATIC OVERLAY
+    (function() {
+      var overlay    = document.getElementById('venue-overlay');
+      var typewriter = document.getElementById('venue-typewriter');
+      var content    = document.getElementById('venue-content');
+      var closeBtn   = document.getElementById('venue-close');
+      var triggers   = document.querySelectorAll('.venue-cta');
+      var text       = 'FÜR VENUES';
+      var typed      = false;
+
+      function runTypewriter() {
+        typewriter.innerHTML = '';
+        var letters = text.split('');
+        letters.forEach(function(ch, i) {
+          var span = document.createElement('span');
+          span.className = 'letter';
+          span.textContent = ch === ' ' ? ' ' : ch;
+          typewriter.appendChild(span);
+          setTimeout(function() { span.classList.add('shown'); }, 90 * i + 120);
+        });
+        var cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        typewriter.appendChild(cursor);
+
+        var totalTime = 90 * letters.length + 700;
+        setTimeout(function() {
+          typewriter.classList.add('fading');
+          setTimeout(function() {
+            content.classList.add('shown');
+            var first = document.getElementById('v-eventType');
+            if (first) first.focus({ preventScroll: true });
+          }, 250);
+        }, totalTime);
+      }
+
+      function openOverlay(originEl) {
+        var rect = originEl.getBoundingClientRect();
+        var x = rect.left + rect.width / 2;
+        var y = rect.top + rect.height / 2;
+        overlay.style.setProperty('--vx', x + 'px');
+        overlay.style.setProperty('--vy', y + 'px');
+        document.body.style.overflow = 'hidden';
+        overlay.setAttribute('aria-hidden', 'false');
+        requestAnimationFrame(function() {
+          overlay.classList.add('open');
+        });
+        typed = false;
+        setTimeout(function() {
+          if (!typed) { typed = true; runTypewriter(); }
+        }, 750);
+      }
+
+      function closeOverlay() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(function() {
+          typewriter.innerHTML = '';
+          typewriter.classList.remove('fading');
+          content.classList.remove('shown');
+          document.getElementById('venue-form').style.display = '';
+          document.getElementById('venue-success').style.display = 'none';
+          document.getElementById('venue-error').style.display = 'none';
+        }, 850);
+      }
+
+      triggers.forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          openOverlay(el);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeOverlay);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay();
+      });
+
+      var form = document.getElementById('venue-form');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('venue-submit');
+        var data = {
+          eventType:     document.getElementById('v-eventType').value,
+          datum:         document.getElementById('v-datum').value.trim(),
+          ort:           document.getElementById('v-ort').value.trim(),
+          guests:        document.getElementById('v-guests').value.trim(),
+          pa:            document.getElementById('v-pa').value,
+          location_type: document.getElementById('v-location_type').value,
+          name:          document.getElementById('v-name').value.trim(),
+          email:         document.getElementById('v-email').value.trim(),
+          tel:           document.getElementById('v-tel').value.trim(),
+          msg:           document.getElementById('v-msg').value.trim(),
+        };
+        if (!data.name || !data.email) return;
+        btn.disabled = true;
+        btn.textContent = 'Wird gesendet ...';
+        fetch('https://rickysachs-website.vercel.app/api/booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(json) {
+          if (!json.ok) throw new Error(json.error || 'error');
+          form.style.display = 'none';
+          document.getElementById('venue-success').style.display = 'block';
+        })
+        .catch(function() {
+          btn.disabled = false;
+          btn.textContent = 'Anfrage senden';
+          document.getElementById('venue-error').style.display = 'block';
+        });
       });
     })();
   </script>
