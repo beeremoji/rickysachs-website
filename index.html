@@ -1779,8 +1779,6 @@
       z-index: 300;
       background:
         radial-gradient(ellipse 90% 70% at 50% 30%, rgba(58,36,15,0.6) 0%, rgba(0,0,0,0) 62%),
-        linear-gradient(rgba(3,2,1,0.78), rgba(3,2,1,0.94)),
-        url('img/portrait.webp') center 18% / cover no-repeat,
         #050300;
       clip-path: circle(0% at var(--vx, 90%) var(--vy, 8%));
       transition: clip-path 0.85s cubic-bezier(0.65, 0, 0.35, 1);
@@ -1790,25 +1788,29 @@
     }
 
     #venue-overlay::before {
+      /* blurred portrait backdrop */
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(3,2,1,0.72), rgba(3,2,1,0.88)),
+        url('img/portrait.webp') center 18% / cover no-repeat;
+      filter: blur(20px) saturate(0.9);
+      transform: scale(1.1);
+    }
+
+    #venue-overlay::after {
       /* film grain */
       content: '';
       position: absolute;
       inset: 0;
+      z-index: 1;
       pointer-events: none;
       opacity: 0.16;
       mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    }
-
-    #venue-overlay::after {
-      /* cinematic letterbox bars */
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(#000 0 0) top / 100% clamp(16px, 3vw, 36px) no-repeat,
-        linear-gradient(#000 0 0) bottom / 100% clamp(16px, 3vw, 36px) no-repeat;
     }
 
     #venue-overlay.open {
@@ -2586,7 +2588,7 @@
     <div class="section-inner" style="text-align:center; padding-top:3.5rem; padding-bottom:3.5rem;">
       <p class="venues-cta-label">Venue / Festival / Veranstaltung</p>
       <p class="venues-cta-heading">Ricky Sachs buchen</p>
-      <a href="booking.html" class="venues-cta-btn">Zur Booking-Seite &#8594;</a>
+      <a href="booking.html" class="venues-cta-btn venue-cta">Zur Booking-Seite &#8594;</a>
     </div>
   </div>
 
@@ -2609,7 +2611,8 @@
 
         <details class="faq-item">
           <summary class="faq-q">Kann man Ricky Sachs für Festivals und Events buchen?</summary>
-          <p class="faq-a">Ja. Ricky spielt Festivals, Stadtfeste, Weinfeste, Firmenveranstaltungen und private Feiern in ganz Deutschland. Als Solo-Act braucht er nur eine PA-Anlage vor Ort. Anfragen über <a href="booking.html">das Kontaktformular</a> oder per Mail an booking@rickysachs.com.</p>
+          <p class="faq-a">Ja. Ricky spielt Festivals, Stadtfeste, Weinfeste, Firmenveranstaltungen und private Feiern in ganz Deutschland. Als Solo-Act braucht er nur eine PA-Anlage vor Ort. Anfragen über <a href="booking.html" class="venue-cta">das Kontaktformular</a> oder per Mail an booking@rickysachs.com.</p>
+          <a href="booking.html" class="nav-link-venues venue-cta faq-venue-btn">Für Venues</a>
         </details>
 
         <details class="faq-item">
