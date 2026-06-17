@@ -49,3 +49,17 @@ export function getClientIp(req) {
     'unknown'
   );
 }
+
+/** Verify Cloudflare Turnstile token. Returns true if valid. */
+export async function verifyTurnstile(token, ip) {
+  if (!token) return false;
+  const secret = process.env.TURNSTILE_SECRET;
+  if (!secret) return true; // Skip verification if secret not configured yet
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ secret, response: token, remoteip: ip }),
+  });
+  const json = await res.json();
+  return json.success === true;
+}

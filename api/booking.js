@@ -1,7 +1,7 @@
 // Ricky Sachs - Booking Form → Resend Email
 // Env var: RESEND_API_KEY in Vercel Project Settings
 
-import { isRateLimited, sanitize, setCorsHeaders, getClientIp } from './_utils.js';
+import { isRateLimited, sanitize, setCorsHeaders, getClientIp, verifyTurnstile } from './_utils.js';
 
 export default async function handler(req, res) {
   setCorsHeaders(res);
@@ -15,6 +15,12 @@ export default async function handler(req, res) {
   }
 
   const raw = req.body || {};
+
+  const tsOk = await verifyTurnstile(raw.turnstileToken, ip);
+  if (!tsOk) {
+    return res.status(403).json({ ok: false, error: 'Captcha-Verifizierung fehlgeschlagen.' });
+  }
+
   const email = sanitize(raw.email, 254);
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ ok: false, error: 'Missing or invalid email' });
@@ -56,11 +62,8 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Booking Form <onboarding@resend.dev>',
-        // TODO: zurück auf booking@rickysachs.com, sobald die Domain in Resend verifiziert ist
-        // (resend.com/domains) - bis dahin erlaubt der Resend-Sandbox-Modus nur die
-        // Account-E-Mail als Empfänger.
-        to: ['erik.sachs@hotmail.com'],
+        from: 'Booking <booking@rickysachs.com>',
+        to: ['booking@rickysachs.com'],
         reply_to: d.email,
         subject: `Booking-Anfrage: ${d.eventType || 'Neue Anfrage'} - ${d.name || d.email}`,
         html,

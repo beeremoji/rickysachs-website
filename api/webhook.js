@@ -2,7 +2,7 @@
 // Vercel Serverless Function
 // URL: https://rickysachs-website.vercel.app/api/webhook
 
-import { isRateLimited, sanitize, setCorsHeaders, getClientIp } from './_utils.js';
+import { isRateLimited, sanitize, setCorsHeaders, getClientIp, verifyTurnstile } from './_utils.js';
 
 const HUBSPOT_API   = 'https://api.hubapi.com';
 const DEAL_STAGE    = 'presentationscheduled'; // Reply
@@ -22,6 +22,11 @@ export default async function handler(req, res) {
 
   const raw = req.body || {};
   const d   = raw.data || raw;
+
+  const tsOk = await verifyTurnstile(d.turnstileToken, ip);
+  if (!tsOk) {
+    return res.status(403).json({ ok: false, error: 'Captcha-Verifizierung fehlgeschlagen.' });
+  }
 
   const name          = sanitize(d.name, 150);
   const email         = sanitize(d.email, 254);

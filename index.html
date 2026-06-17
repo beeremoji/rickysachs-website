@@ -2555,6 +2555,7 @@
             <input type="checkbox" id="cfg-consent">
             <span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklarung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung dieser Booking-Anfrage zu.</span>
           </label>
+          <div class="cf-turnstile" data-sitekey="DEIN_TURNSTILE_SITE_KEY" data-theme="dark" data-size="normal" style="margin:1rem 0;"></div>
           <button class="cfg-submit-btn" id="cfg-submit">Anfrage senden</button>
           <p id="cfg-send-error" style="display:none;margin-top:1rem;font-size:0.8rem;color:rgba(242,237,230,0.7);">Technischer Fehler - bitte schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
         </div>
@@ -2724,6 +2725,7 @@
           <label for="v-msg">Nachricht (optional)</label>
           <textarea id="v-msg" name="msg" placeholder="Erzähl kurz, worum es geht ..."></textarea>
         </div>
+        <div class="cf-turnstile" data-sitekey="DEIN_TURNSTILE_SITE_KEY" data-theme="dark" data-size="normal" style="margin-bottom:1rem;"></div>
         <button type="submit" class="venue-submit" id="venue-submit">Anfrage senden</button>
       </form>
 
@@ -2866,6 +2868,9 @@
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) { alert('Bitte eine gültige E-Mail-Adresse angeben.'); return; }
         if (!document.getElementById('cfg-consent').checked) { alert('Bitte der Datenschutzerklarung zustimmen.'); return; }
 
+        var tsToken = document.querySelector('#cfg-step-4 [name="cf-turnstile-response"]');
+        if (!tsToken || !tsToken.value) { alert('Bitte das Captcha lösen.'); return; }
+
         var btn = document.getElementById('cfg-submit');
         btn.textContent = 'Wird gesendet ...';
         btn.disabled = true;
@@ -2883,7 +2888,8 @@
             pa_system:      d.pa                || 'nicht angegeben',
             location_type:  d.location_type     || 'nicht angegeben',
             phone:          d.tel               || '',
-            message:        d.msg               || ''
+            message:        d.msg               || '',
+            turnstileToken: tsToken.value
           })
         })
         .then(function(r) { return r.json(); })
@@ -3148,17 +3154,23 @@
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         var btn = document.getElementById('venue-submit');
+        var tsToken = form.querySelector('[name="cf-turnstile-response"]');
+        if (!tsToken || !tsToken.value) {
+          alert('Bitte das Captcha lösen.');
+          return;
+        }
         var data = {
-          eventType:     document.getElementById('v-eventType').value,
-          datum:         document.getElementById('v-datum').value.trim(),
-          ort:           document.getElementById('v-ort').value.trim(),
-          guests:        document.getElementById('v-guests').value.trim(),
-          pa:            document.getElementById('v-pa').value,
-          location_type: document.getElementById('v-location_type').value,
-          name:          document.getElementById('v-name').value.trim(),
-          email:         document.getElementById('v-email').value.trim(),
-          tel:           document.getElementById('v-tel').value.trim(),
-          msg:           document.getElementById('v-msg').value.trim(),
+          eventType:      document.getElementById('v-eventType').value,
+          datum:          document.getElementById('v-datum').value.trim(),
+          ort:            document.getElementById('v-ort').value.trim(),
+          guests:         document.getElementById('v-guests').value.trim(),
+          pa:             document.getElementById('v-pa').value,
+          location_type:  document.getElementById('v-location_type').value,
+          name:           document.getElementById('v-name').value.trim(),
+          email:          document.getElementById('v-email').value.trim(),
+          tel:            document.getElementById('v-tel').value.trim(),
+          msg:            document.getElementById('v-msg').value.trim(),
+          turnstileToken: tsToken.value,
         };
         if (!data.name || !data.email) return;
         btn.disabled = true;
@@ -3184,5 +3196,6 @@
   </script>
 
   <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
