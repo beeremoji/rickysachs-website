@@ -1,17 +1,22 @@
 // Ricky Sachs - Newsletter Signup → MailerLite
 // Env var: MAILERLITE_TOKEN in Vercel Project Settings
 
+import { isRateLimited, sanitize, setCorsHeaders, getClientIp } from './_utils.js';
+
 const GROUP_ID = '184913941764245406';
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  setCorsHeaders(res);
 
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { email } = req.body || {};
+  const ip = getClientIp(req);
+  if (isRateLimited(ip, { maxHits: 3, windowMs: 3_600_000 })) {
+    return res.status(429).json({ ok: false, error: 'Too many requests.' });
+  }
+
+  const email = sanitize((req.body || {}).email, 254);
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ ok: false, error: 'Invalid email' });
   }

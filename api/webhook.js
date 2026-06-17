@@ -2,35 +2,40 @@
 // Vercel Serverless Function
 // URL: https://rickysachs-website.vercel.app/api/webhook
 
+import { isRateLimited, sanitize, setCorsHeaders, getClientIp } from './_utils.js';
+
 const HUBSPOT_API   = 'https://api.hubapi.com';
 const DEAL_STAGE    = 'presentationscheduled'; // Reply
 const DEAL_PIPELINE = 'default';
 const OWNER_ID      = '88607418'; // Erik Sachs
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  setCorsHeaders(res);
 
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
+  const ip = getClientIp(req);
+  if (isRateLimited(ip, { maxHits: 5, windowMs: 3_600_000 })) {
+    return res.status(429).json({ ok: false, error: 'Too many requests.' });
+  }
+
   const raw = req.body || {};
   const d   = raw.data || raw;
 
-  const name          = d.name          || '';
-  const email         = d.email         || '';
-  const event_type    = d.event_type    || '';
-  const event_date    = d.event_date    || '';
-  const venue         = d.venue         || '';
-  const guest_count   = d.guest_count   || '';
-  const pa_system     = d.pa_system     || '';
-  const location_type = d.location_type || '';
-  const phone         = d.phone         || '';
-  const message       = d.message       || '';
+  const name          = sanitize(d.name, 150);
+  const email         = sanitize(d.email, 254);
+  const event_type    = sanitize(d.event_type, 100);
+  const event_date    = sanitize(d.event_date, 100);
+  const venue         = sanitize(d.venue, 200);
+  const guest_count   = sanitize(d.guest_count, 50);
+  const pa_system     = sanitize(d.pa_system, 50);
+  const location_type = sanitize(d.location_type, 50);
+  const phone         = sanitize(d.phone, 30);
+  const message       = sanitize(d.message, 1000);
 
-  if (!email) {
-    return res.status(400).json({ error: 'Missing email' });
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: 'Missing or invalid email' });
   }
 
   const headers = {
