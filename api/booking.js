@@ -64,8 +64,8 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         from: 'Booking <booking@rickysachs.com>',
         to: ['booking@rickysachs.com'],
-        reply_to: d.email,
-        subject: `Booking-Anfrage: ${d.eventType || 'Neue Anfrage'} - ${d.name || d.email}`,
+        reply_to: email,
+        subject: `Booking-Anfrage: ${eventType || 'Neue Anfrage'} - ${name || email}`,
         html,
       }),
     });
