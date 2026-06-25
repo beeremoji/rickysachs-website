@@ -1,7 +1,7 @@
 // Ricky Sachs - Newsletter Signup → MailerLite
 // Env var: MAILERLITE_TOKEN in Vercel Project Settings
 
-import { isRateLimited, sanitize, setCorsHeaders, getClientIp } from './_utils.js';
+import { isRateLimited, sanitize, setCorsHeaders, getClientIp, isBodyTooLarge, logSecurityEvent, verifyTurnstile } from './_utils.js';
 
 const GROUP_ID = '184913941764245406';
 
@@ -12,11 +12,26 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const ip = getClientIp(req);
+
+  if (isBodyTooLarge(req)) {
+    logSecurityEvent('body_too_large', ip, 'newsletter');
+    return res.status(413).json({ ok: false, error: 'Payload too large' });
+  }
+
   if (isRateLimited(ip, { maxHits: 3, windowMs: 3_600_000 })) {
+    logSecurityEvent('rate_limit', ip, 'newsletter');
     return res.status(429).json({ ok: false, error: 'Too many requests.' });
   }
 
-  const email = sanitize((req.body || {}).email, 254);
+  const body = req.body || {};
+
+  const turnstileOk = await verifyTurnstile(body['cf-turnstile-response'], ip);
+  if (!turnstileOk) {
+    logSecurityEvent('captcha_fail', ip, 'newsletter');
+    return res.status(403).json({ ok: false, error: 'CAPTCHA verification failed.' });
+  }
+
+  const email = sanitize(body.email, 254);
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ ok: false, error: 'Invalid email' });
   }

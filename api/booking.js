@@ -1,7 +1,7 @@
 // Ricky Sachs - Booking Form → Resend Email
 // Env var: RESEND_API_KEY in Vercel Project Settings
 
-import { isRateLimited, sanitize, setCorsHeaders, getClientIp, verifyTurnstile } from './_utils.js';
+import { isRateLimited, sanitize, setCorsHeaders, getClientIp, verifyTurnstile, isBodyTooLarge, logSecurityEvent } from './_utils.js';
 
 export default async function handler(req, res) {
   setCorsHeaders(res);
@@ -9,8 +9,14 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
+  if (isBodyTooLarge(req)) {
+    logSecurityEvent('body_too_large', getClientIp(req), 'booking');
+    return res.status(413).json({ ok: false, error: 'Payload too large' });
+  }
+
   const ip = getClientIp(req);
   if (isRateLimited(ip, { maxHits: 5, windowMs: 3_600_000 })) {
+    logSecurityEvent('rate_limit', ip, 'booking');
     return res.status(429).json({ ok: false, error: 'Too many requests. Bitte warte eine Stunde.' });
   }
 

@@ -50,6 +50,23 @@ export function getClientIp(req) {
   );
 }
 
+/** Check request body size - returns true if too large (>10KB) */
+export function isBodyTooLarge(req, maxBytes = 10240) {
+  const len = parseInt(req.headers['content-length'] || '0', 10);
+  return len > maxBytes;
+}
+
+/** Log a security event as structured JSON to Vercel runtime logs */
+export function logSecurityEvent(type, ip, detail = '') {
+  console.log(JSON.stringify({
+    ts: new Date().toISOString(),
+    security: true,
+    type,
+    ip,
+    detail,
+  }));
+}
+
 /** Verify Cloudflare Turnstile token. Returns true if valid. */
 export async function verifyTurnstile(token, ip) {
   if (!token) return false;
