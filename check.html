@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYRHZ3N695"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', wait_for_update: 500 });
+    gtag('js', new Date());
+    gtag('config', 'G-BYRHZ3N695', { anonymize_ip: true });
+  </script>
+  <script src="cookie-consent.js"></script>
+  <title>Booker-Check - Ricky Sachs</title>
+  <meta name="description" content="Passt Ricky Sachs (Solo-Akustik) oder eine Live-Band besser zu Ihrer Veranstaltung? Interaktiver Check für Booker.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <style>
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/lato-300.woff2') format('woff2'); }
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/lato-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/lato-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/playfair-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/playfair-400i.woff2') format('woff2'); }
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brown-dark: #3A2416; --brown-mid: #5C4433; --brown-light: #7A5C46;
+      --cream: #F2EDE6; --cream-dark: #E0D8CE; --text-dark: #2C1A0E;
+    }
+    html { scroll-behavior: smooth; background: #050200; overscroll-behavior: none; }
+    body { font-family: 'Lato', sans-serif; background: transparent; color: var(--cream-dark); font-weight: 300; isolation: isolate; }
+    body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: url('img/hero.png') center 25% / cover no-repeat; }
+
+    body::after { content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: 0.038; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"); }
+
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(19,10,4,0.55); backdrop-filter: blur(6px); padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 44px; width: auto; mix-blend-mode: screen; opacity: 0.9; transition: opacity 0.2s; }
+    .nav-logo:hover img { opacity: 1; }
+    .nav-back { color: var(--cream-dark); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
+    .nav-back:hover { opacity: 1; }
+
+    main { position: relative; z-index: 2; min-height: 100vh; }
+
+    .glass-wrap { max-width: 760px; margin: 0 auto; padding: 7rem 2.5rem 5rem; }
+    .glass-panel {
+      background: rgba(5, 2, 0, 0.58);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(242,237,230,0.08);
+      border-radius: 4px;
+      padding: 3rem 3rem 3.5rem;
+    }
+
+    .page-header { padding: 0 0 2rem; max-width: 100%; margin: 0; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(242,237,230,0.45); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.65rem; }
+    .section-label::before { content: ''; display: inline-block; width: 1.4rem; height: 1px; background: currentColor; opacity: 0.55; flex-shrink: 0; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--cream); line-height: 1.1; margin-bottom: 1rem; }
+    .intro { max-width: 100%; margin: 0 0 2.5rem; padding: 0; }
+    .intro p { line-height: 1.85; font-size: 0.95rem; color: rgba(224,216,206,0.65); margin-bottom: 0.75rem; }
+
+    /* --- GATE --- */
+    .gate-form { display: flex; flex-direction: column; gap: 1.25rem; max-width: 320px; }
+    .gate-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(242,237,230,0.55); }
+    .gate-input {
+      background: transparent; border: none; border-bottom: 1px solid rgba(242,237,230,0.25);
+      font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; color: var(--cream);
+      outline: none; padding: 0.4rem 0; letter-spacing: 0.3em; text-align: center;
+    }
+    .gate-input::placeholder { color: rgba(242,237,230,0.18); font-style: italic; letter-spacing: 0.3em; }
+    .gate-input:focus { border-bottom-color: rgba(242,237,230,0.6); }
+    .gate-error { font-size: 0.8rem; color: #d99a7a; display: none; }
+    .gate-error.show { display: block; }
+    .gate-submit {
+      margin-top: 0.5rem; padding: 0.9rem 2.5rem; border: 1px solid rgba(242,237,230,0.45); background: transparent;
+      color: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .gate-submit:hover { background: var(--cream); color: var(--brown-dark); border-color: var(--cream); }
+
+    /* --- CHECK CONTENT (hidden until unlocked) --- */
+    #check-content { display: none; }
+    #check-content.unlocked { display: block; }
+
+    /* Progress dots (reused pattern) */
+    .cfg-nav { display: flex; align-items: center; margin-bottom: 3.5rem; padding-bottom: 1.2rem; transition: opacity 0.3s; gap: 0; }
+    .cfg-dot { position: relative; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(242,237,230,0.18); background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.3s, border-color 0.3s; }
+    .cfg-dot-num { font-size: 0.6rem; color: rgba(242,237,230,0.35); font-family: 'Lato', sans-serif; transition: color 0.3s; }
+    .cfg-dot.active { border-color: var(--cream); background: var(--cream); }
+    .cfg-dot.active .cfg-dot-num { color: var(--brown-dark); }
+    .cfg-dot.done { border-color: rgba(242,237,230,0.4); background: rgba(242,237,230,0.4); }
+    .cfg-dot.done .cfg-dot-num { color: var(--brown-dark); }
+    .cfg-dot-line { flex: 1; height: 1px; background: rgba(242,237,230,0.12); transition: background 0.4s; }
+    .cfg-dot-line.done { background: rgba(242,237,230,0.35); }
+
+    .cfg-step { display: none; }
+    .cfg-step.active { display: block; }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes cardReveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .cfg-step.going-fwd { animation: slideInRight 0.42s cubic-bezier(0.22,1,0.36,1) both; }
+    .cfg-step.going-bck { animation: slideInLeft 0.42s cubic-bezier(0.22,1,0.36,1) both; }
+    .cfg-step.going-fwd .cfg-card, .cfg-step.going-bck .cfg-card { animation: cardReveal 0.36s ease both; }
+    .cfg-step.going-fwd .cfg-card:nth-child(1), .cfg-step.going-bck .cfg-card:nth-child(1) { animation-delay: 100ms; }
+    .cfg-step.going-fwd .cfg-card:nth-child(2), .cfg-step.going-bck .cfg-card:nth-child(2) { animation-delay: 155ms; }
+
+    .cfg-q { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3.2vw, 2rem); font-weight: 700; color: var(--cream); margin-bottom: 1.75rem; line-height: 1.2; }
+
+    .cfg-cards { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .cfg-card { position: relative; padding: 0.8rem 1.5rem; border: 1px solid rgba(242,237,230,0.16); background: transparent; color: rgba(242,237,230,0.65); font-family: 'Lato', sans-serif; font-size: 0.9rem; letter-spacing: 0.02em; cursor: pointer; transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s; text-align: left; max-width: 100%; }
+    .cfg-card:hover { border-color: rgba(242,237,230,0.55); color: var(--cream); background: rgba(242,237,230,0.05); }
+    .cfg-card.selected { border-color: var(--cream); background: var(--cream); color: var(--brown-dark); }
+
+    /* Numeric input for Q1 */
+    .cfg-num-row { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .cfg-num-input {
+      background: transparent; border: none; border-bottom: 1px solid rgba(242,237,230,0.25);
+      font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2.2rem); font-style: italic; color: var(--cream);
+      outline: none; padding: 0.1em 0; width: 140px; text-align: left;
+    }
+    .cfg-num-input::placeholder { color: rgba(242,237,230,0.18); font-style: italic; }
+    .cfg-num-input:focus { border-bottom-color: rgba(242,237,230,0.6); }
+    .cfg-num-unit { font-size: 1rem; color: rgba(242,237,230,0.4); }
+
+    .cfg-back { background: none; border: none; color: rgba(242,237,230,0.35); font-family: 'Lato', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; padding: 0; margin-bottom: 2rem; opacity: 0.5; transition: opacity 0.2s; display: block; }
+    .cfg-back:hover { opacity: 1; color: var(--cream-dark); }
+    .cfg-next-btn { margin-top: 1.25rem; padding: 0.9rem 2.5rem; border: 1px solid rgba(242,237,230,0.45); background: transparent; color: var(--cream); font-family: 'Lato', sans-serif; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+    .cfg-next-btn:hover { background: var(--cream); color: var(--brown-dark); border-color: var(--cream); }
+    .cfg-next-btn:disabled { opacity: 0.3; cursor: default; }
+    .cfg-next-btn.hidden { display: none; }
+
+    /* --- RESULT --- */
+    .result-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 700; color: var(--cream); line-height: 1.15; margin-bottom: 0.75rem; }
+    .result-sub { font-size: 0.95rem; color: rgba(224,216,206,0.65); line-height: 1.7; margin-bottom: 2.5rem; }
+
+    .result-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2.5rem; }
+    .result-item { display: flex; gap: 0.85rem; align-items: flex-start; padding: 0.9rem 1.1rem; border: 1px solid rgba(242,237,230,0.1); background: rgba(242,237,230,0.03); }
+    .result-icon { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; margin-top: 0.1rem; }
+    .result-icon--ricky { background: rgba(242,237,230,0.85); color: var(--brown-dark); }
+    .result-icon--band { background: transparent; border: 1px solid rgba(242,237,230,0.35); color: rgba(242,237,230,0.7); }
+    .result-item-q { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(242,237,230,0.4); margin-bottom: 0.3rem; }
+    .result-item-text { font-size: 0.9rem; color: rgba(224,216,206,0.85); line-height: 1.6; }
+    .result-item-text strong { color: var(--cream); font-weight: 700; }
+
+    .result-cta { margin-bottom: 1rem; }
+    .legal-note { font-size: 0.72rem; color: rgba(242,237,230,0.4); line-height: 1.7; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(242,237,230,0.08); max-width: 560px; }
+
+    /* --- BOOKING FORM (after result) --- */
+    #check-form-wrap { display: none; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(242,237,230,0.1); }
+    #check-form-wrap.visible { display: block; }
+    .form-row { margin-bottom: 1.6rem; }
+    .form-label { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242,237,230,0.45); display: block; margin-bottom: 0.5rem; }
+    .form-input, .form-textarea {
+      width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(242,237,230,0.2);
+      font-family: 'Lato', sans-serif; font-size: 0.95rem; color: var(--cream); outline: none; padding: 0.5rem 0;
+      transition: border-color 0.25s;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(242,237,230,0.25); }
+    .form-input:focus, .form-textarea:focus { border-bottom-color: rgba(242,237,230,0.6); }
+    .form-textarea { resize: vertical; min-height: 4.5rem; }
+    .form-field-error { font-size: 0.75rem; color: #d99a7a; margin-top: 0.4rem; display: none; }
+    .form-field-error.show { display: block; }
+    .form-input.invalid, .form-textarea.invalid { border-bottom-color: #d99a7a; }
+
+    .form-submit-btn {
+      margin-top: 0.5rem; padding: 0.9rem 2.5rem; border: 1px solid var(--cream); background: var(--cream);
+      color: var(--brown-dark); font-family: 'Lato', sans-serif; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s, border-color 0.2s;
+    }
+    .form-submit-btn:hover { background: var(--cream-dark); border-color: var(--cream-dark); }
+    .form-submit-btn:disabled { opacity: 0.45; cursor: default; }
+    #form-send-error { display: none; margin-top: 1rem; font-size: 0.8rem; color: rgba(242,237,230,0.7); }
+
+    .form-done { padding: 1rem 0; display: none; }
+    .form-done.visible { display: block; }
+    .form-done-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.2rem); font-weight: 700; color: var(--cream); margin-bottom: 0.75rem; }
+    .form-done-sub { color: rgba(242,237,230,0.65); line-height: 1.7; font-size: 0.9rem; }
+
+    footer { position: relative; z-index: 2; padding: 3rem 2.5rem; text-align: center; }
+    .social-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2rem; }
+    .social-links a { color: var(--cream-dark); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.5; transition: opacity 0.2s; }
+    .social-links a:hover { opacity: 1; }
+    footer p { font-size: 0.72rem; color: rgba(224,216,206,0.62); letter-spacing: 0.05em; }
+    footer p a { color: rgba(224,216,206,0.85); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; text-decoration-color: rgba(224,216,206,0.4); transition: color 0.2s, text-decoration-color 0.2s; }
+    footer p a:hover { color: var(--cream); text-decoration-color: var(--cream); }
+
+    @media (max-width: 600px) {
+      .glass-wrap { padding: 5rem 1rem 3rem; }
+      .glass-panel { padding: 2rem 1.5rem 2.5rem; }
+      .cfg-next-btn, .form-submit-btn, .gate-submit { width: 100%; text-align: center; }
+      .cfg-num-input { width: 100px; }
+    }
+  </style>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="img/logo_long.webp" alt="Ricky Sachs" width="176" height="44">
+    </a>
+    <a href="index.html" class="nav-back">&#8592; Zurück</a>
+  </nav>
+
+  <main>
+    <div class="glass-wrap">
+      <div class="glass-panel">
+
+        <!-- GATE -->
+        <div id="gate">
+          <div class="page-header">
+            <span class="section-label">Für Booker</span>
+            <h1>Zugangscode</h1>
+          </div>
+          <form class="gate-form" id="gate-form" autocomplete="off">
+            <div>
+              <label class="gate-label" for="gate-input">Zugangscode</label>
+              <input class="gate-input" id="gate-input" type="text" inputmode="numeric" placeholder="&bull;&bull;&bull;&bull;" maxlength="12" autocomplete="off">
+            </div>
+            <p class="gate-error" id="gate-error">Falscher Code. Bitte erneut versuchen.</p>
+            <button type="submit" class="gate-submit">Zugang</button>
+          </form>
+        </div>
+
+        <!-- CHECK CONTENT -->
+        <div id="check-content">
+
+          <div class="page-header" id="check-header">
+            <span class="section-label">Für Booker</span>
+            <h1>Passt Ricky Sachs zu Ihrer Veranstaltung?</h1>
+          </div>
+          <div class="intro" id="check-intro">
+            <p>Sieben kurze Fragen zu dem, was Sie sich für Ihren Abend wünschen. Am Ende sehen Sie, ob ein akustisches Solo-Set oder eine klassische Live-Band besser passt.</p>
+          </div>
+
+          <!-- PROGRESS -->
+          <div class="cfg-nav" id="cfg-nav"></div>
+
+          <!-- QUESTIONS -->
+          <div id="cfg-steps"></div>
+
+          <!-- RESULT -->
+          <div id="result-wrap" style="display:none;">
+            <p class="result-title" id="result-title"></p>
+            <p class="result-sub" id="result-sub"></p>
+            <ul class="result-list" id="result-list"></ul>
+            <div class="result-cta">
+              <button class="cfg-next-btn" id="result-cta-btn">Booking-Anfrage senden</button>
+            </div>
+            <p class="legal-note">Die im Check dargestellten Punkte (z. B. Zusagen zu Spielzeit, Technik oder Lautstärke) sind eine Orientierungshilfe und gelten nur, wenn sie im jeweiligen Buchungsvertrag tatsächlich festgehalten werden. Dieser Check selbst ist kein Vertragsbestandteil.</p>
+          </div>
+
+          <!-- BOOKING FORM -->
+          <div id="check-form-wrap">
+            <p class="result-title" style="font-size:1.4rem;margin-bottom:1.5rem;">Booking-Anfrage</p>
+            <form id="check-form" autocomplete="off">
+              <div class="form-row">
+                <label class="form-label" for="cf-name">Name *</label>
+                <input class="form-input" id="cf-name" type="text" placeholder="Ihr Name" required>
+                <p class="form-field-error" id="err-name">Bitte Namen angeben.</p>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="cf-email">E-Mail *</label>
+                <input class="form-input" id="cf-email" type="email" placeholder="ihre@email.de" required>
+                <p class="form-field-error" id="err-email">Bitte eine gültige E-Mail-Adresse angeben.</p>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="cf-venue">Veranstaltungsort</label>
+                <input class="form-input" id="cf-venue" type="text" placeholder="z. B. Stadthalle Aalen">
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="cf-date">Datum</label>
+                <input class="form-input" id="cf-date" type="date">
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="cf-space">Bühnenplatz (m²)</label>
+                <input class="form-input" id="cf-space" type="number" min="0" step="0.5">
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="cf-msg">Ergänzende Nachricht</label>
+                <textarea class="form-textarea" id="cf-msg" placeholder="Weitere Details zu Ihrer Veranstaltung..."></textarea>
+              </div>
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAADmqj0eefWhHaV49" data-theme="dark" data-size="normal" style="margin:1rem 0;"></div>
+              <button type="submit" class="form-submit-btn" id="check-form-submit">Anfrage senden</button>
+              <p id="form-send-error">Technischer Fehler - bitte schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
+            </form>
+
+            <div class="form-done" id="form-done">
+              <p class="form-done-title">Anfrage gesendet.</p>
+              <p class="form-done-sub">Ricky meldet sich in der Regel innerhalb von 48 Stunden.</p>
+            </div>
+          </div>
+
+        </div><!-- /check-content -->
+
+      </div><!-- /glass-panel -->
+    </div><!-- /glass-wrap -->
+  </main>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://tiktok.com/@ricky.sachs" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.facebook.com/therickysachs" target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <p>&copy; 2026 Erik Sachs / <a href="mailto:booking@rickysachs.com">Kontakt</a> / <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
+  </footer>
+
+  <script>
+  (function() {
+
+    var ACCESS_CODE = '2027';
+
+    // ---------- GATE ----------
+    var gateForm  = document.getElementById('gate-form');
+    var gateInput = document.getElementById('gate-input');
+    var gateError = document.getElementById('gate-error');
+    var gate      = document.getElementById('gate');
+    var content   = document.getElementById('check-content');
+
+    function unlock() {
+      gate.style.display = 'none';
+      content.classList.add('unlocked');
+      try { sessionStorage.setItem('rs_check_unlocked', '1'); } catch (e) {}
+      renderStep();
+    }
+
+    gateForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (gateInput.value.trim() === ACCESS_CODE) {
+        unlock();
+      } else {
+        gateError.classList.add('show');
+        gateInput.value = '';
+        gateInput.focus();
+      }
+    });
+
+    try {
+      if (sessionStorage.getItem('rs_check_unlocked') === '1') unlock();
+    } catch (e) {}
+
+    // ---------- QUESTIONS ----------
+    var questions = [
+      {
+        key: 'space',
+        q: 'Wie viel Platz gibt es für die Bühne?',
+        type: 'number',
+        placeholder: 'z. B. 8',
+        unit: 'm²',
+        label: 'Bühnenplatz',
+        evaluate: function(val) {
+          var n = parseFloat(val);
+          if (isNaN(n)) return null;
+          if (n <= 10) return { side: 'ricky', answer: n + ' m²', reason: 'passt genau auf 4x2,5m – ganz ohne Kompromisse bei der Bühnengröße.' };
+          return { side: 'band', answer: n + ' m²', reason: 'genug Platz, um auch eine größere Besetzung in Betracht zu ziehen.' };
+        }
+      },
+      {
+        key: 'technik',
+        q: 'Was wünschen Sie sich bei der Technik?',
+        type: 'choice',
+        label: 'Technik',
+        options: [
+          { text: 'Ich will mich um nichts kümmern müssen', side: 'ricky', reason: 'bringt seine eigene PA mit – Sie brauchen weder Techniker noch Soundcheck-Stress.' },
+          { text: 'Volle technische Ausstattung ist ohnehin vorhanden', side: 'band', reason: 'kann die vorhandene Technik einer Live-Band gut nutzen.' }
+        ]
+      },
+      {
+        key: 'wichtig',
+        q: 'Was ist Ihnen wichtiger?',
+        type: 'choice',
+        label: 'Priorität',
+        options: [
+          { text: 'Ein Act, der genau liefert, was vereinbart wurde', side: 'ricky', reason: 'sichert Spielzeit, Technik und weitere Punkte fest vertraglich zu.' },
+          { text: 'Eine möglichst große Bühnenshow', side: 'band', reason: 'kann mit einer vollen Besetzung mehr Bühnenpräsenz bringen.' }
+        ]
+      },
+      {
+        key: 'ruhe',
+        q: 'Nachbarschaft & Ruhe?',
+        type: 'choice',
+        label: 'Lautstärke',
+        options: [
+          { text: 'Soll auch in Wohnnähe entspannt bleiben', side: 'ricky', reason: 'spielt akustisch – die Lautstärke lässt sich gut kontrollieren.' },
+          { text: 'Keine Einschränkungen bei uns', side: 'band', reason: 'kann lautstärkemäßig freier aufspielen.' }
+        ]
+      },
+      {
+        key: 'abend',
+        q: 'Welchen Abend wünschen Sie sich für Ihre Gäste?',
+        type: 'choice',
+        label: 'Stimmung',
+        options: [
+          { text: 'Nah dran, persönlich – eine Acoustic Session', side: 'ricky', reason: 'erzeugt mit Stimme und Gitarre genau diese nahe, ruhige Stimmung.' },
+          { text: 'Groß, energetisch, tanzbar', side: 'band', reason: 'trägt mit voller Besetzung eine größere Bühnenenergie.' }
+        ]
+      },
+      {
+        key: 'verlaesslichkeit',
+        q: 'Wie wichtig ist Ihnen Verlässlichkeit?',
+        type: 'choice',
+        label: 'Verlässlichkeit',
+        options: [
+          { text: 'Sehr wichtig – alles soll fix sein', side: 'ricky', reason: 'hält sich vertraglich an Spielzeit und Absprachen, ohne Überraschungen.' },
+          { text: 'Nicht entscheidend für mich', side: 'band', reason: 'lässt bei einer Live-Band manche Punkte projektabhängig offen.' }
+        ]
+      },
+      {
+        key: 'vorlauf',
+        q: 'Wie viel Planungsvorlauf haben Sie?',
+        type: 'choice',
+        label: 'Vorlauf',
+        options: [
+          { text: 'Ich brauche kurzfristig einen Act', side: 'ricky', reason: 'ist als Solo-Act deutlich leichter kurzfristig verfügbar als eine ganze Band.' },
+          { text: 'Ich plane langfristig, kein Zeitdruck', side: 'band', reason: 'lässt sich mit ausreichend Vorlauf auch als größere Besetzung gut koordinieren.' }
+        ]
+      }
+    ];
+
+    var current = 0;
+    var answers = []; // { key, label, answer, side, reason }
+
+    var stepsEl = document.getElementById('cfg-steps');
+    var navEl   = document.getElementById('cfg-nav');
+
+    function buildNav() {
+      var html = '';
+      for (var i = 0; i < questions.length; i++) {
+        html += '<div class="cfg-dot" id="cfg-dot-' + i + '"><span class="cfg-dot-num">' + (i + 1) + '</span></div>';
+        if (i < questions.length - 1) html += '<div class="cfg-dot-line" id="cfg-line-' + i + '"></div>';
+      }
+      navEl.innerHTML = html;
+    }
+
+    function updateNav() {
+      for (var i = 0; i < questions.length; i++) {
+        var dot = document.getElementById('cfg-dot-' + i);
+        dot.classList.remove('active', 'done');
+        var num = dot.querySelector('.cfg-dot-num');
+        if (i < current) { dot.classList.add('done'); num.textContent = '✓'; }
+        else { num.textContent = i + 1; if (i === current) dot.classList.add('active'); }
+        var line = document.getElementById('cfg-line-' + i);
+        if (line) line.classList.toggle('done', i < current);
+      }
+    }
+
+    function renderStep() {
+      if (current >= questions.length) { showResult(); return; }
+      var q = questions[current];
+      var html = '<div class="cfg-step active going-fwd" id="cfg-step-active">';
+      html += '<p class="cfg-q">' + q.q + '</p>';
+
+      if (q.type === 'number') {
+        html += '<div class="cfg-num-row">';
+        html += '<input type="number" min="0" step="0.5" class="cfg-num-input" id="q-input" placeholder="' + q.placeholder + '">';
+        html += '<span class="cfg-num-unit">' + q.unit + '</span>';
+        html += '</div>';
+        html += '<button class="cfg-next-btn" id="q-next" disabled>Weiter</button>';
+      } else {
+        html += '<div class="cfg-cards">';
+        for (var i = 0; i < q.options.length; i++) {
+          html += '<button class="cfg-card" data-idx="' + i + '">' + q.options[i].text + '</button>';
+        }
+        html += '</div>';
+      }
+
+      html += '</div>';
+      stepsEl.innerHTML = html;
+
+      if (current > 0) {
+        var back = document.createElement('button');
+        back.className = 'cfg-back';
+        back.textContent = '← Zurück';
+        back.addEventListener('click', function() {
+          answers.pop();
+          current--;
+          updateNav();
+          renderStep();
+        });
+        stepsEl.querySelector('#cfg-step-active').insertBefore(back, stepsEl.querySelector('#cfg-step-active').firstChild);
+      }
+
+      if (q.type === 'number') {
+        var input = document.getElementById('q-input');
+        var nextBtn = document.getElementById('q-next');
+        input.addEventListener('input', function() {
+          nextBtn.disabled = this.value.trim() === '' || isNaN(parseFloat(this.value));
+        });
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' && !nextBtn.disabled) nextBtn.click();
+        });
+        nextBtn.addEventListener('click', function() {
+          var res = q.evaluate(input.value);
+          if (!res) return;
+          answers.push({ key: q.key, label: q.label, answer: res.answer, side: res.side, reason: res.reason });
+          current++;
+          updateNav();
+          renderStep();
+        });
+        setTimeout(function() { input.focus(); }, 300);
+      } else {
+        stepsEl.querySelectorAll('.cfg-card').forEach(function(card) {
+          card.addEventListener('click', function() {
+            var idx = parseInt(this.dataset.idx, 10);
+            var opt = q.options[idx];
+            answers.push({ key: q.key, label: q.label, answer: opt.text, side: opt.side, reason: opt.reason });
+            this.classList.add('selected');
+            setTimeout(function() {
+              current++;
+              updateNav();
+              renderStep();
+            }, 300);
+          });
+        });
+      }
+    }
+
+    function showResult() {
+      document.getElementById('cfg-steps').innerHTML = '';
+      navEl.style.opacity = '0';
+
+      var rickyCount = answers.filter(function(a) { return a.side === 'ricky'; }).length;
+      var total = answers.length;
+
+      var titleEl = document.getElementById('result-title');
+      var subEl   = document.getElementById('result-sub');
+
+      if (rickyCount >= 5) {
+        titleEl.textContent = 'Ricky Sachs bringt genau das, was Sie brauchen';
+      } else if (rickyCount >= 3) {
+        titleEl.textContent = 'Ricky Sachs passt gut zu Ihrer Veranstaltung';
+      } else {
+        titleEl.textContent = 'Eine klassische Live-Band könnte hier besser passen';
+      }
+      subEl.textContent = 'Auf Basis Ihrer Antworten passt das akustische Set in ' + rickyCount + ' von ' + total + ' Punkten zu dem, was Sie sich für den Abend wünschen.';
+
+      var listEl = document.getElementById('result-list');
+      listEl.innerHTML = answers.map(function(a) {
+        var icon = a.side === 'ricky'
+          ? '<span class="result-icon result-icon--ricky">✓</span>'
+          : '<span class="result-icon result-icon--band">→</span>';
+        var who = a.side === 'ricky' ? 'Ricky Sachs' : 'Eine Live-Band';
+        return '<li class="result-item">' + icon +
+          '<div><p class="result-item-q">' + a.label + ': ' + a.answer + '</p>' +
+          '<p class="result-item-text"><strong>' + who + '</strong> ' + a.reason + '</p></div></li>';
+      }).join('');
+
+      document.getElementById('result-wrap').style.display = 'block';
+
+      // Prefill stage space in booking form from Q1
+      var spaceAnswer = answers.filter(function(a) { return a.key === 'space'; })[0];
+      if (spaceAnswer) {
+        var m2 = parseFloat(spaceAnswer.answer);
+        if (!isNaN(m2)) document.getElementById('cf-space').value = m2;
+      }
+
+      document.getElementById('result-cta-btn').addEventListener('click', function() {
+        document.getElementById('check-form-wrap').classList.add('visible');
+        this.parentElement.style.display = 'none';
+        document.getElementById('check-form-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    buildNav();
+
+    // ---------- BOOKING FORM ----------
+    var form = document.getElementById('check-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var name  = document.getElementById('cf-name').value.trim();
+      var email = document.getElementById('cf-email').value.trim();
+      var venue = document.getElementById('cf-venue').value.trim();
+      var date  = document.getElementById('cf-date').value.trim();
+      var space = document.getElementById('cf-space').value.trim();
+      var msg   = document.getElementById('cf-msg').value.trim();
+
+      var valid = true;
+      var nameInput = document.getElementById('cf-name');
+      var emailInput = document.getElementById('cf-email');
+
+      if (!name) {
+        nameInput.classList.add('invalid');
+        document.getElementById('err-name').classList.add('show');
+        valid = false;
+      } else {
+        nameInput.classList.remove('invalid');
+        document.getElementById('err-name').classList.remove('show');
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailInput.classList.add('invalid');
+        document.getElementById('err-email').classList.add('show');
+        valid = false;
+      } else {
+        emailInput.classList.remove('invalid');
+        document.getElementById('err-email').classList.remove('show');
+      }
+
+      if (!valid) return;
+
+      var tsToken = document.querySelector('#check-form-wrap [name="cf-turnstile-response"]');
+      if (!tsToken || !tsToken.value) { alert('Bitte das Captcha lösen.'); return; }
+
+      var btn = document.getElementById('check-form-submit');
+      btn.textContent = 'Wird gesendet ...';
+      btn.disabled = true;
+
+      var answerSummary = answers.map(function(a) {
+        return a.label + ': ' + a.answer + ' (' + (a.side === 'ricky' ? 'Ricky Sachs' : 'Live-Band') + ')';
+      }).join(' / ');
+      var rickyCount = answers.filter(function(a) { return a.side === 'ricky'; }).length;
+
+      var fullMessage = 'Booker-Check-Ergebnis: ' + rickyCount + '/' + answers.length + ' für Ricky Sachs.\n' +
+        answerSummary + (msg ? ('\n\nNachricht: ' + msg) : '');
+
+      fetch('https://rickysachs-website.vercel.app/api/webhook', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          event_type: 'Booker-Check',
+          event_date: date || 'offen',
+          venue: venue || 'offen',
+          guest_count: 'nicht angegeben',
+          pa_system: 'nicht angegeben',
+          location_type: space ? (space + ' m² Bühnenplatz') : 'nicht angegeben',
+          phone: '',
+          message: fullMessage,
+          turnstileToken: tsToken.value
+        })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.ok) {
+          form.style.display = 'none';
+          document.getElementById('form-done').classList.add('visible');
+        } else {
+          throw new Error();
+        }
+      })
+      .catch(function() {
+        btn.textContent = 'Anfrage senden';
+        btn.disabled = false;
+        document.getElementById('form-send-error').style.display = 'block';
+      });
+    });
+
+  })();
+  </script>
+
+</body>
+</html>
