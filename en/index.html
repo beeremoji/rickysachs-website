@@ -390,10 +390,9 @@
     .nav-link-venues::after { display: none !important; }
 
     .nav-lang {
-      opacity: 0.7 !important;
-      font-size: 1.1rem !important;
-      letter-spacing: normal !important;
-      line-height: 1 !important;
+      opacity: 0.75 !important;
+      display: flex !important;
+      align-items: center !important;
     }
     .nav-lang::after { display: none !important; }
     .nav-lang:hover { opacity: 1 !important; }
@@ -2293,7 +2292,13 @@
       <li><a href="#ueber">About</a></li>
       <li><a href="#freestuff">Socials</a></li>
       <li><a href="/booking" class="nav-link-venues venue-cta">Booking</a></li>
-      <li><a href="../" class="nav-lang" aria-label="Zur deutschen Version wechseln" title="Zur deutschen Version wechseln">🇩🇪</a></li>
+      <li><a href="../" class="nav-lang" aria-label="Zur deutschen Version wechseln" title="Zur deutschen Version wechseln">
+        <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
+          <rect width="22" height="5.33" fill="#000"/>
+          <rect y="5.33" width="22" height="5.33" fill="#DD0000"/>
+          <rect y="10.66" width="22" height="5.34" fill="#FFCE00"/>
+        </svg>
+      </a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>

@@ -390,10 +390,9 @@
     .nav-link-venues::after { display: none !important; }
 
     .nav-lang {
-      opacity: 0.7 !important;
-      font-size: 1.1rem !important;
-      letter-spacing: normal !important;
-      line-height: 1 !important;
+      opacity: 0.75 !important;
+      display: flex !important;
+      align-items: center !important;
     }
     .nav-lang::after { display: none !important; }
     .nav-lang:hover { opacity: 1 !important; }
@@ -2014,7 +2013,18 @@
       <li><a href="#ueber">Über</a></li>
       <li><a href="#freestuff">Socials</a></li>
       <li><a href="/booking" class="nav-link-venues venue-cta">Buchen</a></li>
-      <li><a href="en/" class="nav-lang" aria-label="Switch to English" title="Switch to English">🇺🇸</a></li>
+      <li><a href="en/" class="nav-lang" aria-label="Switch to English" title="Switch to English">
+        <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
+          <rect width="22" height="16" fill="#B22234"/>
+          <rect y="1.23" width="22" height="1.23" fill="#fff"/>
+          <rect y="3.69" width="22" height="1.23" fill="#fff"/>
+          <rect y="6.15" width="22" height="1.23" fill="#fff"/>
+          <rect y="8.62" width="22" height="1.23" fill="#fff"/>
+          <rect y="11.08" width="22" height="1.23" fill="#fff"/>
+          <rect y="13.54" width="22" height="1.23" fill="#fff"/>
+          <rect width="9" height="8.62" fill="#3C3B6E"/>
+        </svg>
+      </a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
