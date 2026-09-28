@@ -389,13 +389,24 @@
     .nav-link-venues:hover { border-color: rgba(216,184,113,0.9) !important; animation-play-state: paused; color: #F6E4BB !important; text-shadow: 0 0 12px rgba(216,184,113,0.85); }
     .nav-link-venues::after { display: none !important; }
 
+    .nav-lang-group {
+      display: flex !important;
+      align-items: center;
+      gap: 0.6rem;
+    }
     .nav-lang {
-      opacity: 0.75 !important;
+      opacity: 0.4 !important;
       display: flex !important;
       align-items: center !important;
+      transition: opacity 0.25s, filter 0.25s;
     }
     .nav-lang::after { display: none !important; }
-    .nav-lang:hover { opacity: 1 !important; }
+    .nav-lang:hover { opacity: 0.8 !important; }
+    .nav-lang-active {
+      opacity: 1 !important;
+      filter: drop-shadow(0 0 4px rgba(216,184,113,0.85)) drop-shadow(0 0 9px rgba(216,184,113,0.5));
+    }
+    .nav-lang-active:hover { opacity: 1 !important; }
 
     @keyframes venuePulse {
       0%, 100% {
@@ -2292,13 +2303,27 @@
       <li><a href="#ueber">About</a></li>
       <li><a href="#freestuff">Socials</a></li>
       <li><a href="/booking" class="nav-link-venues venue-cta">Booking</a></li>
-      <li><a href="../" class="nav-lang" aria-label="Zur deutschen Version wechseln" title="Zur deutschen Version wechseln">
-        <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
-          <rect width="22" height="5.33" fill="#000"/>
-          <rect y="5.33" width="22" height="5.33" fill="#DD0000"/>
-          <rect y="10.66" width="22" height="5.34" fill="#FFCE00"/>
-        </svg>
-      </a></li>
+      <li class="nav-lang-group">
+        <a href="../" class="nav-lang" aria-label="Zur deutschen Version wechseln" title="Zur deutschen Version wechseln">
+          <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
+            <rect width="22" height="5.33" fill="#000"/>
+            <rect y="5.33" width="22" height="5.33" fill="#DD0000"/>
+            <rect y="10.66" width="22" height="5.34" fill="#FFCE00"/>
+          </svg>
+        </a>
+        <a href="/en/" class="nav-lang nav-lang-active" aria-label="English (current)" title="English" aria-current="true">
+          <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
+            <rect width="22" height="16" fill="#B22234"/>
+            <rect y="1.23" width="22" height="1.23" fill="#fff"/>
+            <rect y="3.69" width="22" height="1.23" fill="#fff"/>
+            <rect y="6.15" width="22" height="1.23" fill="#fff"/>
+            <rect y="8.62" width="22" height="1.23" fill="#fff"/>
+            <rect y="11.08" width="22" height="1.23" fill="#fff"/>
+            <rect y="13.54" width="22" height="1.23" fill="#fff"/>
+            <rect width="9" height="8.62" fill="#3C3B6E"/>
+          </svg>
+        </a>
+      </li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
