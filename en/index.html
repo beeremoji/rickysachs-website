@@ -2363,6 +2363,7 @@
           <form class="nl-form" id="nl-hero" data-nl="hero">
             <input type="email" name="email" placeholder="you@email.com" required autocomplete="email">
             <button type="submit">Count me in &rarr;</button>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAADmqj0eefWhHaV49" data-theme="dark" data-appearance="interaction-only" style="flex-basis:100%;"></div>
           </form>
           <p class="nl-consent">No spam. Unsubscribe anytime. <a href="../datenschutz.html">Privacy Policy</a></p>
           <p class="nl-success" id="nl-hero-ok">Almost there! Please confirm your signup by email.</p>
@@ -2697,6 +2698,7 @@
       <form class="nl-form" id="nl-footer" data-nl="footer">
         <input type="email" name="email" placeholder="you@email.com" required autocomplete="email">
         <button type="submit">Sign me up</button>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAADmqj0eefWhHaV49" data-theme="dark" data-appearance="interaction-only" style="flex-basis:100%;"></div>
       </form>
       <p class="nl-consent">By submitting, you agree to the processing of your email for newsletter purposes. Unsubscribe anytime. <a href="../datenschutz.html">Privacy Notice</a></p>
       <p class="nl-success" id="nl-footer-ok">Almost there! Please confirm your signup by email.</p>
@@ -3083,11 +3085,15 @@
         var email = form.querySelector('input[type="email"]').value.trim();
         if (!email) return;
         var btn = form.querySelector('button[type="submit"]');
+        var tsField = form.querySelector('[name="cf-turnstile-response"]');
+        var errEl = errorId ? document.getElementById(errorId) : null;
+        if (!tsField || !tsField.value) { if (errEl) errEl.style.display = 'block'; return; }
+        if (errEl) errEl.style.display = 'none';
         if (btn) { btn.disabled = true; }
         fetch('https://rickysachs-website.vercel.app/api/newsletter', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email }),
+          body: JSON.stringify({ email: email, 'cf-turnstile-response': tsField.value }),
         })
         .then(function(r) { return r.json(); })
         .then(function(data) {
@@ -3100,8 +3106,8 @@
         })
         .catch(function() {
           if (btn) { btn.disabled = false; }
-          var errEl = errorId ? document.getElementById(errorId) : null;
           if (errEl) errEl.style.display = 'block';
+          if (window.turnstile) { try { window.turnstile.reset(form.querySelector('.cf-turnstile')); } catch (x) {} }
         });
       });
     }
@@ -3246,5 +3252,6 @@
   </script>
 
   <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
