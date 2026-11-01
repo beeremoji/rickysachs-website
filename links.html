@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics (Consent Mode v2 - DSGVO) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYRHZ3N695"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', wait_for_update: 500 });
+    gtag('js', new Date());
+    gtag('config', 'G-BYRHZ3N695', { anonymize_ip: true });
+  </script>
+  <script src="cookie-consent.js"></script>
+  <title>Links - Ricky Sachs</title>
+  <meta name="description" content="Alle Links von Ricky Sachs: Website, Spotify, Apple Music, Instagram, TikTok, YouTube und Newsletter.">
+  <link rel="canonical" href="https://rickysachs.com/links">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rickysachs.com/links">
+  <meta property="og:title" content="Links - Ricky Sachs">
+  <meta property="og:description" content="Alle Links von Ricky Sachs: Musik, Social Media und Newsletter.">
+  <meta property="og:image" content="https://rickysachs.com/img/all-the-little-things.webp">
+  <meta property="og:site_name" content="Ricky Sachs">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Links - Ricky Sachs">
+  <meta name="twitter:description" content="Alle Links von Ricky Sachs: Musik, Social Media und Newsletter.">
+  <meta name="twitter:image" content="https://rickysachs.com/img/all-the-little-things.webp">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <style>
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/lato-300.woff2') format('woff2'); }
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/lato-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/lato-700.woff2') format('woff2'); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-dark: #3A2416;
+      --cream: #F2EDE6;
+      --cream-dark: #E0D8CE;
+      --site-bg: #130A04;
+    }
+
+    html { background: #050200; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--site-bg);
+      color: var(--cream-dark);
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      isolation: isolate;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(rgba(19,10,4,0.78), rgba(19,10,4,0.9)), url('img/3hero.webp') center 25% / cover no-repeat;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      height: 80px;
+    }
+
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+
+    .nav-logo img {
+      height: 56px;
+      width: auto;
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .nav-logo:hover img { opacity: 1; }
+
+    /* MAIN */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 100px 1.5rem 3rem;
+      max-width: 520px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* BUTTONS */
+    .btn-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      min-height: 58px;
+    }
+
+    .btn:active { transform: scale(0.97); }
+    .btn:hover { opacity: 0.9; }
+
+    .btn-icon { flex-shrink: 0; width: 22px; height: 22px; }
+
+    .btn-website {
+      background: var(--cream);
+      color: #1a0a02;
+      margin-bottom: 0.65rem;
+    }
+
+    .btn-spotify { background: #1DB954; color: #000; }
+    .btn-apple   { background: var(--cream); color: #1a0a02; }
+
+    .btn-social {
+      background: rgba(242,237,230,0.1);
+      border: 1px solid rgba(242,237,230,0.3);
+      color: var(--cream);
+    }
+
+    .btn-social:hover { background: rgba(242,237,230,0.18); opacity: 1; }
+
+    /* NEWSLETTER */
+    .nl-wrap {
+      width: 100%;
+      margin-top: 2.75rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(242,237,230,0.15);
+    }
+
+    .nl-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.9;
+      margin-bottom: 0.9rem;
+    }
+
+    .nl-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nl-form input[type="email"] {
+      flex: 1;
+      min-width: 180px;
+      background: rgba(242,237,230,0.08);
+      border: 1px solid rgba(242,237,230,0.25);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      padding: 0.8rem 0.9rem;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .nl-form input[type="email"]::placeholder { color: var(--cream); opacity: 0.45; }
+    .nl-form input[type="email"]:focus { border-color: rgba(242,237,230,0.55); }
+
+    .nl-form button {
+      background: rgba(242,237,230,0.12);
+      border: 1px solid rgba(242,237,230,0.35);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.8rem 1.3rem;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nl-form button:hover { background: rgba(242,237,230,0.2); }
+    .nl-form button:disabled { opacity: 0.5; cursor: default; }
+
+    .cf-turnstile { margin: 0.9rem auto 0; display: flex; justify-content: center; width: 100%; }
+
+    .nl-consent {
+      font-size: 0.7rem;
+      color: var(--cream);
+      opacity: 0.6;
+      margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .nl-consent a { color: inherit; text-underline-offset: 2px; }
+
+    .nl-success { font-size: 0.95rem; color: var(--cream); display: none; }
+
+    .nl-error {
+      display: none;
+      font-size: 0.8rem;
+      color: var(--cream);
+      opacity: 0.85;
+      margin-top: 0.7rem;
+    }
+
+    .nl-error a { color: var(--cream); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      opacity: 0.5;
+    }
+
+    footer a { color: var(--cream-dark); text-decoration: none; }
+    footer a:hover { opacity: 0.7; }
+
+    @media (max-width: 420px) {
+      nav { padding: 0 1.25rem; }
+      .nav-logo img { height: 44px; }
+      main { padding-top: 88px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="img/logo_long.webp" alt="Ricky Sachs" width="176" height="64">
+    </a>
+  </nav>
+
+  <main>
+
+    <div class="btn-group">
+
+      <a href="https://rickysachs.com/" class="btn btn-website" aria-label="Zur Website von Ricky Sachs">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        Website
+      </a>
+
+      <a href="https://open.spotify.com/artist/3GsaS5k1R4PbSuRfgQF0Ei" class="btn btn-spotify" target="_blank" rel="noopener" aria-label="Ricky Sachs auf Spotify">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 01-.857.207c-2.348-1.435-5.304-1.759-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.622.622 0 01.207.857zm1.223-2.722a.78.78 0 01-1.072.257C14.1 12.26 10.539 11.7 7.2 12.66a.78.78 0 01-.962-.52.78.78 0 01.52-.961c3.79-1.15 7.797-.594 10.77 1.251a.78.78 0 01.281 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.794c3.525-1.072 9.386-.865 13.092 1.325a.938.938 0 01-.932 1.626z"/>
+        </svg>
+        Spotify
+      </a>
+
+      <a href="https://music.apple.com/de/artist/ricky-sachs/1896494227" class="btn btn-apple" target="_blank" rel="noopener" aria-label="Ricky Sachs auf Apple Music">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.064-2.31-2.24-3.09a5.99 5.99 0 00-1.88-.77c-.54-.13-1.07-.17-1.59-.19L18 0H6C3.16 0 .61 2.1.14 4.85a9.2 9.2 0 00-.14 1.72v10.87a9.2 9.2 0 00.14 1.72C.61 21.9 3.16 24 6 24h12c2.84 0 5.39-2.1 5.86-4.85.1-.57.14-1.14.14-1.72V6.12zM12 17.5c-3.03 0-5.5-2.47-5.5-5.5S8.97 6.5 12 6.5s5.5 2.47 5.5 5.5-2.47 5.5-5.5 5.5zm4-9.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 9.5 12 9.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        Apple Music
+      </a>
+
+      <a href="https://instagram.com/ricky.sachs" class="btn btn-social" target="_blank" rel="noopener" aria-label="Ricky Sachs auf Instagram">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+
+      <a href="https://tiktok.com/@ricky.sachs" class="btn btn-social" target="_blank" rel="noopener" aria-label="Ricky Sachs auf TikTok">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        TikTok
+      </a>
+
+      <a href="https://www.youtube.com/@rickysachs" class="btn btn-social" target="_blank" rel="noopener" aria-label="Ricky Sachs auf YouTube">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        YouTube
+      </a>
+
+    </div>
+
+    <div class="nl-wrap">
+      <p class="nl-label">Neue Musik + Insider-Updates direkt ins Postfach</p>
+      <form class="nl-form" id="nl-links">
+        <input type="email" name="email" placeholder="deine@email.de" required autocomplete="email" aria-label="E-Mail-Adresse">
+        <button type="submit">Dabei sein</button>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAADmqj0eefWhHaV49" data-theme="dark"></div>
+      </form>
+      <p class="nl-consent">Mit Absenden stimmst du der Verarbeitung deiner E-Mail zur Newsletter-Zusendung zu. Abmeldung jederzeit. <a href="datenschutz.html">Datenschutzerklärung</a></p>
+      <p class="nl-success" id="nl-links-ok">Fast da! Bitte bestätige deine Anmeldung per E-Mail.</p>
+      <p class="nl-error" id="nl-links-err">Fehler beim Eintragen. Schreib direkt an <a href="mailto:booking@rickysachs.com">booking@rickysachs.com</a></p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Erik Sachs &nbsp;/&nbsp; <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      var form = document.getElementById('nl-links');
+      var ok = document.getElementById('nl-links-ok');
+      var err = document.getElementById('nl-links-err');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = form.querySelector('input[type="email"]').value.trim();
+        if (!email) return;
+        var tsField = form.querySelector('[name="cf-turnstile-response"]');
+        var btn = form.querySelector('button[type="submit"]');
+        err.style.display = 'none';
+        if (!tsField || !tsField.value) {
+          err.textContent = 'Bitte kurz warten, bis die Sicherheitsprüfung abgeschlossen ist, und noch einmal klicken.';
+          err.style.display = 'block';
+          return;
+        }
+        btn.disabled = true;
+        fetch('https://rickysachs-website.vercel.app/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, 'cf-turnstile-response': tsField.value })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.ok) {
+            form.style.display = 'none';
+            document.querySelector('#nl-links ~ .nl-consent').style.display = 'none';
+            ok.style.display = 'block';
+          } else {
+            throw new Error(data.error || 'error');
+          }
+        })
+        .catch(function() {
+          btn.disabled = false;
+          err.innerHTML = 'Fehler beim Eintragen. Schreib direkt an <a href="mailto:booking@rickysachs.com">booking@rickysachs.com</a>';
+          err.style.display = 'block';
+          if (window.turnstile) { try { window.turnstile.reset(); } catch (x) {} }
+        });
+      });
+    })();
+  </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+</body>
+</html>
