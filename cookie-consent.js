@@ -20,17 +20,23 @@
   if (consent === 'denied')  { denyAnalytics();  return; }
 
   // Show banner
+  var TEXTS = {
+    de: { text: 'Diese Website verwendet Google Analytics, um Besuche anonymisiert zu messen. Weitere Infos in der', link: 'Datenschutzerklärung', deny: 'Ablehnen', accept: 'Akzeptieren' },
+    en: { text: 'This website uses Google Analytics to measure visits anonymously. More information in the', link: 'privacy policy', deny: 'Decline', accept: 'Accept' },
+    fr: { text: 'Ce site utilise Google Analytics pour mesurer anonymement les visites. Plus d\'informations dans la', link: 'politique de confidentialité', deny: 'Refuser', accept: 'Accepter' },
+    es: { text: 'Este sitio web utiliza Google Analytics para medir las visitas de forma anónima. Más información en la', link: 'política de privacidad', deny: 'Rechazar', accept: 'Aceptar' },
+  };
+  var t = TEXTS[(document.documentElement.lang || 'de').slice(0, 2)] || TEXTS.de;
   var banner = document.createElement('div');
   banner.id = 'cookie-banner';
   banner.innerHTML = [
     '<div id="cookie-inner">',
     '  <p id="cookie-text">',
-    '    Diese Website verwendet Google Analytics, um Besuche anonymisiert zu messen.',
-    '    Weitere Infos in der <a href="/datenschutz.html">Datenschutzerklärung</a>.',
+    '    ' + t.text + ' <a href="/datenschutz.html">' + t.link + '</a>.',
     '  </p>',
     '  <div id="cookie-btns">',
-    '    <button id="cookie-deny">Ablehnen</button>',
-    '    <button id="cookie-accept">Akzeptieren</button>',
+    '    <button id="cookie-deny">' + t.deny + '</button>',
+    '    <button id="cookie-accept">' + t.accept + '</button>',
     '  </div>',
     '</div>',
   ].join('');

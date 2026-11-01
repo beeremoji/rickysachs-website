@@ -18,6 +18,8 @@
   <link rel="canonical" href="https://rickysachs.com/en/">
   <link rel="alternate" hreflang="de" href="https://rickysachs.com/">
   <link rel="alternate" hreflang="en" href="https://rickysachs.com/en/">
+  <link rel="alternate" hreflang="fr" href="https://rickysachs.com/fr/">
+  <link rel="alternate" hreflang="es" href="https://rickysachs.com/es/">
   <link rel="alternate" hreflang="x-default" href="https://rickysachs.com/">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Ricky Sachs">
@@ -2306,23 +2308,24 @@
       <li><a href="#freestuff">Socials</a></li>
       <li><a href="/booking" class="nav-link-venues venue-cta">Booking</a></li>
       <li class="nav-lang-group">
-        <a href="../" class="nav-lang" aria-label="Zur deutschen Version wechseln" title="Zur deutschen Version wechseln">
+        <a href="/" class="nav-lang" hreflang="de" lang="de" aria-label="Deutsch" title="Deutsch">
           <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
-            <rect width="22" height="5.33" fill="#000"/>
-            <rect y="5.33" width="22" height="5.33" fill="#DD0000"/>
-            <rect y="10.66" width="22" height="5.34" fill="#FFCE00"/>
+            <rect width="22" height="5.33" fill="#000"/><rect y="5.33" width="22" height="5.33" fill="#DD0000"/><rect y="10.66" width="22" height="5.34" fill="#FFCE00"/>
           </svg>
         </a>
-        <a href="/en/" class="nav-lang nav-lang-active" aria-label="English (current)" title="English" aria-current="true">
+        <a href="/en/" class="nav-lang nav-lang-active" hreflang="en" lang="en" aria-label="English (current)" title="English" aria-current="true">
           <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
-            <rect width="22" height="16" fill="#B22234"/>
-            <rect y="1.23" width="22" height="1.23" fill="#fff"/>
-            <rect y="3.69" width="22" height="1.23" fill="#fff"/>
-            <rect y="6.15" width="22" height="1.23" fill="#fff"/>
-            <rect y="8.62" width="22" height="1.23" fill="#fff"/>
-            <rect y="11.08" width="22" height="1.23" fill="#fff"/>
-            <rect y="13.54" width="22" height="1.23" fill="#fff"/>
-            <rect width="9" height="8.62" fill="#3C3B6E"/>
+            <rect width="22" height="16" fill="#B22234"/><rect y="1.23" width="22" height="1.23" fill="#fff"/><rect y="3.69" width="22" height="1.23" fill="#fff"/><rect y="6.15" width="22" height="1.23" fill="#fff"/><rect y="8.62" width="22" height="1.23" fill="#fff"/><rect y="11.08" width="22" height="1.23" fill="#fff"/><rect y="13.54" width="22" height="1.23" fill="#fff"/><rect width="9" height="8.62" fill="#3C3B6E"/>
+          </svg>
+        </a>
+        <a href="/fr/" class="nav-lang" hreflang="fr" lang="fr" aria-label="Français" title="Français">
+          <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
+            <rect width="7.33" height="16" fill="#0055A4"/><rect x="7.33" width="7.34" height="16" fill="#fff"/><rect x="14.67" width="7.33" height="16" fill="#EF4135"/>
+          </svg>
+        </a>
+        <a href="/es/" class="nav-lang" hreflang="es" lang="es" aria-label="Español" title="Español">
+          <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="border-radius:2px;display:block;">
+            <rect width="22" height="16" fill="#AA151B"/><rect y="4" width="22" height="8" fill="#F1BF00"/>
           </svg>
         </a>
       </li>
@@ -2403,7 +2406,7 @@
           <span class="section-label">About</span>
           <h2>Country Music from Germany</h2>
           <p>Ricky Sachs is a country singer and singer-songwriter from Aalen, Baden-Württemberg. He writes his own songs, plays acoustic guitar and performs solo.</p>
-          <p>His newest song "All the Little Things" will be available on all major streaming platforms from October 30, 2026.</p>
+          <p>His newest song "All the Little Things" is available on all major streaming platforms from October 30, 2026.</p>
           <p>Ricky Sachs plays festivals, town fairs and private events across Germany. As an acoustic solo act, the setup is flexible.</p>
           <div class="about-links">
             <a href="#shows" class="about-link">Current Shows</a>
@@ -2788,6 +2791,9 @@
           <label for="v-msg">Message (optional)</label>
           <textarea id="v-msg" name="msg" placeholder="Tell us briefly what it's about ..."></textarea>
         </div>
+        <div class="full">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADmqj0eefWhHaV49" data-theme="dark" data-appearance="interaction-only"></div>
+        </div>
         <button type="submit" class="venue-submit" id="venue-submit">Send Inquiry</button>
       </form>
 
@@ -2931,7 +2937,7 @@
         if (!document.getElementById('cfg-consent').checked) { alert('Bitte der Datenschutzerklarung zustimmen.'); return; }
 
         var btn = document.getElementById('cfg-submit');
-        btn.textContent = 'Wird gesendet ...';
+        btn.textContent = 'Sending ...';
         btn.disabled = true;
 
         fetch('https://rickysachs-website.vercel.app/api/webhook', {
@@ -2956,7 +2962,7 @@
           else { throw new Error(); }
         })
         .catch(function() {
-          btn.textContent = 'Anfrage senden';
+          btn.textContent = 'Send Inquiry';
           btn.disabled = false;
           var errMsg = document.getElementById('cfg-send-error');
           if (errMsg) { errMsg.style.display = 'block'; } else { alert('Fehler beim Senden. Bitte direkt an booking@rickysachs.com schreiben.'); }
@@ -3229,8 +3235,11 @@
           msg:           document.getElementById('v-msg').value.trim(),
         };
         if (!data.name || !data.email) return;
+        var tsField = form.querySelector('[name="cf-turnstile-response"]');
+        if (!tsField || !tsField.value) { document.getElementById('venue-error').style.display = 'block'; return; }
+        data.turnstileToken = tsField.value;
         btn.disabled = true;
-        btn.textContent = 'Wird gesendet ...';
+        btn.textContent = 'Sending ...';
         fetch('https://rickysachs-website.vercel.app/api/booking', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -3244,8 +3253,9 @@
         })
         .catch(function() {
           btn.disabled = false;
-          btn.textContent = 'Anfrage senden';
+          btn.textContent = 'Send Inquiry';
           document.getElementById('venue-error').style.display = 'block';
+          if (window.turnstile) { try { window.turnstile.reset(form.querySelector('.cf-turnstile')); } catch (x) {} }
         });
       });
     })();
