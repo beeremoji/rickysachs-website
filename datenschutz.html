@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google Analytics (Consent Mode v2 - DSGVO) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYRHZ3N695"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -14,10 +13,12 @@
   </script>
   <script src="cookie-consent.js"></script>
   <title>Datenschutz &amp; Impressum - Ricky Sachs</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/lato-300.woff2') format('woff2'); }
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/lato-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Lato'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/lato-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/playfair-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/playfair-400i.woff2') format('woff2'); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -173,6 +174,7 @@
       .content { padding: 3rem 1.5rem 4rem; }
     }
   </style>
+  <link rel="stylesheet" href="design.css">
 </head>
 <body>
 
@@ -192,7 +194,7 @@
     <h1>Impressum &amp;<br>Datenschutz</h1>
 
     <h2>Impressum</h2>
-    <p>Angaben gemäß § 5 TMG:</p>
+    <p>Angaben gemäß § 5 DDG:</p>
 
     <address>
       Erik Sachs<br>
@@ -206,7 +208,7 @@
       E-Mail: <a href="mailto:booking@rickysachs.com">booking@rickysachs.com</a>
     </p>
 
-    <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+    <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
     <address>
       Erik Sachs<br>
       Heidenheimer Straße 21<br>
@@ -214,7 +216,7 @@
     </address>
 
     <h3>Haftung für Inhalte</h3>
-    <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf dieser Website nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin ich als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+    <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf dieser Website nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG bin ich als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
 
     <h3>Haftung für Links</h3>
     <p>Meine Website enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Links umgehend entfernen.</p>
@@ -266,12 +268,20 @@
     <p><strong>Verarbeitung durch HubSpot:</strong> Die Booking-Daten werden als Kontakt und Anfrage in HubSpot CRM gespeichert und zur Bearbeitung und Nachverfolgung der Anfrage genutzt. Anbieter: HubSpot Ireland Limited, 2nd Floor 30 North Wall Quay, Dublin 1, Irland. Das genutzte HubSpot-Konto wird auf EU-Servern betrieben. Datenschutzinformationen: <a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer">legal.hubspot.com/privacy-policy</a>.</p>
     <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen auf Anfrage der betroffenen Person). Die Daten werden ausschließlich zur Bearbeitung der Booking-Anfrage verwendet. Alternativ ist eine direkte Kontaktaufnahme per E-Mail möglich: <a href="mailto:booking@rickysachs.com">booking@rickysachs.com</a></p>
 
+    <h3>4a. Spam-Schutz (Cloudflare Turnstile)</h3>
+    <p>Zum Schutz der Formulare (Newsletter, Booking-Anfrage) vor automatisierten Eingaben („Bots“) wird der Dienst <strong>Cloudflare Turnstile</strong> (Cloudflare, Inc., USA) eingesetzt. Das zugehörige Skript wird erst geladen, wenn Sie ein Formular auf dieser Website anklicken oder darin etwas eingeben. Dabei werden technische Daten Ihres Browsers und Ihre IP-Adresse an Cloudflare übertragen, um zu prüfen, ob die Eingabe von einem Menschen stammt. Es wird kein Rätsel oder Bild eingeblendet, sofern die Prüfung im Hintergrund erfolgreich ist.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Sicherheit der Formulare und der Abwehr von Missbrauch) sowie § 25 Abs. 2 Nr. 2 TDDDG. Cloudflare hat sich dem EU-US Data Privacy Framework angeschlossen. Datenschutzinformationen: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a>.</p>
+
+    <h3>4b. E-Mail-Versand (Resend)</h3>
+    <p>Wenn Sie eine Booking-Anfrage absenden, wird die Anfrage zusätzlich als E-Mail-Benachrichtigung an den Betreiber dieser Website versendet. Für den Versand wird der Dienst <strong>Resend</strong> (Resend, Inc., USA) genutzt. Dabei werden die Inhalte Ihrer Anfrage (Name, E-Mail-Adresse, ggf. Telefonnummer, Angaben zur Veranstaltung und Nachricht) kurzzeitig über die Server von Resend übermittelt.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Bearbeitung Ihrer Anfrage). Die Übermittlung in die USA erfolgt auf Grundlage von Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO). Datenschutzinformationen: <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">resend.com/legal/privacy-policy</a>.</p>
+
     <h3>5. Google Fonts</h3>
     <p>Diese Website lädt Schriftarten über <strong>Google Fonts</strong> (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA). Beim Laden der Schriftarten wird Ihre IP-Adresse an Google-Server übertragen. Google hat sich dem EU-US Data Privacy Framework angeschlossen.</p>
     <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer einheitlichen Darstellung der Website). Datenschutzinformationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</p>
 
     <h3>6. YouTube</h3>
-    <p>Diese Website zeigt eine Vorschau eines Videos von <strong>YouTube</strong> (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA). Das Video wird nicht automatisch beim Laden der Seite eingebettet. Eine Verbindung zu YouTube-Servern wird erst dann hergestellt, wenn Sie aktiv auf das Vorschaubild klicken und damit das Video starten. Erst ab diesem Zeitpunkt werden Ihre IP-Adresse und weitere technische Daten an YouTube übertragen und YouTube kann Cookies setzen.</p>
+    <p>Diese Website zeigt eine Vorschau eines Videos von <strong>YouTube</strong> (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA). Das Video wird nicht automatisch beim Laden der Seite eingebettet. Eine Verbindung zu YouTube-Servern wird erst dann hergestellt, wenn Sie aktiv auf das Vorschaubild klicken und damit das Video starten. Erst ab diesem Zeitpunkt werden Ihre IP-Adresse und weitere technische Daten an YouTube übertragen und YouTube kann Cookies setzen. Das Vorschaubild wird von dieser Website selbst bereitgestellt (nicht von YouTube geladen); für das Video wird die erweiterte Datenschutz-Einbettung (youtube-nocookie.com) verwendet.</p>
     <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch aktives Klicken). Google hat sich dem EU-US Data Privacy Framework angeschlossen. Datenschutzinformationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</p>
 
     <h3>7. Newsletter (MailerLite)</h3>
@@ -281,13 +291,13 @@
     <p>MailerLite ist ein europäischer Anbieter mit Servern in der EU. Datenschutzinformationen: <a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">mailerlite.com/legal/privacy-policy</a>.</p>
 
     <h3>8. BandsInTown-Widget</h3>
-    <p>Diese Website bindet ein Show-Widget des Dienstes <strong>BandsInTown</strong> (Bandsintown Group LLC, 150 West 25th Street, New York, NY 10001, USA) ein. Beim Laden der Seite wird ein JavaScript von den Servern von BandsInTown geladen, um die aktuellen Konzerttermine anzuzeigen. Dabei wird Ihre IP-Adresse an BandsInTown-Server übertragen.</p>
-    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der automatisierten Darstellung aktueller Konzerttermine ohne manuellen Pflegeaufwand). Datenschutzinformationen: <a href="https://corp.bandsintown.com/privacy" target="_blank" rel="noopener noreferrer">corp.bandsintown.com/privacy</a>.</p>
+    <p>Diese Website bindet ein Show-Widget des Dienstes <strong>BandsInTown</strong> (Bandsintown Group LLC, 150 West 25th Street, New York, NY 10001, USA) ein. Das Widget wird nicht automatisch geladen. Erst wenn Sie auf die Schaltfläche „Termine laden“ klicken, wird ein JavaScript von den Servern von BandsInTown geladen, um die aktuellen Konzerttermine anzuzeigen. Erst ab diesem Zeitpunkt wird Ihre IP-Adresse an BandsInTown-Server übertragen.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO i. V. m. § 25 Abs. 1 TDDDG (Einwilligung durch aktives Klicken). Datenschutzinformationen: <a href="https://corp.bandsintown.com/privacy" target="_blank" rel="noopener noreferrer">corp.bandsintown.com/privacy</a>.</p>
 
     <h3>9. Google Analytics</h3>
     <p>Diese Website verwendet <strong>Google Analytics 4</strong> (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA), einen Webanalysedienst. Google Analytics verwendet Cookies und ähnliche Technologien, um Informationen über die Nutzung dieser Website zu sammeln und auszuwerten.</p>
     <p>Google Analytics wird auf dieser Website ausschließlich mit <strong>aktiviertem IP-Anonymisierungsfeature</strong> eingesetzt (anonymize_ip). Ihre IP-Adresse wird daher von Google innerhalb der EU/des EWR vor der Übermittlung in die USA gekürzt. Die im Rahmen von Google Analytics erhobenen Daten werden nicht mit anderen Daten von Google zusammengeführt.</p>
-    <p>Die Aktivierung von Google Analytics erfolgt ausschließlich nach Ihrer ausdrücklichen Einwilligung über den Cookie-Banner. Ohne Einwilligung werden keinerlei Analysedaten erfasst (Google Consent Mode v2).</p>
+    <p>Die Aktivierung von Google Analytics erfolgt ausschließlich nach Ihrer ausdrücklichen Einwilligung über den Cookie-Banner. Das Google-Analytics-Skript wird erst nach Ihrer Einwilligung geladen; ohne Einwilligung findet keine Verbindung zu Google-Servern statt und es werden keine Analysedaten erfasst. Sie können Ihre Entscheidung jederzeit über den Link „Cookie-Einstellungen“ im Fußbereich der Seiten widerrufen bzw. ändern. Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO i. V. m. § 25 Abs. 1 TDDDG.</p>
     <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Sie können Ihre Einwilligung jederzeit widerrufen:</p>
     <div class="highlight-box">
       Cookie-Einstellungen jederzeit ändern: <a href="#" onclick="localStorage.removeItem('rs_cookie_consent');location.reload();return false;">Einwilligung widerrufen / Cookie-Banner erneut anzeigen</a>
@@ -322,12 +332,12 @@
     <p>Diese Website verwendet keine automatisierte Entscheidungsfindung oder Profiling im Sinne von Art. 22 DSGVO.</p>
 
     <h3>14. Aktualität dieser Datenschutzerklärung</h3>
-    <p>Stand: Juni 2026. Ich behalte mir vor, diese Datenschutzerklärung anzupassen, soweit dies aufgrund geänderter gesetzlicher Anforderungen oder Änderungen an der Website erforderlich wird.</p>
+    <p>Stand: November 2026. Ich behalte mir vor, diese Datenschutzerklärung anzupassen, soweit dies aufgrund geänderter gesetzlicher Anforderungen oder Änderungen an der Website erforderlich wird.</p>
 
   </div>
 
   <footer>
-    <p>&copy; 2026 Ricky Sachs / <a href="/">Zurück zur Startseite</a></p>
+    <p>&copy; 2026 Ricky Sachs / <a href="/">$1 / <a href="#" class="cookie-settings-link" data-cookie-settings>Cookie-Einstellungen</a></p>
   </footer>
 
 </body>

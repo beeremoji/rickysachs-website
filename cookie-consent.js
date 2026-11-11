@@ -2,12 +2,32 @@
   var STORAGE_KEY = 'rs_cookie_consent';
   var consent = localStorage.getItem(STORAGE_KEY);
 
+  // Google Analytics wird erst nach Einwilligung geladen (kein Request an Google vorher)
+  function loadGA() {
+    if (document.getElementById('ga-js')) return;
+    var s = document.createElement('script');
+    s.id = 'ga-js';
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-BYRHZ3N695';
+    document.head.appendChild(s);
+  }
+
   // GA Consent Mode update helper
   function grantAnalytics() {
     if (typeof gtag === 'function') {
       gtag('consent', 'update', { analytics_storage: 'granted' });
     }
+    loadGA();
   }
+
+  // Einwilligung widerrufen: Entscheidung loeschen, Seite neu laden (Banner erscheint wieder)
+  document.addEventListener('click', function (e) {
+    var el = e.target && e.target.closest && e.target.closest('[data-cookie-settings]');
+    if (!el) return;
+    e.preventDefault();
+    try { localStorage.removeItem(STORAGE_KEY); } catch (x) {}
+    location.reload();
+  });
 
   function denyAnalytics() {
     if (typeof gtag === 'function') {

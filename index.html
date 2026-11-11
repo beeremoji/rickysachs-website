@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google Analytics (Consent Mode v2 - DSGVO) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYRHZ3N695"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -2028,8 +2027,11 @@
     .hero-nl .nl-consent { color: var(--cream); opacity: 0.9; }
     .hero-nl .nl-form input[type="email"] { background: rgba(255,255,255,0.08); }
   </style>
+  <meta name="theme-color" content="#130A04">
+  <link rel="stylesheet" href="design.css">
 </head>
-<body>
+<body class="home">
+  <a class="skip-link" href="#main" style="position:fixed;left:-9999px;top:0">Zum Inhalt springen</a>
 
   <div class="bg-veil" id="bg-veil" aria-hidden="true"></div>
 
@@ -2072,7 +2074,7 @@
     </button>
   </nav>
 
-  <main>
+  <main id="main">
   <h1 class="sr-only">Ricky Sachs - Countrymusiker aus Deutschland</h1>
 
   <!-- HERO -->
@@ -2125,13 +2127,14 @@
       <div class="video-wrap">
         <div class="video-embed">
           <div class="yt-facade" data-id="uQJ2MM1SBVQ" role="button" tabindex="0" aria-label="Video abspielen: Ricky Sachs - Told You To Stay (Lyrics)">
-            <img src="https://i.ytimg.com/vi/uQJ2MM1SBVQ/maxresdefault.jpg" alt="Ricky Sachs - Told You To Stay (Lyrics)" loading="lazy">
+            <img src="img/yt-told-you-to-stay.webp" width="1280" height="720" alt="Ricky Sachs - Told You To Stay (Lyrics)" loading="lazy">
             <button class="yt-play" aria-hidden="true" tabindex="-1">
               <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg"><rect width="68" height="48" rx="8" fill="#FF0000" fill-opacity="0.88"/><path d="M45 24L28 34V14L45 24Z" fill="white"/></svg>
             </button>
           </div>
         </div>
       </div>
+      <p class="consent-note">Mit dem Abspielen wird YouTube (Google) geladen und es werden Daten übertragen. <a href="datenschutz.html">Datenschutz</a></p>
       <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="musik-ig-link">Mehr Live-Mitschnitte: @ricky.sachs ↗</a>
     </div>
   </div>
@@ -2163,7 +2166,12 @@
     <div class="section-inner">
       <span class="section-label section-label-light">Auftritte</span>
       <h2 class="light">Shows</h2>
-      <div class="bit-widget-wrap">
+      <div class="consent-card" id="bit-consent">
+        <p class="consent-title">Tourtermine</p>
+        <p class="consent-text">Die Termine kommen von Bandsintown. Beim Laden werden Daten, darunter deine IP-Adresse, an Bandsintown übertragen. <a href="datenschutz.html">Datenschutz</a></p>
+        <button type="button" class="consent-btn" id="bit-load">Termine laden</button>
+      </div>
+      <div class="bit-widget-wrap" hidden>
         <a class="bit-widget-initializer"
           data-artist-name="id_15643449"
           data-app-id="e7c359d667ec564423e61105cb5aa6a5"
@@ -2173,6 +2181,7 @@
           data-link-color="#E0D8CE"
           data-button-label-follow-up="Folgen"
           data-font="Lato"
+          data-language="de"
           data-display-local-dates="false"
           data-display-past-dates="true"
         ></a>
@@ -2452,7 +2461,7 @@
       <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.facebook.com/therickysachs" target="_blank" rel="noopener">Facebook</a>
     </div>
-    <p>&copy; 2026 Erik Sachs / <a href="mailto:booking@rickysachs.com">Kontakt</a> / <a href="datenschutz.html">Datenschutz &amp; Impressum</a></p>
+    <p>&copy; 2026 Erik Sachs / <a href="mailto:booking@rickysachs.com">Kontakt</a> / <a href="datenschutz.html">Datenschutz &amp; Impressum</a> / <a href="#" class="cookie-settings-link" data-cookie-settings>Cookie-Einstellungen</a></p>
   </footer>
 
 
@@ -2720,7 +2729,7 @@
     document.querySelectorAll('.yt-facade').forEach(function(facade) {
       function load() {
         var iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube.com/embed/' + facade.dataset.id + '?autoplay=1';
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + facade.dataset.id + '?autoplay=1&rel=0';
         iframe.title = facade.getAttribute('aria-label');
         iframe.setAttribute('allowfullscreen', '');
         iframe.allow = 'autoplay; encrypted-media';
@@ -2794,7 +2803,6 @@
 
   </script>
 
-  <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script defer src="design.js"></script>
 </body>
 </html>
