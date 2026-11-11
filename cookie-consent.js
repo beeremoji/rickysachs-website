@@ -76,12 +76,21 @@
 
   document.head.appendChild(style);
 
+  // Hoehe des Banners fuer Elemente, die darueber bleiben muessen (z. B. KI-Label im Hero)
+  function setBannerHeight() {
+    document.documentElement.style.setProperty('--cookie-h', banner.parentNode ? banner.offsetHeight + 'px' : '0px');
+  }
+
   function removeBanner() {
     if (banner.parentNode) banner.parentNode.removeChild(banner);
+    setBannerHeight();
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(banner);
+    setBannerHeight();
+    window.addEventListener('resize', setBannerHeight);
+    window.addEventListener('load', setBannerHeight);
 
     document.getElementById('cookie-accept').addEventListener('click', function () {
       localStorage.setItem(STORAGE_KEY, 'granted');

@@ -64,7 +64,7 @@
       position: fixed;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(rgba(19,10,4,0.78), rgba(19,10,4,0.9)), url('img/3hero.webp') center 25% / cover no-repeat;
+      background: linear-gradient(rgba(19,10,4,0.78), rgba(19,10,4,0.9)), url('img/hero.png') center 25% / cover no-repeat;
     }
 
     /* NAV */
@@ -250,6 +250,21 @@
       .nav-logo img { height: 44px; }
       main { padding-top: 88px; }
     }
+      /* AI-Kennzeichnung fuer das Hintergrundbild */
+    .ai-label {
+      position: fixed;
+      right: 0.75rem;
+      bottom: calc(0.75rem + var(--cookie-h, 0px));
+      width: 96px;
+      height: auto;
+      z-index: 5;
+      opacity: 0.9;
+      pointer-events: none;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.7));
+    }
+    @media (max-width: 600px) {
+      .ai-label { width: 78px; right: 0.6rem; bottom: calc(0.6rem + var(--cookie-h, 0px)); }
+    }
   </style>
 </head>
 <body>
@@ -364,5 +379,6 @@
   </script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
+  <img class="ai-label" src="img/ai-generated-label.webp" alt="KI-generiertes Bild" width="96" height="30">
 </body>
 </html>

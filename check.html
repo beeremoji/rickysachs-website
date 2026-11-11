@@ -32,7 +32,7 @@
     }
     html { scroll-behavior: smooth; background: #050200; overscroll-behavior: none; }
     body { font-family: 'Lato', sans-serif; background: transparent; color: var(--cream-dark); font-weight: 300; isolation: isolate; }
-    body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: url('img/3hero.webp') center 25% / cover no-repeat; }
+    body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: url('img/hero.png') center 25% / cover no-repeat; }
 
     body::after { content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: 0.038; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"); }
 
@@ -192,6 +192,21 @@
       .glass-panel { padding: 2rem 1.5rem 2.5rem; }
       .cfg-next-btn, .form-submit-btn, .gate-submit { width: 100%; text-align: center; }
       .cfg-num-input { width: 100px; }
+    }
+      /* AI-Kennzeichnung fuer das Hintergrundbild */
+    .ai-label {
+      position: fixed;
+      right: 0.75rem;
+      bottom: calc(0.75rem + var(--cookie-h, 0px));
+      width: 96px;
+      height: auto;
+      z-index: 5;
+      opacity: 0.9;
+      pointer-events: none;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.7));
+    }
+    @media (max-width: 600px) {
+      .ai-label { width: 78px; right: 0.6rem; bottom: calc(0.6rem + var(--cookie-h, 0px)); }
     }
   </style>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -655,5 +670,6 @@
   })();
   </script>
 
+  <img class="ai-label" src="img/ai-generated-label.webp" alt="KI-generiertes Bild" width="96" height="30">
 </body>
 </html>
