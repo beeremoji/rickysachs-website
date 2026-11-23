@@ -2641,6 +2641,7 @@
             <input type="checkbox" id="cfg-consent">
             <span>J’ai pris connaissance de la <a href="privacy.html" target="_blank" rel="noopener">politique de confidentialité</a>. Mes données seront traitées pour le suivi de cette demande de booking.</span>
           </label>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADmqj0eefWhHaV49" data-theme="dark" data-size="normal" style="margin:1rem 0;"></div>
           <button class="cfg-submit-btn" id="cfg-submit">Anfrage senden</button>
           <p id="cfg-send-error" style="display:none;margin-top:1rem;font-size:0.8rem;color:rgba(242,237,230,0.7);">Technischer Fehler - bitte schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
         </div>
@@ -2971,6 +2972,9 @@
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) { alert('Bitte eine gültige E-Mail-Adresse angeben.'); return; }
         if (!document.getElementById('cfg-consent').checked) { alert('Veuillez confirmer que vous avez pris connaissance de la politique de confidentialité.'); return; }
 
+        var tsToken = document.querySelector('#cfg-step-4 [name="cf-turnstile-response"]');
+        if (!tsToken || !tsToken.value) { alert('Veuillez valider le captcha.'); return; }
+
         var btn = document.getElementById('cfg-submit');
         btn.textContent = 'Envoi en cours ...';
         btn.disabled = true;
@@ -2988,7 +2992,8 @@
             pa_system:      d.pa                || 'nicht angegeben',
             location_type:  d.location_type     || 'nicht angegeben',
             phone:          d.tel               || '',
-            message:        d.msg               || ''
+            message:        d.msg               || '',
+            turnstileToken: tsToken.value
           })
         })
         .then(function(r) { return r.json(); })
