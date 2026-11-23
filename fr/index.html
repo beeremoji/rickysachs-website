@@ -2396,7 +2396,7 @@
             <button type="submit">Je m'inscris &rarr;</button>
         <div class="cf-turnstile" data-sitekey="0x4AAAAAADmqj0eefWhHaV49" data-theme="dark" data-appearance="interaction-only" style="flex-basis:100%;"></div>
           </form>
-          <p class="nl-consent">Pas de spam. Désinscription à tout moment. <a href="../datenschutz.html">Politique de confidentialité</a></p>
+          <p class="nl-consent">Pas de spam. Désinscription à tout moment. <a href="privacy.html">Politique de confidentialité</a></p>
           <p class="nl-success" id="nl-hero-ok">Presque terminé ! Merci de confirmer votre inscription par e-mail.</p>
           <p class="nl-error" id="nl-hero-err" style="display:none;font-size:0.8rem;color:rgba(242,237,230,0.7);margin-top:0.5rem;">Une erreur est survenue. Écrivez-nous directement à <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
         </div>
@@ -2422,7 +2422,7 @@
           </div>
         </div>
       </div>
-      <p class="consent-note">En lançant la vidéo, vous chargez YouTube (Google) ; des données sont transmises. <a href="../datenschutz.html">Confidentialité</a></p>
+      <p class="consent-note">En lançant la vidéo, vous chargez YouTube (Google) ; des données sont transmises. <a href="privacy.html">Confidentialité</a></p>
       <a href="https://instagram.com/ricky.sachs" target="_blank" rel="noopener" class="musik-ig-link">Plus de clips live : @ricky.sachs ↗</a>
     </div>
   </div>
@@ -2456,7 +2456,7 @@
       <h2 class="light">Concerts</h2>
       <div class="consent-card" id="bit-consent">
         <p class="consent-title">Dates de concert</p>
-        <p class="consent-text">Les dates proviennent de Bandsintown. Leur chargement transmet des données, dont votre adresse IP, à Bandsintown. <a href="../datenschutz.html">Confidentialité</a></p>
+        <p class="consent-text">Les dates proviennent de Bandsintown. Leur chargement transmet des données, dont votre adresse IP, à Bandsintown. <a href="privacy.html">Confidentialité</a></p>
         <button type="button" class="consent-btn" id="bit-load">Charger les dates</button>
       </div>
       <div class="bit-widget-wrap" hidden>
@@ -2639,7 +2639,7 @@
           </div>
           <label class="cfg-consent-row">
             <input type="checkbox" id="cfg-consent">
-            <span>Ich habe die <a href="../datenschutz.html" target="_blank" rel="noopener">Datenschutzerklarung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung dieser Booking-Anfrage zu.</span>
+            <span>J’ai pris connaissance de la <a href="privacy.html" target="_blank" rel="noopener">politique de confidentialité</a>. Mes données seront traitées pour le suivi de cette demande de booking.</span>
           </label>
           <button class="cfg-submit-btn" id="cfg-submit">Anfrage senden</button>
           <p id="cfg-send-error" style="display:none;margin-top:1rem;font-size:0.8rem;color:rgba(242,237,230,0.7);">Technischer Fehler - bitte schreib direkt an <a href="mailto:booking@rickysachs.com" style="color:var(--cream);">booking@rickysachs.com</a></p>
@@ -2738,7 +2738,7 @@
         <button type="submit">Je m'inscris</button>
         <div class="cf-turnstile" data-sitekey="0x4AAAAAADmqj0eefWhHaV49" data-theme="dark" data-appearance="interaction-only" style="flex-basis:100%;"></div>
       </form>
-      <p class="nl-consent">En envoyant ce formulaire, vous acceptez que votre e-mail soit traité pour l'envoi de la newsletter. Désinscription à tout moment. <a href="../datenschutz.html">Politique de confidentialité</a></p>
+      <p class="nl-consent">En envoyant ce formulaire, vous acceptez que votre e-mail soit traité pour l'envoi de la newsletter. Désinscription à tout moment. <a href="privacy.html">Politique de confidentialité</a></p>
       <p class="nl-success" id="nl-footer-ok">Presque terminé ! Merci de confirmer votre inscription par e-mail.</p>
       <p class="nl-error" id="nl-footer-err" style="display:none;font-size:0.8rem;color:rgba(242,237,230,0.6);margin-top:0.5rem;">Une erreur est survenue. Écrivez-nous directement à <a href="mailto:booking@rickysachs.com" style="color:var(--cream-dark);">booking@rickysachs.com</a></p>
     </div>
@@ -2748,7 +2748,7 @@
       <a href="https://www.youtube.com/@rickysachs" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.facebook.com/therickysachs" target="_blank" rel="noopener">Facebook</a>
     </div>
-    <p>&copy; 2026 Erik Sachs / <a href="mailto:booking@rickysachs.com">Contact</a> / <a href="../datenschutz.html">Confidentialité &amp; mentions légales</a> / <a href="#" class="cookie-settings-link" data-cookie-settings>Paramètres des cookies</a></p>
+    <p>&copy; 2026 Erik Sachs / <a href="mailto:booking@rickysachs.com">Contact</a> / <a href="privacy.html">Confidentialité &amp; mentions légales</a> / <a href="#" class="cookie-settings-link" data-cookie-settings>Paramètres des cookies</a></p>
   </footer>
 
   <!-- VENUE BOOKING - CINEMATIC OVERLAY -->
@@ -2969,7 +2969,7 @@
         d.msg   = document.getElementById('f-msg').value.trim();
         if (!d.name || !d.email) { alert('Bitte Name und E-Mail angeben.'); return; }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) { alert('Bitte eine gültige E-Mail-Adresse angeben.'); return; }
-        if (!document.getElementById('cfg-consent').checked) { alert('Bitte der Datenschutzerklarung zustimmen.'); return; }
+        if (!document.getElementById('cfg-consent').checked) { alert('Veuillez confirmer que vous avez pris connaissance de la politique de confidentialité.'); return; }
 
         var btn = document.getElementById('cfg-submit');
         btn.textContent = 'Envoi en cours ...';

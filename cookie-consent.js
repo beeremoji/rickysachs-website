@@ -41,10 +41,10 @@
 
   // Show banner
   var TEXTS = {
-    de: { text: 'Diese Website verwendet Google Analytics, um Besuche anonymisiert zu messen. Weitere Infos in der', link: 'Datenschutzerklärung', deny: 'Ablehnen', accept: 'Akzeptieren' },
-    en: { text: 'This website uses Google Analytics to measure visits anonymously. More information in the', link: 'privacy policy', deny: 'Decline', accept: 'Accept' },
-    fr: { text: 'Ce site utilise Google Analytics pour mesurer anonymement les visites. Plus d\'informations dans la', link: 'politique de confidentialité', deny: 'Refuser', accept: 'Accepter' },
-    es: { text: 'Este sitio web utiliza Google Analytics para medir las visitas de forma anónima. Más información en la', link: 'política de privacidad', deny: 'Rechazar', accept: 'Aceptar' },
+    de: { href: '/datenschutz.html', text: 'Mit deiner Einwilligung nutzt diese Website Google Analytics (Cookies), um Besuche statistisch auszuwerten. Dabei können Daten an Google, auch in die USA, übermittelt werden. Du kannst die Einwilligung jederzeit über „Cookie-Einstellungen“ widerrufen. Mehr in der', link: 'Datenschutzerklärung', deny: 'Ablehnen', accept: 'Akzeptieren' },
+    en: { href: '/en/privacy.html', text: 'With your consent, this website uses Google Analytics (cookies) to measure visits statistically. Data may be transferred to Google, including in the USA. You can withdraw your consent at any time via “Cookie settings”. More in the', link: 'privacy policy', deny: 'Decline', accept: 'Accept' },
+    fr: { href: '/fr/privacy.html', text: 'Avec votre consentement, ce site utilise Google Analytics (cookies) pour établir des statistiques de visite. Des données peuvent être transmises à Google, y compris aux États-Unis. Vous pouvez retirer votre consentement à tout moment via « Paramètres des cookies ». Plus d’informations dans la', link: 'politique de confidentialité', deny: 'Refuser', accept: 'Accepter' },
+    es: { href: '/es/privacy.html', text: 'Con tu consentimiento, este sitio web utiliza Google Analytics (cookies) para elaborar estadísticas de visitas. Los datos pueden transmitirse a Google, también en EE. UU. Puedes retirar tu consentimiento en cualquier momento en «Configuración de cookies». Más información en la', link: 'política de privacidad', deny: 'Rechazar', accept: 'Aceptar' },
   };
   var t = TEXTS[(document.documentElement.lang || 'de').slice(0, 2)] || TEXTS.de;
   var banner = document.createElement('div');
@@ -52,7 +52,7 @@
   banner.innerHTML = [
     '<div id="cookie-inner">',
     '  <p id="cookie-text">',
-    '    ' + t.text + ' <a href="/datenschutz.html">' + t.link + '</a>.',
+    '    ' + t.text + ' <a href="' + t.href + '">' + t.link + '</a>.',
     '  </p>',
     '  <div id="cookie-btns">',
     '    <button id="cookie-deny">' + t.deny + '</button>',
